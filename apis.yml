@@ -1,0 +1,97 @@
+aid: mubert
+url: https://raw.githubusercontent.com/api-evangelist/mubert/refs/heads/main/apis.yml
+name: Mubert
+kind: company
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - AI Music
+  - Generative
+  - Royalty-Free
+  - Streaming
+  - Text-to-Music
+  - Image-to-Music
+  - B2B
+created: '2026-05-23'
+modified: '2026-05-23'
+specificationVersion: '0.19'
+description: >-
+  Mubert is a generative music platform that composes royalty-free tracks
+  from millions of artist-contributed samples and loops. The product
+  family includes Mubert Render (AI soundtrack generation for content),
+  Mubert Studio (contributor program for sample artists), Mubert Play
+  (listening app), Mubert Business, and the Mubert API for developers and
+  brands embedding generative music into products. Generation supports
+  text and image prompts plus controls for genre, mood, BPM, duration,
+  and instruments.
+apis:
+  - aid: mubert:render-api
+    name: Mubert Render API
+    description: >-
+      Developer API that generates royalty-free AI soundtracks tailored to
+      a content brief (mood, duration, genre) for embedding into video
+      editors, podcast tools, and content platforms.
+    humanURL: https://mubert.com/render
+    baseURL: https://api-b2b.mubert.com
+    tags:
+      - Music Generation
+      - Text-to-Music
+      - Render
+      - Royalty-Free
+    properties:
+      - type: ProductPage
+        url: https://mubert.com/render
+      - type: Documentation
+        url: https://mubert.com/render/api-docs
+        title: API documentation (issued to customers)
+  - aid: mubert:streaming-api
+    name: Mubert Streaming API
+    description: >-
+      Continuous generative music streaming for apps, games, fitness, and
+      ambient experiences. Powers the Mubert Play listening app and is
+      exposed to partners through the Mubert API.
+    humanURL: https://mubert.com/play
+    baseURL: https://api-b2b.mubert.com
+    tags:
+      - Streaming
+      - Generative
+      - Ambient
+      - Play
+    properties:
+      - type: ProductPage
+        url: https://mubert.com/play
+  - aid: mubert:business-api
+    name: Mubert Business API
+    description: >-
+      Commercial-licensing surface for brands and enterprises integrating
+      Mubert generative music into products, retail audio, and marketing
+      with bespoke licensing terms.
+    humanURL: https://mubert.com/business
+    baseURL: https://api-b2b.mubert.com
+    tags:
+      - Business
+      - Licensing
+      - Brands
+      - Enterprise
+    properties:
+      - type: ProductPage
+        url: https://mubert.com/business
+common:
+  - type: Website
+    url: https://mubert.com/
+  - type: ProductPage
+    url: https://mubert.com/render
+  - type: Studio
+    url: https://mubert.com/studio
+  - type: PlayApp
+    url: https://mubert.com/play
+  - type: Business
+    url: https://mubert.com/business
+  - type: TermsOfService
+    url: https://mubert.com/legal/terms-of-use
+  - type: PrivacyPolicy
+    url: https://mubert.com/legal/privacy-policy
+  - type: Contact
+    url: https://mubert.com/contact
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
