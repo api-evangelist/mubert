@@ -1,0 +1,83 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mubert Music API — Music Library
+  description: 'Mubert Music API — Music Library. 2 operations for browsing pre-generated tracks: filter params + paginated track list. Self-contained capability.'
+  tags:
+    - Mubert
+    - Music Library
+    - Catalog
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      MUBERT_CUSTOMER_ID: MUBERT_CUSTOMER_ID
+      MUBERT_ACCESS_TOKEN: MUBERT_ACCESS_TOKEN
+capability:
+  consumes:
+    - type: http
+      namespace: music-library-music-library
+      baseUri: https://music-api.mubert.com
+      resources:
+        - name: musicLibraryParams
+          path: /api/v3/public/music-library/params
+          operations:
+            - name: getMusicLibraryParams
+              method: GET
+              description: Get the filter parameters available for the music library (genres, moods, BPM ranges, keys).
+        - name: musicLibraryTracks
+          path: /api/v3/public/music-library/tracks
+          operations:
+            - name: listMusicLibraryTracks
+              method: GET
+              description: List pre-generated music library tracks with optional filtering by genre, mood, BPM, key, and other parameters.
+              inputParameters:
+                - name: limit
+                  in: query
+                  type: integer
+                - name: offset
+                  in: query
+                  type: integer
+                - name: genre
+                  in: query
+                  type: string
+                - name: mood
+                  in: query
+                  type: string
+                - name: bpm_gt
+                  in: query
+                  type: integer
+                - name: bpm_lt
+                  in: query
+                  type: integer
+                - name: key
+                  in: query
+                  type: string
+        - name: playlists
+          path: /api/v3/public/playlists
+          operations:
+            - name: listPlaylists
+              method: GET
+              description: List playlists (the dotted-index taxonomy used for generation and streaming).
+      authentication:
+        type: apikey
+        key: customer-id
+        value: '{{env.MUBERT_CUSTOMER_ID}}'
+        placement: header
+  exposes:
+    - type: rest
+      namespace: music-library-music-library-rest
+      port: 8080
+      resources:
+        - path: /v1/music-library
+          name: musicLibrary
+          operations:
+            - method: GET
+              name: listTracks
+              call: music-library-music-library.listMusicLibraryTracks
+            - method: GET
+              name: getParams
+              call: music-library-music-library.getMusicLibraryParams
+            - method: GET
+              name: listPlaylists
+              call: music-library-music-library.listPlaylists

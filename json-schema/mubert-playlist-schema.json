@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/mubert/refs/heads/main/json-schema/mubert-playlist-schema.json",
+  "title": "Mubert Playlist",
+  "description": "Playlist node in Mubert's mood/genre/activity taxonomy. Each playlist exposes an index used to drive generation and streaming, plus the BPM/key envelopes it supports.",
+  "type": "object",
+  "required": ["playlist_index"],
+  "properties": {
+    "playlist_index": {
+      "type": "string",
+      "pattern": "^\\d+(\\.\\d+)*$",
+      "description": "Dotted index addressing the playlist in the Mubert taxonomy tree (e.g. '1.0.0')."
+    },
+    "category": { "type": "string", "description": "Top-level category (e.g. Activity, Genre, Mood)." },
+    "group":    { "type": "string", "description": "Sub-grouping inside the category (e.g. Workout, Lo-fi, Chill)." },
+    "channel":  { "type": "string", "description": "Leaf channel name presented to end users." },
+    "params": {
+      "type": "array",
+      "description": "Allowed BPM ranges and the keys playable in each range.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "bpm": {
+            "type": "object",
+            "properties": {
+              "gt": { "type": "integer", "description": "Lower bound (exclusive)." },
+              "lt": { "type": "integer", "description": "Upper bound (exclusive)." }
+            }
+          },
+          "keys": {
+            "type": "array",
+            "items": { "type": "string", "description": "Musical key/scale identifier." }
+          }
+        }
+      }
+    }
+  }
+}

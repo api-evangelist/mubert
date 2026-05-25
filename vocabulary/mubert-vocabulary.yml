@@ -1,0 +1,139 @@
+name: Mubert Vocabulary
+description: |
+  Normative vocabulary for the Mubert AI Music API surface — entities, generation
+  controls, streaming controls, license/billing primitives, and developer-facing
+  artifacts. Provides the shared dictionary used across apis.yml, OpenAPI,
+  JSON Schema, JSON-LD, and Naftiko capabilities for this repo.
+created: '2026-05-25'
+modified: '2026-05-25'
+provider: Mubert
+providerId: mubert
+
+entities:
+  - name: Track
+    description: A single AI-generated music composition with deterministic id and session id.
+  - name: TrackGeneration
+    description: A processing job that materializes audio bytes for a Track in a chosen format/bitrate.
+  - name: TrackStore
+    description: Pre-generated cached tracks served when an equivalent request has been satisfied before.
+  - name: Playlist
+    description: Node in Mubert's category/group/channel taxonomy addressed by a dotted playlist_index.
+  - name: MusicLibrary
+    description: Catalog of pre-generated tracks browsable by genre, mood, BPM, key, activity.
+  - name: StreamingSession
+    description: A live generative stream addressable by session id, controllable via restart, set-intensity, set-loop-state.
+  - name: Customer
+    description: End-user identity inside a company account; authenticates with customer-id + access-token.
+  - name: License
+    description: Company-level entitlement that gates features, bitrates, intensities, modes, formats, and per-customer quotas.
+  - name: Company
+    description: B2B account that owns customers and licenses.
+  - name: Price
+    description: Mubert plan SKU surfaced through Stripe, with options and limits.
+  - name: Subscription
+    description: Active billing relationship between a company and a price.
+  - name: Webhook
+    description: License-bound HTTP callback for subscription, generation, and license lifecycle events.
+
+generationControls:
+  - prompt
+  - playlist_index
+  - duration
+  - bitrate
+  - format
+  - intensity
+  - mode
+  - bpm
+  - key
+  - image_prompt
+  - replace_stems
+  - remove_parts
+
+streamingControls:
+  - get-link
+  - restart
+  - set-intensity
+  - set-loop-state
+
+modes:
+  - track
+  - loop
+
+intensities:
+  - low
+  - medium
+  - high
+
+formats:
+  - mp3
+  - wav
+
+bitrates:
+  - 128
+  - 192
+  - 256
+  - 320
+
+stems:
+  - drums
+  - bass
+  - leads
+  - vocals
+
+parts:
+  - drums
+  - percs
+  - hats
+  - claps
+  - bass
+  - mids
+  - leads
+  - fx
+  - vocals
+  - pads
+  - riser
+  - impact
+
+authHeaders:
+  public:
+    - customer-id
+    - access-token
+  service:
+    - company-id
+    - license-token
+
+planTiers:
+  - trial
+  - startup
+  - startup_plus
+  - enterprise
+
+transports:
+  - http
+  - hls
+  - webrtc
+
+useCases:
+  - Apps
+  - Games
+  - Health and Fitness
+  - User-Generated Content
+  - Video Editors
+  - Podcast Tools
+  - Marketing and Ads
+  - AI Content Pipelines
+
+partnersAndIntegrations:
+  - Picsart
+  - Canva
+  - Restream
+
+tags:
+  - AI Music
+  - Generative
+  - Royalty-Free
+  - Streaming
+  - Text-to-Music
+  - Image-to-Music
+  - Stems
+  - B2B

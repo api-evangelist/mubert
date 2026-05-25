@@ -1,0 +1,47 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://music-api.mubert.com/api/v3/public/tracks",
+    "headers": {
+      "Content-Type": "application/json",
+      "customer-id": "8d2c8b3b-7c12-4a4a-95b1-9a3a3f5b1c10",
+      "access-token": "ct_live_4f3e2b1a9c8d7e6f5a4b3c2d1e0f9a8b"
+    },
+    "body": {
+      "prompt": "warm cinematic lo-fi for studying at sunset",
+      "playlist_index": "2.1.0",
+      "duration": 90,
+      "bitrate": 320,
+      "format": "mp3",
+      "intensity": "medium",
+      "mode": "track",
+      "bpm": 78
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": {
+        "id": "6a1b9c44-2e3f-4d5b-89a1-77c4d2a01e90",
+        "session_id": "sess_2a99e4b7",
+        "playlist_index": "2.1.0",
+        "prompt": "warm cinematic lo-fi for studying at sunset",
+        "duration": 90,
+        "intensity": 2,
+        "mode": "track",
+        "key": "C_minor",
+        "bpm": 78,
+        "format": "mp3",
+        "bitrate": 320,
+        "created_at": "2026-05-25T04:30:11Z",
+        "generations": [
+          {
+            "id": "gen_91f0",
+            "status": "in_progress",
+            "estimated_seconds": 12
+          }
+        ]
+      }
+    }
+  }
+}

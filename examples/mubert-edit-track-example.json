@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://music-api.mubert.com/api/v3/public/tracks/6a1b9c44-2e3f-4d5b-89a1-77c4d2a01e90/edit",
+    "headers": {
+      "Content-Type": "application/json",
+      "customer-id": "8d2c8b3b-7c12-4a4a-95b1-9a3a3f5b1c10",
+      "access-token": "ct_live_4f3e2b1a9c8d7e6f5a4b3c2d1e0f9a8b"
+    },
+    "body": {
+      "duration": 120,
+      "bitrate": 320,
+      "format": "wav",
+      "intensity": "high",
+      "replace_stems": ["drums", "bass"],
+      "remove_parts": ["vocals"]
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": {
+        "id": "6a1b9c44-2e3f-4d5b-89a1-77c4d2a01e90",
+        "session_id": "sess_2a99e4b7",
+        "duration": 120,
+        "intensity": 3,
+        "mode": "track",
+        "format": "wav",
+        "bitrate": 320,
+        "generations": [
+          { "id": "gen_b81f", "status": "queued" }
+        ]
+      }
+    }
+  }
+}

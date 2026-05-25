@@ -1,0 +1,51 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "mubert": "https://mubert.com/ns/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Track": "schema:MusicRecording",
+    "Playlist": "schema:MusicPlaylist",
+    "Customer": "schema:Person",
+    "License": "schema:CreativeWork",
+    "StreamingLink": "schema:AudioObject",
+    "Company": "schema:Organization",
+
+    "id":            { "@id": "schema:identifier" },
+    "name":          { "@id": "schema:name" },
+    "description":   { "@id": "schema:description" },
+    "created_at":    { "@id": "schema:dateCreated", "@type": "xsd:dateTime" },
+    "updated_at":    { "@id": "schema:dateModified", "@type": "xsd:dateTime" },
+
+    "prompt":          { "@id": "mubert:prompt" },
+    "playlist_index":  { "@id": "mubert:playlistIndex" },
+    "session_id":      { "@id": "mubert:sessionId" },
+    "duration":        { "@id": "mubert:durationSeconds", "@type": "xsd:integer" },
+    "intensity":       { "@id": "mubert:intensity" },
+    "mode":            { "@id": "mubert:mode" },
+    "key":             { "@id": "schema:musicalKey" },
+    "bpm":             { "@id": "mubert:bpm", "@type": "xsd:integer" },
+    "bitrate":         { "@id": "mubert:bitrate", "@type": "xsd:integer" },
+    "format":          { "@id": "schema:encodingFormat" },
+
+    "company_id":      { "@id": "mubert:companyId" },
+    "custom_id":       { "@id": "mubert:customId" },
+    "status":          { "@id": "mubert:status" },
+    "access_token":    { "@id": "mubert:accessToken" },
+
+    "type":             { "@id": "mubert:licenseType" },
+    "webhook_url":      { "@id": "mubert:webhookUrl", "@type": "xsd:anyURI" },
+    "webhook_enabled":  { "@id": "mubert:webhookEnabled", "@type": "xsd:boolean" },
+    "features":         { "@id": "mubert:features", "@container": "@set" },
+    "limits":           { "@id": "mubert:limits" },
+
+    "category":   { "@id": "schema:genre" },
+    "group":      { "@id": "mubert:group" },
+    "channel":    { "@id": "mubert:channel" },
+    "params":     { "@id": "mubert:params" },
+
+    "url":   { "@id": "schema:contentUrl", "@type": "xsd:anyURI" },
+    "loop":  { "@id": "mubert:loop", "@type": "xsd:boolean" }
+  }
+}

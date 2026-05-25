@@ -3,50 +3,153 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
 provider: Mubert
 providerId: mubert
-created: '2026-05-22'
-modified: '2026-05-22'
+created: '2026-05-25'
+modified: '2026-05-25'
 tags:
-- AI Music
-- Generative
-- Royalty-Free
-- Streaming
-- Text-to-Music
-- Image-to-Music
-- B2B
-description: Machine-readable plans scaffold for the Mubert API surface. Conforms to the API Commons Plans schema. Tier limits
-  and prices are scaffold defaults; replace with provider-published values.
+  - AI Music
+  - Generative
+  - Royalty-Free
+  - Streaming
+  - Text-to-Music
+  - B2B
+description: >-
+  Machine-readable plans for the Mubert AI Music API v3. Captures the published
+  Trial / Startup / Startup+ / Enterprise tiers exposed at mubert.com/api with
+  monthly track generation and streaming quotas. Enterprise terms are bespoke
+  and negotiated with the Mubert sales team.
+
 plans:
-- id: mubert-free
-  name: Free
-  type: freemium
-  description: Free entry tier for the Mubert API surface. Intended for evaluation, prototyping, and low-volume integrations.
-    Real limits and pricing must be reconciled with the provider's published plan documentation.
-  entries:
-  - label: API Requests
-    description: Monthly API request quota across all included endpoints
-    name: api_requests
-    type: quota
-    metric: requests
-    limit: 1000
+  - id: mubert-trial
+    name: Trial
+    type: paid
+    price: '49.00'
+    currency: USD
     timeFrame: month
-    geo: global
-    domains:
-    - https://api-b2b.mubert.com
-    unit: 1
-    price: '0.00'
-    userMultiplied: false
-  - label: Rate Limit
-    description: Maximum requests per minute on the free tier
-    name: rate_limit
-    type: rate
-    metric: requests_per_minute
-    limit: 10
-    timeFrame: minute
-    geo: global
-    domains:
-    - https://api-b2b.mubert.com
-    unit: 1
-    price: '0.00'
+    description: >-
+      Entry-level tier intended for evaluation and small-volume prototypes
+      against the Mubert AI Music API.
+    entries:
+      - label: Generated Tracks
+        description: Number of AI-generated tracks per month.
+        name: generated_tracks
+        type: quota
+        metric: tracks
+        limit: 100
+        timeFrame: month
+        geo: global
+        domains:
+          - https://music-api.mubert.com
+        unit: 1
+        price: '0.00'
+      - label: Streaming Minutes
+        description: Total generative streaming minutes per month.
+        name: streaming_minutes
+        type: quota
+        metric: minutes
+        limit: 100
+        timeFrame: month
+        geo: global
+        domains:
+          - https://music-api.mubert.com
+        unit: 1
+        price: '0.00'
+
+  - id: mubert-startup
+    name: Startup
+    type: paid
+    price: '199.00'
+    currency: USD
+    timeFrame: month
+    description: Production tier for early-stage apps integrating Mubert music generation and streaming.
+    entries:
+      - label: Generated Tracks
+        name: generated_tracks
+        type: quota
+        metric: tracks
+        limit: 5000
+        timeFrame: month
+        unit: 1
+        price: '0.00'
+        domains:
+          - https://music-api.mubert.com
+      - label: Streaming Minutes
+        name: streaming_minutes
+        type: quota
+        metric: minutes
+        limit: 5000
+        timeFrame: month
+        unit: 1
+        price: '0.00'
+        domains:
+          - https://music-api.mubert.com
+
+  - id: mubert-startup-plus
+    name: Startup+
+    type: paid
+    price: '499.00'
+    currency: USD
+    timeFrame: month
+    description: Scaling tier with higher quotas, lossless quality, and dedicated support.
+    entries:
+      - label: Generated Tracks
+        name: generated_tracks
+        type: quota
+        metric: tracks
+        limit: 30000
+        timeFrame: month
+        unit: 1
+        price: '0.00'
+        domains:
+          - https://music-api.mubert.com
+      - label: Streaming Minutes
+        name: streaming_minutes
+        type: quota
+        metric: minutes
+        limit: 30000
+        timeFrame: month
+        unit: 1
+        price: '0.00'
+        domains:
+          - https://music-api.mubert.com
+      - label: Lossless Audio
+        name: lossless_audio
+        type: feature
+        description: WAV / high-bitrate output enabled on this tier.
+      - label: Dedicated Support
+        name: dedicated_support
+        type: feature
+
+  - id: mubert-enterprise
+    name: Enterprise
+    type: contact-sales
+    description: >-
+      Bespoke commercial terms for high-volume integrations, sub-licensing,
+      retail/in-store audio, and brand use cases. Custom quotas, SLAs, and
+      lossless audio configured per contract.
+    entries:
+      - label: Custom Quotas
+        name: custom_quotas
+        type: feature
+      - label: Sub-Licensing
+        name: sub_licensing
+        type: feature
+      - label: SLA
+        name: sla
+        type: feature
+
+commonFeatures:
+  - Royalty-free music
+  - DMCA-free output
+  - Monetization rights included
+  - HTTP and WebRTC streaming
+  - Text-to-music and image-to-music prompting
+  - 150+ genres / 50+ moods
+  - Stem-level editing (drums, bass, leads, vocals, etc.)
+
 references:
-- name: Mubert API Documentation
-  url: https://raw.githubusercontent.com/api-evangelist/mubert/refs/heads/main/apis.yml
+  - name: Mubert API Pricing
+    url: https://mubert.com/api
+  - name: Mubert Business
+    url: https://mubert.com/business
+  - name: API Inventory
+    url: https://raw.githubusercontent.com/api-evangelist/mubert/refs/heads/main/apis.yml

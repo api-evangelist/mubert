@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/mubert/refs/heads/main/json-schema/mubert-customer-schema.json",
+  "title": "Mubert Customer",
+  "description": "End-user identity inside a Mubert company account. Customers obtain a customer-id / access-token pair used to authenticate against the public generation, streaming, library, and tracks endpoints.",
+  "type": "object",
+  "required": ["id", "company_id", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Customer UUID."
+    },
+    "company_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Company that owns this customer."
+    },
+    "custom_id": {
+      "type": "string",
+      "description": "Caller-supplied external identifier (e.g. your own user id) for mapping back to your system."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "banned"],
+      "description": "Lifecycle state of the customer."
+    },
+    "access_token": {
+      "type": "string",
+      "description": "API access token issued to the customer. Sent as the access-token request header."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

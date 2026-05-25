@@ -1,0 +1,110 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mubert Music API — Customers
+  description: 'Mubert Music API — Customers. 6 operations: list, create, retrieve, retrieve by custom id, update, delete. Self-contained capability for service-tier customer administration.'
+  tags:
+    - Mubert
+    - Customers
+    - Service
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      MUBERT_COMPANY_ID: MUBERT_COMPANY_ID
+      MUBERT_LICENSE_TOKEN: MUBERT_LICENSE_TOKEN
+capability:
+  consumes:
+    - type: http
+      namespace: customers-customers
+      baseUri: https://music-api.mubert.com
+      resources:
+        - name: customers
+          path: /api/v3/service/customers
+          operations:
+            - name: listCustomers
+              method: GET
+              description: Retrieve a paginated list of customers.
+            - name: createCustomer
+              method: POST
+              description: Create a new customer under the company account.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+        - name: customer
+          path: /api/v3/service/customers/{customer}
+          operations:
+            - name: getCustomer
+              method: GET
+              inputParameters:
+                - name: customer
+                  in: path
+                  type: string
+                  required: true
+            - name: updateCustomer
+              method: PUT
+              inputParameters:
+                - name: customer
+                  in: path
+                  type: string
+                  required: true
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+            - name: deleteCustomer
+              method: DELETE
+              inputParameters:
+                - name: customer
+                  in: path
+                  type: string
+                  required: true
+        - name: customerByCustomId
+          path: /api/v3/service/customers/custom-id/{customId}
+          operations:
+            - name: getCustomerByCustomId
+              method: GET
+              inputParameters:
+                - name: customId
+                  in: path
+                  type: string
+                  required: true
+      authentication:
+        type: apikey
+        key: company-id
+        value: '{{env.MUBERT_COMPANY_ID}}'
+        placement: header
+  exposes:
+    - type: rest
+      namespace: customers-customers-rest
+      port: 8080
+      resources:
+        - path: /v1/customers
+          name: customers
+          operations:
+            - method: POST
+              name: createCustomer
+              call: customers-customers.createCustomer
+              with:
+                body: rest.body
+            - method: GET
+              name: listCustomers
+              call: customers-customers.listCustomers
+            - method: GET
+              name: getCustomer
+              call: customers-customers.getCustomer
+              with:
+                customer: rest.path.customer
+            - method: PUT
+              name: updateCustomer
+              call: customers-customers.updateCustomer
+              with:
+                customer: rest.path.customer
+                body: rest.body
+            - method: DELETE
+              name: deleteCustomer
+              call: customers-customers.deleteCustomer
+              with:
+                customer: rest.path.customer

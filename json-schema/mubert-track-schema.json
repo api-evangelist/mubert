@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/mubert/refs/heads/main/json-schema/mubert-track-schema.json",
+  "title": "Mubert Track",
+  "description": "A generative music track produced by the Mubert AI Music API v3. Tracks are unique per request and composed of artist-contributed loops, samples, and stems blended by the Mubert generation engine.",
+  "type": "object",
+  "required": ["id", "duration", "intensity", "mode", "created_at"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Track UUID assigned by Mubert."
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Client-supplied or server-assigned session identifier used to deduplicate and to fetch a track once generation completes."
+    },
+    "playlist_index": {
+      "type": ["string", "null"],
+      "description": "Playlist selector (e.g. '1.0.0') referencing a Mubert mood/genre/activity branch."
+    },
+    "prompt": {
+      "type": ["string", "null"],
+      "description": "Free-text or image-derived prompt used to bias generation."
+    },
+    "duration": {
+      "type": "integer",
+      "minimum": 15,
+      "maximum": 1500,
+      "description": "Track duration in seconds (15 to 1500)."
+    },
+    "intensity": {
+      "type": "integer",
+      "description": "Numeric intensity level (typically 1-3 mapped to low/medium/high)."
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["track", "loop"],
+      "description": "Whether the track is a one-shot composition or a seamless loop."
+    },
+    "key": {
+      "type": ["string", "null"],
+      "description": "Musical key/scale of the track."
+    },
+    "bpm": {
+      "type": ["integer", "null"],
+      "minimum": 30,
+      "maximum": 250,
+      "description": "Tempo in beats per minute."
+    },
+    "format": {
+      "type": "string",
+      "enum": ["mp3", "wav"],
+      "description": "Audio container format."
+    },
+    "bitrate": {
+      "type": "integer",
+      "enum": [128, 192, 256, 320],
+      "description": "Output bitrate in kbps."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Generation timestamp."
+    }
+  }
+}

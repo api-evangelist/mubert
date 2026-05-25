@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/draft/v0/schema",
+  "name": "MubertLicense",
+  "type": "object",
+  "description": "Structural definition for a Mubert company license: gates features, bitrates, intensities, modes, formats, and per-customer quotas.",
+  "properties": {
+    "id":                    { "type": "string", "format": "uuid", "required": true },
+    "company_id":            { "type": "string", "format": "uuid", "required": true },
+    "type":                  { "type": "string" },
+    "status":                { "type": "string" },
+    "webhook_url":           { "type": "string", "format": "uri", "nullable": true },
+    "webhook_enabled":       { "type": "boolean" },
+    "track_expiration_time": { "type": "int32" },
+    "allow_all_features":    { "type": "boolean" },
+    "features":              { "type": "array", "items": { "type": "string" } },
+    "allow_all_bitrates":    { "type": "boolean" },
+    "default_bitrate":       { "type": "int32" },
+    "bitrates":              { "type": "array", "items": { "type": "int32" } },
+    "limits": {
+      "type": "object",
+      "properties": {
+        "tracks_limit":               { "type": "int32" },
+        "tracks_period":              { "type": "string" },
+        "streaming_limit_minutes":    { "type": "int32" },
+        "streaming_period":           { "type": "string" },
+        "customer_tracks_limit":      { "type": "int32" },
+        "customer_streaming_minutes": { "type": "int32" }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-structure.org/draft/v0/schema",
+  "name": "MubertTrack",
+  "type": "object",
+  "description": "Structural definition for a Mubert AI-generated music track.",
+  "properties": {
+    "id":            { "type": "string", "format": "uuid", "required": true },
+    "session_id":    { "type": "string" },
+    "playlist_index":{ "type": "string", "nullable": true },
+    "prompt":        { "type": "string", "nullable": true },
+    "duration":      { "type": "int32", "required": true },
+    "intensity":     { "type": "int32" },
+    "mode":          { "type": "string", "enum": ["track", "loop"] },
+    "key":           { "type": "string", "nullable": true },
+    "bpm":           { "type": "int32", "nullable": true },
+    "format":        { "type": "string", "enum": ["mp3", "wav"] },
+    "bitrate":       { "type": "int32", "enum": [128, 192, 256, 320] },
+    "created_at":    { "type": "string", "format": "date-time", "required": true }
+  }
+}

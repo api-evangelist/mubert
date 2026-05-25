@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/mubert/refs/heads/main/json-schema/mubert-license-schema.json",
+  "title": "Mubert License",
+  "description": "License attached to a Mubert company account. Licenses gate available features (generation modes, bitrates, intensities, streaming, library), bound per-customer quotas, and webhook delivery for billing/usage events.",
+  "type": "object",
+  "required": ["id", "company_id", "type", "status"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "company_id": { "type": "string", "format": "uuid" },
+    "type": {
+      "type": "string",
+      "enum": ["trial", "startup", "startup_plus", "enterprise", "custom"],
+      "description": "License tier."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "paused", "cancelled", "expired"]
+    },
+    "webhook_url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "Destination for webhook notifications (subscription lifecycle, generation completion, license events)."
+    },
+    "webhook_enabled": { "type": "boolean" },
+    "track_expiration_time": {
+      "type": "integer",
+      "description": "Seconds after which a generated track URL expires."
+    },
+    "allow_all_features": { "type": "boolean" },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "track_generation",
+          "track_edit",
+          "track_record",
+          "track_similar",
+          "streaming",
+          "music_library",
+          "playlists",
+          "image_prompt",
+          "stem_editing"
+        ]
+      }
+    },
+    "allow_all_bitrates": { "type": "boolean" },
+    "default_bitrate": { "type": "integer", "enum": [128, 192, 256, 320] },
+    "bitrates": {
+      "type": "array",
+      "items": { "type": "integer", "enum": [128, 192, 256, 320] }
+    },
+    "limits": {
+      "type": "object",
+      "description": "Per-license quota envelope (tracks/month, streaming minutes/month, max duration, per-customer caps).",
+      "properties": {
+        "tracks_limit": { "type": "integer" },
+        "tracks_period": { "type": "string", "enum": ["day", "month", "year", "lifetime"] },
+        "streaming_limit_minutes": { "type": "integer" },
+        "streaming_period": { "type": "string", "enum": ["day", "month", "year", "lifetime"] },
+        "customer_tracks_limit": { "type": "integer" },
+        "customer_streaming_minutes_limit": { "type": "integer" }
+      }
+    }
+  }
+}

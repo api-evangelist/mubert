@@ -1,0 +1,123 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Mubert Music API — Subscriptions
+  description: 'Mubert Music API — Subscriptions. Buy and cancel subscriptions via Stripe-backed flows on both public (customer self-service) and service (company-managed) tiers.'
+  tags:
+    - Mubert
+    - Subscriptions
+    - Billing
+    - Stripe
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      MUBERT_CUSTOMER_ID: MUBERT_CUSTOMER_ID
+      MUBERT_ACCESS_TOKEN: MUBERT_ACCESS_TOKEN
+      MUBERT_COMPANY_ID: MUBERT_COMPANY_ID
+      MUBERT_LICENSE_TOKEN: MUBERT_LICENSE_TOKEN
+capability:
+  consumes:
+    - type: http
+      namespace: subscriptions-subscriptions
+      baseUri: https://music-api.mubert.com
+      resources:
+        - name: prices
+          path: /api/v3/public/prices
+          operations:
+            - name: listPrices
+              method: GET
+              description: List available prices with their options, limits, and underlying Stripe price ids.
+        - name: price
+          path: /api/v3/public/prices/{price}
+          operations:
+            - name: getPrice
+              method: GET
+              inputParameters:
+                - name: price
+                  in: path
+                  type: string
+                  required: true
+        - name: subscriptionsBuy
+          path: /api/v3/public/subscriptions/buy
+          operations:
+            - name: buySubscription
+              method: POST
+              description: Buy a subscription. Creates a Stripe Checkout session and returns the checkout URL.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+        - name: subscriptionsCancel
+          path: /api/v3/public/subscriptions/cancel
+          operations:
+            - name: cancelSubscription
+              method: POST
+              description: Cancel an active subscription.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+        - name: stripeWebhook
+          path: /api/v3/public/stripe/webhook
+          operations:
+            - name: stripeWebhook
+              method: POST
+              description: Stripe webhook receiver for processing payment events (invoice paid, subscription updated, etc.).
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+        - name: serviceStripeBillingPortal
+          path: /api/v3/service/stripe/billing-portal
+          operations:
+            - name: openBillingPortal
+              method: POST
+              description: Open a Stripe Customer Billing Portal session for the company.
+        - name: serviceStripeSubscriptionsBuy
+          path: /api/v3/service/stripe/subscriptions/buy
+          operations:
+            - name: serviceBuySubscription
+              method: POST
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+        - name: serviceStripeSubscriptionsCancel
+          path: /api/v3/service/stripe/subscriptions/cancel
+          operations:
+            - name: serviceCancelSubscription
+              method: POST
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+      authentication:
+        type: apikey
+        key: customer-id
+        value: '{{env.MUBERT_CUSTOMER_ID}}'
+        placement: header
+  exposes:
+    - type: rest
+      namespace: subscriptions-subscriptions-rest
+      port: 8080
+      resources:
+        - path: /v1/subscriptions
+          name: subscriptions
+          operations:
+            - method: POST
+              name: buy
+              call: subscriptions-subscriptions.buySubscription
+              with:
+                body: rest.body
+            - method: POST
+              name: cancel
+              call: subscriptions-subscriptions.cancelSubscription
+              with:
+                body: rest.body
+            - method: GET
+              name: listPrices
+              call: subscriptions-subscriptions.listPrices

@@ -3,56 +3,107 @@ specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
 provider: Mubert
 providerId: mubert
-created: '2026-05-22'
-modified: '2026-05-22'
+created: '2026-05-25'
+modified: '2026-05-25'
 tags:
-- AI Music
-- Generative
-- Royalty-Free
-- Streaming
-- Text-to-Music
-- Image-to-Music
-- B2B
-- Rate Limiting
-- Quotas
-- Throttling
-description: Scaffolded rate limit definitions for the Mubert API surface. Captures per-tier quotas, burst behavior, response
-  signaling, and recovery semantics. Defaults are scaffold values to be replaced with published provider limits.
+  - AI Music
+  - Generative
+  - B2B
+  - Rate Limiting
+  - Quotas
+description: >-
+  Rate limiting and quota model for the Mubert AI Music API v3. Mubert enforces
+  consumption primarily through license-level monthly quotas (generated tracks
+  and streaming minutes) rather than per-second request caps, and exposes per-
+  customer sub-quotas via the license `limits` object. Burst rejection signals
+  follow standard HTTP semantics (429 with Retry-After).
+
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
   retryAfter: Retry-After
-  policy: RateLimit-Policy
 responseCodes:
   throttled: 429
   quotaExceeded: 429
+  unauthenticated: 401
+  forbidden: 403
   serviceUnavailable: 503
-limits:
-- tier: free
-  name: Free Tier Default
-  scope: api-key
-  metric: requests_per_minute
-  limit: 10
-  burst: 20
-  timeFrame: minute
-  applies:
-  - https://api-b2b.mubert.com
-  description: Default per-token request rate for the free tier. Bursts above the limit return HTTP 429 with Retry-After.
-- tier: pro
-  name: Pro Tier Default
-  scope: api-key
-  metric: requests_per_minute
-  limit: 120
-  burst: 240
-  timeFrame: minute
-  applies:
-  - https://api-b2b.mubert.com
-  description: Higher rate envelope for paid plans; reconcile against published commercial terms.
+
+quotas:
+  - tier: trial
+    name: Trial monthly tracks
+    scope: license
+    metric: generated_tracks
+    limit: 100
+    timeFrame: month
+    applies:
+      - https://music-api.mubert.com
+  - tier: trial
+    name: Trial monthly streaming
+    scope: license
+    metric: streaming_minutes
+    limit: 100
+    timeFrame: month
+    applies:
+      - https://music-api.mubert.com
+  - tier: startup
+    name: Startup monthly tracks
+    scope: license
+    metric: generated_tracks
+    limit: 5000
+    timeFrame: month
+    applies:
+      - https://music-api.mubert.com
+  - tier: startup
+    name: Startup monthly streaming
+    scope: license
+    metric: streaming_minutes
+    limit: 5000
+    timeFrame: month
+    applies:
+      - https://music-api.mubert.com
+  - tier: startup-plus
+    name: Startup+ monthly tracks
+    scope: license
+    metric: generated_tracks
+    limit: 30000
+    timeFrame: month
+    applies:
+      - https://music-api.mubert.com
+  - tier: startup-plus
+    name: Startup+ monthly streaming
+    scope: license
+    metric: streaming_minutes
+    limit: 30000
+    timeFrame: month
+    applies:
+      - https://music-api.mubert.com
+  - tier: enterprise
+    name: Enterprise
+    scope: license
+    metric: custom
+    limit: -1
+    description: Custom quotas negotiated per contract.
+    applies:
+      - https://music-api.mubert.com
+
+perCustomerControls:
+  description: >-
+    Licenses expose `customer_limits` so each license-owner can subdivide its
+    monthly quota across end-customers (per-customer tracks and per-customer
+    streaming-minute envelopes).
+  fields:
+    - customer_tracks_limit
+    - customer_streaming_minutes_limit
+    - tracks_period
+    - streaming_period
+
 recoveryStrategies:
-- name: Exponential Backoff
-  description: Wait Retry-After seconds (or back off exponentially up to 60s) before retrying.
-- name: Queue and Retry
-  description: Submit bulk work in batches under the burst envelope.
+  - name: Wait and Retry
+    description: Wait for the next billing-period reset (monthly quota) or until Retry-After elapses.
+  - name: Upgrade Tier
+    description: Move from Trial to Startup or Startup+ for higher monthly track and streaming quotas.
+  - name: Throttle End Users
+    description: Lower per-customer track / streaming sub-quotas via license update to protect the license envelope.
+
 notes:
-- Replace scaffold values with the provider's published rate limit policy.
+  - Mubert API enforcement is quota-shaped, not request-rate-shaped — burst behavior is bounded by license `limits` rather than a global RPS cap.
+  - Webhooks deliver subscription / billing events so consumers can react to quota state in real time.

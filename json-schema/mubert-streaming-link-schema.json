@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/mubert/refs/heads/main/json-schema/mubert-streaming-link-schema.json",
+  "title": "Mubert Streaming Link",
+  "description": "Response shape for /api/v3/public/streaming/get-link. Provides a playable URL plus the stream control identifiers used by restart, set-intensity, and set-loop-state.",
+  "type": "object",
+  "required": ["url", "session_id"],
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "HTTP or WebRTC streaming URL playable in any compatible audio client."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["http", "hls", "webrtc"],
+      "description": "Transport protocol for the stream."
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Stream session identifier passed back to control endpoints (restart, set-intensity, set-loop-state)."
+    },
+    "playlist_index": { "type": "string" },
+    "intensity": { "type": "string", "enum": ["low", "medium", "high"] },
+    "bitrate": { "type": "integer", "enum": [128, 192, 256, 320] },
+    "loop": { "type": "boolean", "description": "Whether the stream is currently in loop mode." }
+  }
+}

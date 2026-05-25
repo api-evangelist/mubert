@@ -1,0 +1,84 @@
+extends: spectral:oas
+documentationUrl: https://music-api.mubert.com/api/v3/swagger
+description: |
+  Spectral ruleset enforcing Mubert AI Music API v3 conventions:
+  authentication header naming, base path prefix, summary casing, operation id
+  style, and required servers/security blocks.
+rules:
+  mubert-base-path:
+    description: All Mubert endpoints must live under /api/v3/public/* or /api/v3/service/*.
+    given: $.paths.*~
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/api/v3/(public|service)/"
+
+  mubert-summary-title-case:
+    description: Every operation summary must be present and use Title Case.
+    given: $.paths.*[get,post,put,delete,patch].summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z0-9]"
+
+  mubert-operation-id-camel-case:
+    description: operationId should be camelCase.
+    given: $.paths.*[get,post,put,delete,patch].operationId
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  mubert-public-auth-headers:
+    description: Public endpoints must declare customerId + accessToken security.
+    given: $.paths[?(@property.match(/\\/api\\/v3\\/public\\//))].*.security
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+
+  mubert-service-auth-headers:
+    description: Service endpoints must declare companyId + licenseToken security.
+    given: $.paths[?(@property.match(/\\/api\\/v3\\/service\\//))].*.security
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+
+  mubert-servers-present:
+    description: A top-level servers block must be present and point at music-api.mubert.com.
+    given: $.servers
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 1
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                pattern: "music-api\\\\.mubert\\\\.com"
+            required: ["url"]
+
+  mubert-uuid-ids:
+    description: Resource ids exposed in schemas should be uuid-formatted strings.
+    given: $.components.schemas.*.properties.id
+    severity: info
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            type: { const: "string" }
+            format: { const: "uuid" }

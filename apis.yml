@@ -1,8 +1,9 @@
 aid: mubert
 url: https://raw.githubusercontent.com/api-evangelist/mubert/refs/heads/main/apis.yml
 name: Mubert
-kind: company
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+kind: contract
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
 tags:
   - AI Music
   - Generative
@@ -10,88 +11,191 @@ tags:
   - Streaming
   - Text-to-Music
   - Image-to-Music
+  - Stems
   - B2B
 created: '2026-05-23'
-modified: '2026-05-23'
+modified: '2026-05-25'
 specificationVersion: '0.19'
+position: Consuming
 description: >-
-  Mubert is a generative music platform that composes royalty-free tracks
-  from millions of artist-contributed samples and loops. The product
-  family includes Mubert Render (AI soundtrack generation for content),
-  Mubert Studio (contributor program for sample artists), Mubert Play
-  (listening app), Mubert Business, and the Mubert API for developers and
-  brands embedding generative music into products. Generation supports
-  text and image prompts plus controls for genre, mood, BPM, duration,
-  and instruments.
+  Mubert is a generative AI music platform that composes royalty-free, DMCA-free
+  music in real time from millions of artist-contributed loops, samples, and
+  stems. The B2B Mubert AI Music API (v3) powers track generation, continuous
+  HTTP / WebRTC streaming, browse access to a pre-generated music library, and
+  service-tier customer + license + Stripe subscription administration. Mubert
+  is used by apps, games, video tools, health and fitness products, and
+  AI-content pipelines (including integrations with Picsart, Canva, and
+  Restream) to embed adaptive generative music inside their experiences.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+    X: apievangelist
+    url: https://apievangelist.com
+
 apis:
-  - aid: mubert:render-api
-    name: Mubert Render API
-    description: >-
-      Developer API that generates royalty-free AI soundtracks tailored to
-      a content brief (mood, duration, genre) for embedding into video
-      editors, podcast tools, and content platforms.
-    humanURL: https://mubert.com/render
-    baseURL: https://api-b2b.mubert.com
+  - aid: mubert:mubert-music-api
+    name: Mubert AI Music API
     tags:
-      - Music Generation
-      - Text-to-Music
-      - Render
-      - Royalty-Free
-    properties:
-      - type: ProductPage
-        url: https://mubert.com/render
-      - type: Documentation
-        url: https://mubert.com/render/api-docs
-        title: API documentation (issued to customers)
-  - aid: mubert:streaming-api
-    name: Mubert Streaming API
-    description: >-
-      Continuous generative music streaming for apps, games, fitness, and
-      ambient experiences. Powers the Mubert Play listening app and is
-      exposed to partners through the Mubert API.
-    humanURL: https://mubert.com/play
-    baseURL: https://api-b2b.mubert.com
-    tags:
+      - AI Music
+      - Generation
       - Streaming
-      - Generative
-      - Ambient
-      - Play
-    properties:
-      - type: ProductPage
-        url: https://mubert.com/play
-  - aid: mubert:business-api
-    name: Mubert Business API
+      - Library
+      - Customers
+      - Licenses
+      - Subscriptions
+    humanURL: https://mubert.com/api
+    baseURL: https://music-api.mubert.com
     description: >-
-      Commercial-licensing surface for brands and enterprises integrating
-      Mubert generative music into products, retail audio, and marketing
-      with bespoke licensing terms.
-    humanURL: https://mubert.com/business
-    baseURL: https://api-b2b.mubert.com
-    tags:
-      - Business
-      - Licensing
-      - Brands
-      - Enterprise
+      Mubert AI Music API v3 — the unified B2B surface for generating
+      royalty-free AI music tracks, streaming continuous generative music
+      (HTTP / WebRTC), browsing the pre-generated music library and playlist
+      taxonomy, and (service tier) administering customers, licenses, prices,
+      and Stripe subscriptions. Authentication uses customer-id + access-token
+      headers for public endpoints and company-id + license-token headers for
+      service endpoints. Ships AI-optimized llms.txt / llms-full.txt docs
+      alongside Swagger UI.
     properties:
-      - type: ProductPage
-        url: https://mubert.com/business
+      - type: Documentation
+        url: https://mubert.com/api
+      - type: SwaggerUI
+        url: https://music-api.mubert.com/api/v3/swagger
+      - type: OpenAPI
+        url: openapi/mubert-music-api-openapi.yml
+      - type: AIDocumentation
+        url: https://music-api.mubert.com/swagger-doc/llms.txt
+      - type: AIDocumentation
+        url: https://music-api.mubert.com/swagger-doc/llms-full.txt
+      - type: JSONSchema
+        url: json-schema/mubert-track-schema.json
+      - type: JSONSchema
+        url: json-schema/mubert-customer-schema.json
+      - type: JSONSchema
+        url: json-schema/mubert-license-schema.json
+      - type: JSONSchema
+        url: json-schema/mubert-playlist-schema.json
+      - type: JSONSchema
+        url: json-schema/mubert-streaming-link-schema.json
+      - type: JSONStructure
+        url: json-structure/mubert-track-structure.json
+      - type: JSONStructure
+        url: json-structure/mubert-license-structure.json
+      - type: JSONLD
+        url: json-ld/mubert-context.jsonld
+      - type: Example
+        url: examples/mubert-create-track-example.json
+      - type: Example
+        url: examples/mubert-edit-track-example.json
+      - type: Example
+        url: examples/mubert-get-streaming-link-example.json
+      - type: Example
+        url: examples/mubert-create-customer-example.json
+      - type: Vocabulary
+        url: vocabulary/mubert-vocabulary.yml
+      - type: SpectralRules
+        url: rules/mubert-rules.yml
+      - type: NaftikoCapability
+        url: capabilities/tracks-tracks.yaml
+      - type: NaftikoCapability
+        url: capabilities/streaming-streaming.yaml
+      - type: NaftikoCapability
+        url: capabilities/music-library-music-library.yaml
+      - type: NaftikoCapability
+        url: capabilities/customers-customers.yaml
+      - type: NaftikoCapability
+        url: capabilities/licenses-licenses.yaml
+      - type: NaftikoCapability
+        url: capabilities/subscriptions-subscriptions.yaml
+
 common:
   - type: Website
     url: https://mubert.com/
   - type: ProductPage
+    url: https://mubert.com/api
+  - type: ProductPage
     url: https://mubert.com/render
-  - type: Studio
-    url: https://mubert.com/studio
-  - type: PlayApp
+  - type: ProductPage
     url: https://mubert.com/play
-  - type: Business
+  - type: ProductPage
     url: https://mubert.com/business
+  - type: ProductPage
+    url: https://mubert.com/studio
+  - type: Documentation
+    url: https://mubert.com/api
+  - type: SwaggerUI
+    url: https://music-api.mubert.com/api/v3/swagger
+  - type: AIDocumentation
+    url: https://music-api.mubert.com/swagger-doc/llms.txt
+  - type: AIDocumentation
+    url: https://music-api.mubert.com/swagger-doc/llms-full.txt
+  - type: GitHubOrganization
+    url: https://github.com/MubertAI
+  - type: Samples
+    url: https://github.com/MubertAI/Mubert-Text-to-Music
+    name: Mubert Text-to-Music notebook
+  - type: AgentSkills
+    url: https://github.com/MubertAI/skills
+    name: Mubert Agent Skills for AI assistants
+  - type: UseCases
+    url: https://mubert.com/use-cases/developers
+  - type: Blog
+    url: https://mubert.com/blog
   - type: TermsOfService
     url: https://mubert.com/legal/terms-of-use
   - type: PrivacyPolicy
     url: https://mubert.com/legal/privacy-policy
   - type: Contact
     url: https://mubert.com/contact
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+  - type: Plans
+    url: plans/mubert-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/mubert-rate-limits.yml
+  - type: FinOps
+    url: finops/mubert-finops.yml
+  - type: Features
+    data:
+      - Generative track creation from text prompts, image prompts, or playlist taxonomy
+      - Live streaming over HTTP and WebRTC with sub-second latency
+      - Continuous stream control — restart, set-intensity, set-loop-state
+      - 150+ genres, 50+ moods, 200+ million unique tracks per the provider
+      - Stem-level editing (drums, bass, leads, vocals) and 12+ part replacement (drums, percs, hats, claps, bass, mids, leads, fx, vocals, pads, riser, impact)
+      - Track durations 15-1500 seconds, modes track or loop, intensities low/medium/high
+      - Pre-generated music library browsable by genre, mood, BPM range, key, activity
+      - Track-store cache for re-issuing previously generated tracks
+      - Generate-similar endpoint to create variations of an existing track
+      - Record a live stream session into a fixed track asset
+      - Service-tier customer CRUD with custom_id for mapping back to your users
+      - Service-tier license management exposing features, bitrates, intensities, formats, modes, and per-customer quotas
+      - Stripe-backed subscription buy / cancel / billing portal flows
+      - License-level webhooks for billing and generation lifecycle events
+      - All output is royalty-free, DMCA-free, and cleared for commercial use and monetization
+      - AI-optimized documentation: llms.txt and llms-full.txt published alongside Swagger UI
+      - Official MubertAI/skills repo of Agent Skills (setup, generate, streaming, library, manage)
+    sources:
+      - https://mubert.com/api
+      - https://mubert.com/business
+      - https://music-api.mubert.com/swagger-doc/openapi-prod.json
+      - https://music-api.mubert.com/swagger-doc/llms.txt
+      - https://github.com/MubertAI/skills
+      - https://github.com/MubertAI/Mubert-Text-to-Music
+    updated: '2026-05-25'
+  - type: Integrations
+    data:
+      - Picsart — generative music in UGC content tooling
+      - Canva — music inside the design surface
+      - Restream — live-stream background music
+      - Stripe — subscription billing
+    sources:
+      - https://mubert.com/blog/why-developers-should-build-with-generative-music-apis
+      - https://mubert.com/api
+  - type: UseCases
+    data:
+      - Apps embedding adaptive background music
+      - Games with dynamic, progression-aware soundscapes
+      - Health, fitness, and wellness apps with BPM/heart-rate mapped music
+      - Video editors and podcast tools needing royalty-free score generation
+      - AI content pipelines pairing image / text generation with matching music
+      - User-generated content platforms offering safe-to-publish music
+      - Marketing, advertising, and brand audio for retail and OOH
+    sources:
+      - https://mubert.com/use-cases/developers
+      - https://mubert.com/business

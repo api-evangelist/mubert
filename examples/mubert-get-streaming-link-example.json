@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://music-api.mubert.com/api/v3/public/streaming/get-link?playlist_index=4.0.0&bitrate=320&intensity=high&type=http",
+    "headers": {
+      "customer-id": "8d2c8b3b-7c12-4a4a-95b1-9a3a3f5b1c10",
+      "access-token": "ct_live_4f3e2b1a9c8d7e6f5a4b3c2d1e0f9a8b"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": {
+        "url": "https://stream.mubert.com/4.0.0/high/320.mp3?sid=sess_8b21d4",
+        "type": "http",
+        "session_id": "sess_8b21d4",
+        "playlist_index": "4.0.0",
+        "intensity": "high",
+        "bitrate": 320,
+        "loop": false
+      }
+    }
+  }
+}

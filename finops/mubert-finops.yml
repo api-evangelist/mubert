@@ -9,71 +9,111 @@ alignedWith:
 provider: Mubert
 providerId: mubert
 publisherName: Mubert
-serviceCategory: API
-created: '2026-05-22'
-modified: '2026-05-22'
+serviceCategory: AI and Machine Learning
+serviceSubcategory: Generative Music API
+created: '2026-05-25'
+modified: '2026-05-25'
 tags:
-- AI Music
-- Generative
-- Royalty-Free
-- Streaming
-- Text-to-Music
-- Image-to-Music
-- B2B
-- FinOps
-- Cost Management
-- FOCUS
-description: FinOps framework alignment for the Mubert API surface. Provides a FOCUS-shaped mapping for cost allocation, usage
-  measurement, and unit-economics reporting.
+  - AI Music
+  - Generative
+  - B2B
+  - FinOps
+  - FOCUS
+description: >-
+  FinOps Framework alignment for the Mubert AI Music API. Maps Mubert's
+  per-license monthly quotas (generated tracks + streaming minutes) and
+  Stripe-backed subscription billing into a FOCUS-shaped model so finance and
+  engineering teams can allocate, monitor, and optimize generative-music
+  spend across products and end-customers.
+
 principles:
-- name: Visibility
-  description: Make API consumption costs visible to engineering, product, and finance teams in near real-time.
-- name: Allocation
-  description: Tag every chargeable API call with the consuming team, environment, application, and feature so cost can be
-    allocated.
-- name: Optimization
-  description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce cost per useful unit
-    of work.
-- name: Accountability
-  description: Establish budget owners and chargeback / showback flows for each consuming team.
+  - name: Visibility
+    description: Surface monthly generated-tracks and streaming-minute consumption against each license envelope, with webhook-driven near-real-time signal.
+  - name: Allocation
+    description: Tag each generated track and stream session with custom_id (your end-user) so cost can be attributed back to product, feature, and customer.
+  - name: Optimization
+    description: Prefer track-store reuse, library tracks, and lower bitrates for cost-insensitive paths; reserve high-intensity / 320 kbps WAV for premium experiences.
+  - name: Accountability
+    description: Establish per-license budget owners and chargeback / showback to consuming product teams.
+
+billingModel:
+  type: subscription
+  cadence: monthly
+  paymentProcessor: Stripe
+  entitlements:
+    - Generated tracks per month (license limit)
+    - Streaming minutes per month (license limit)
+    - Allowed formats / bitrates / intensities / modes
+    - Optional features (image prompt, stem editing, library, recording)
+  notes:
+    - Subscriptions are purchased and cancelled via /api/v3/public/subscriptions/* (customer self-service) or /api/v3/service/stripe/subscriptions/* (company-managed).
+    - License `customer_limits` lets companies subdivide a license quota across multiple end-customers.
+
 domains:
-- name: API Consumption
-  description: Per-call and per-quota usage charges across the Mubert API surface.
-  costDrivers:
-  - request_volume
-  - tier_selection
-  - feature_use
-  focusMapping:
-    ChargeCategory: Usage
-    ChargeClass: Consumption
-    ServiceCategory: API
-    ServiceSubcategory: Provider API
+  - name: Generation
+    description: Per-track AI generation consumption.
+    costDrivers:
+      - generated_tracks_count
+      - duration_seconds
+      - bitrate
+      - format
+      - intensity
+    focusMapping:
+      ChargeCategory: Usage
+      ChargeClass: Consumption
+      ServiceCategory: AI and Machine Learning
+      ServiceSubcategory: Generative Music API
+      PricingUnit: track
+
+  - name: Streaming
+    description: Continuous generative streaming consumption.
+    costDrivers:
+      - streaming_minutes
+      - intensity
+      - bitrate
+    focusMapping:
+      ChargeCategory: Usage
+      ChargeClass: Consumption
+      ServiceCategory: AI and Machine Learning
+      ServiceSubcategory: Generative Music API
+      PricingUnit: minute
+
+  - name: Subscription
+    description: Flat-rate monthly platform fee gating quotas and features.
+    focusMapping:
+      ChargeCategory: Purchase
+      ChargeClass: Committed
+      PricingCategory: Standard
+      PricingUnit: month
+
 focusFields:
   required:
-  - BillingPeriodStart
-  - BillingPeriodEnd
-  - ChargeCategory
-  - ChargePeriodStart
-  - ChargePeriodEnd
-  - ProviderName
-  - PublisherName
-  - InvoiceIssuerName
-  - ServiceName
-  - ServiceCategory
-  - BilledCost
-  - EffectiveCost
-  - ListCost
-  - ContractedCost
-  - PricingCategory
-  - PricingUnit
-  - PricingQuantity
+    - BillingPeriodStart
+    - BillingPeriodEnd
+    - ChargeCategory
+    - ChargePeriodStart
+    - ChargePeriodEnd
+    - ProviderName
+    - PublisherName
+    - InvoiceIssuerName
+    - ServiceName
+    - ServiceCategory
+    - BilledCost
+    - EffectiveCost
+    - ListCost
+    - ContractedCost
+    - PricingCategory
+    - PricingUnit
+    - PricingQuantity
   recommended:
-  - SubAccountId
-  - SubAccountName
-  - ResourceId
-  - ResourceName
-  - ResourceType
-  - Region
-  - Tags
+    - SubAccountId
+    - SubAccountName
+    - ResourceId
+    - ResourceName
+    - ResourceType
+    - Region
+    - Tags
+
 notes:
-- Reconcile the scaffolded mapping above against Mubert's actual invoice / billing model.
+  - Mubert invoices originate from Stripe; reconcile FOCUS fields against the Stripe invoice payload delivered to your webhook endpoint.
+  - License `track_expiration_time` is a cost-control lever — shorter expirations reduce sub-licensing exposure.
