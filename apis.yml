@@ -18,20 +18,17 @@ modified: '2026-05-25'
 specificationVersion: '0.19'
 position: Consuming
 description: >-
-  Mubert is a generative AI music platform that composes royalty-free, DMCA-free
-  music in real time from millions of artist-contributed loops, samples, and
-  stems. The B2B Mubert AI Music API (v3) powers track generation, continuous
-  HTTP / WebRTC streaming, browse access to a pre-generated music library, and
-  service-tier customer + license + Stripe subscription administration. Mubert
-  is used by apps, games, video tools, health and fitness products, and
-  AI-content pipelines (including integrations with Picsart, Canva, and
-  Restream) to embed adaptive generative music inside their experiences.
+  Mubert is a generative AI music platform that composes royalty-free, DMCA-free music in real time from millions of
+  artist-contributed loops, samples, and stems. The B2B Mubert AI Music API (v3) powers track generation, continuous
+  HTTP / WebRTC streaming, browse access to a pre-generated music library, and service-tier customer + license + Stripe
+  subscription administration. Mubert is used by apps, games, video tools, health and fitness products, and AI-content
+  pipelines (including integrations with Picsart, Canva, and Restream) to embed adaptive generative music inside their
+  experiences.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
     X: apievangelist
     url: https://apievangelist.com
-
 apis:
   - aid: mubert:mubert-music-api
     name: Mubert AI Music API
@@ -46,14 +43,11 @@ apis:
     humanURL: https://mubert.com/api
     baseURL: https://music-api.mubert.com
     description: >-
-      Mubert AI Music API v3 — the unified B2B surface for generating
-      royalty-free AI music tracks, streaming continuous generative music
-      (HTTP / WebRTC), browsing the pre-generated music library and playlist
-      taxonomy, and (service tier) administering customers, licenses, prices,
-      and Stripe subscriptions. Authentication uses customer-id + access-token
-      headers for public endpoints and company-id + license-token headers for
-      service endpoints. Ships AI-optimized llms.txt / llms-full.txt docs
-      alongside Swagger UI.
+      Mubert AI Music API v3 — the unified B2B surface for generating royalty-free AI music tracks, streaming continuous
+      generative music (HTTP / WebRTC), browsing the pre-generated music library and playlist taxonomy, and (service
+      tier) administering customers, licenses, prices, and Stripe subscriptions. Authentication uses customer-id +
+      access-token headers for public endpoints and company-id + license-token headers for service endpoints. Ships
+      AI-optimized llms.txt / llms-full.txt docs alongside Swagger UI.
     properties:
       - type: Documentation
         url: https://mubert.com/api
@@ -93,19 +87,6 @@ apis:
         url: vocabulary/mubert-vocabulary.yml
       - type: SpectralRules
         url: rules/mubert-rules.yml
-      - type: NaftikoCapability
-        url: capabilities/tracks-tracks.yaml
-      - type: NaftikoCapability
-        url: capabilities/streaming-streaming.yaml
-      - type: NaftikoCapability
-        url: capabilities/music-library-music-library.yaml
-      - type: NaftikoCapability
-        url: capabilities/customers-customers.yaml
-      - type: NaftikoCapability
-        url: capabilities/licenses-licenses.yaml
-      - type: NaftikoCapability
-        url: capabilities/subscriptions-subscriptions.yaml
-
 common:
   - type: Website
     url: https://mubert.com/
@@ -157,14 +138,18 @@ common:
       - Live streaming over HTTP and WebRTC with sub-second latency
       - Continuous stream control — restart, set-intensity, set-loop-state
       - 150+ genres, 50+ moods, 200+ million unique tracks per the provider
-      - Stem-level editing (drums, bass, leads, vocals) and 12+ part replacement (drums, percs, hats, claps, bass, mids, leads, fx, vocals, pads, riser, impact)
+      - >-
+        Stem-level editing (drums, bass, leads, vocals) and 12+ part replacement (drums, percs, hats, claps, bass, mids,
+        leads, fx, vocals, pads, riser, impact)
       - Track durations 15-1500 seconds, modes track or loop, intensities low/medium/high
       - Pre-generated music library browsable by genre, mood, BPM range, key, activity
       - Track-store cache for re-issuing previously generated tracks
       - Generate-similar endpoint to create variations of an existing track
       - Record a live stream session into a fixed track asset
       - Service-tier customer CRUD with custom_id for mapping back to your users
-      - Service-tier license management exposing features, bitrates, intensities, formats, modes, and per-customer quotas
+      - >-
+        Service-tier license management exposing features, bitrates, intensities, formats, modes, and per-customer
+        quotas
       - Stripe-backed subscription buy / cancel / billing portal flows
       - License-level webhooks for billing and generation lifecycle events
       - All output is royalty-free, DMCA-free, and cleared for commercial use and monetization

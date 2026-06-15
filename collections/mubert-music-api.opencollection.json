@@ -1,0 +1,1329 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mubert AI Music API v3",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "customer-id",
+      "value": "{{customer-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Public",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Music Library Filter Parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/public/music-library/params",
+            "headers": [
+              {
+                "name": "customer-id",
+                "value": ""
+              },
+              {
+                "name": "access-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "bpm",
+                "value": "",
+                "type": "query",
+                "description": "Beats per minute filter for the tracks."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Musical key"
+              },
+              {
+                "name": "genres",
+                "value": "",
+                "type": "query",
+                "description": "Genre filter for the tracks."
+              },
+              {
+                "name": "moods",
+                "value": "",
+                "type": "query",
+                "description": "Mood filter for the tracks."
+              },
+              {
+                "name": "activities",
+                "value": "",
+                "type": "query",
+                "description": "Activity filter for the tracks."
+              },
+              {
+                "name": "playlists",
+                "value": "",
+                "type": "query",
+                "description": "Playlist filter for the tracks."
+              },
+              {
+                "name": "instruments",
+                "value": "",
+                "type": "query",
+                "description": "Instrument filter for the tracks."
+              },
+              {
+                "name": "themes",
+                "value": "",
+                "type": "query",
+                "description": "Theme filter for the tracks."
+              },
+              {
+                "name": "duration",
+                "value": "",
+                "type": "query",
+                "description": "Duration filter for the tracks (in seconds)."
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Track mode"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve available filter parameters and track counts for the music library. Use filters to refine results — multiple filters are combined with logical AND."
+        },
+        {
+          "info": {
+            "name": "List Music Library Tracks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/public/music-library/tracks",
+            "headers": [
+              {
+                "name": "customer-id",
+                "value": ""
+              },
+              {
+                "name": "access-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in the result set."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The direction of the ordering."
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "The field by which the results should be ordered."
+              },
+              {
+                "name": "bpm",
+                "value": "",
+                "type": "query",
+                "description": "Beats per minute filter for the tracks."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Musical key"
+              },
+              {
+                "name": "genres",
+                "value": "",
+                "type": "query",
+                "description": "Genre filter for the tracks."
+              },
+              {
+                "name": "moods",
+                "value": "",
+                "type": "query",
+                "description": "Mood filter for the tracks."
+              },
+              {
+                "name": "activities",
+                "value": "",
+                "type": "query",
+                "description": "Activity filter for the tracks."
+              },
+              {
+                "name": "playlists",
+                "value": "",
+                "type": "query",
+                "description": "Playlist filter for the tracks."
+              },
+              {
+                "name": "instruments",
+                "value": "",
+                "type": "query",
+                "description": "Instrument filter for the tracks."
+              },
+              {
+                "name": "themes",
+                "value": "",
+                "type": "query",
+                "description": "Theme filter for the tracks."
+              },
+              {
+                "name": "duration",
+                "value": "",
+                "type": "query",
+                "description": "Duration filter for the tracks (in seconds)."
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "Track mode"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a paginated list of pre-generated music library tracks with optional filtering by genre, mood, BPM, key, and other parameters."
+        },
+        {
+          "info": {
+            "name": "List Playlists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/public/playlists",
+            "headers": [
+              {
+                "name": "customer-id",
+                "value": ""
+              },
+              {
+                "name": "access-token",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve all available music channels, groups, and categories. Each entry includes a playlist_index identifier, category, group, channel name, and available parameters (BPM range, keys)."
+        },
+        {
+          "info": {
+            "name": "GET 3001228072f8465cfa87f7d30d82ca3a",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/public/prices",
+            "params": [
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query",
+                "description": "Language code"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a list of available prices with their options, limits, and Stripe prices"
+        },
+        {
+          "info": {
+            "name": "GET Ab40acc2fb0c6ed854aa6268ff37f9aa",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/public/prices/:price",
+            "params": [
+              {
+                "name": "price",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the price."
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query",
+                "description": "Language code"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a single price by ID with its options, limits, and Stripe prices"
+        },
+        {
+          "info": {
+            "name": "Get Streaming Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/public/streaming/get-link",
+            "headers": [
+              {
+                "name": "customer-id",
+                "value": ""
+              },
+              {
+                "name": "access-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "playlist_index",
+                "value": "",
+                "type": "query",
+                "description": "Index of the playlist"
+              },
+              {
+                "name": "bitrate",
+                "value": "",
+                "type": "query",
+                "description": "Bitrate for the track."
+              },
+              {
+                "name": "intensity",
+                "value": "",
+                "type": "query",
+                "description": "Intensity level of the track."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Streaming Type"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Generate a streaming URL for continuous music playback. The returned link can be used in any audio player that supports HTTP streaming or WebRTC."
+        },
+        {
+          "info": {
+            "name": "Restart Stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/public/streaming/restart",
+            "headers": [
+              {
+                "name": "customer-id",
+                "value": ""
+              },
+              {
+                "name": "access-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Restart the stream so that a different track is played using the same streaming URL."
+        },
+        {
+          "info": {
+            "name": "Set Stream Intensity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/public/streaming/set-intensity",
+            "headers": [
+              {
+                "name": "customer-id",
+                "value": ""
+              },
+              {
+                "name": "access-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Dynamically adjust the arrangement complexity during streaming. Changes occur seamlessly without stream interruption."
+        },
+        {
+          "info": {
+            "name": "Set Stream Loop State",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/public/streaming/set-loop-state",
+            "headers": [
+              {
+                "name": "customer-id",
+                "value": ""
+              },
+              {
+                "name": "access-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Enable or disable loop mode for the current stream segment. When enabled, the later part of the music composition will loop continuously."
+        },
+        {
+          "info": {
+            "name": "POST F34f8b9619d1fcefc3785ae4d263c4eb",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/public/stripe/webhook",
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Stripe webhook endpoint for processing payment events"
+        },
+        {
+          "info": {
+            "name": "GET 757ed3344f9d4efab037bb22f26561c4",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/public/subscriptions/buy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Buy a subscription via GET (redirect flow). Creates a Stripe Checkout session and redirects to checkout URL."
+        },
+        {
+          "info": {
+            "name": "POST C98b366f8fdb147f8a26cf9b0dea88f7",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/public/subscriptions/buy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Buy a subscription. Creates a Stripe Checkout session and returns the checkout URL."
+        },
+        {
+          "info": {
+            "name": "Cancel Subscription (GET)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/public/subscriptions/cancel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancel a subscription via GET. Cancels at the end of the current billing period."
+        },
+        {
+          "info": {
+            "name": "Cancel Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/public/subscriptions/cancel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancel a subscription by company ID and license token. Cancels at the end of the current billing period."
+        },
+        {
+          "info": {
+            "name": "List Tracks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/public/tracks",
+            "headers": [
+              {
+                "name": "customer-id",
+                "value": ""
+              },
+              {
+                "name": "access-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in the result set."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "The direction of the ordering."
+              },
+              {
+                "name": "order_by",
+                "value": "",
+                "type": "query",
+                "description": "The field by which the results should be ordered."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a paginated list of tracks generated by the customer."
+        },
+        {
+          "info": {
+            "name": "Create Track",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/public/tracks",
+            "headers": [
+              {
+                "name": "customer-id",
+                "value": ""
+              },
+              {
+                "name": "access-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a custom music track from channel/category parameters, text prompt, or image. Supports multiple generation modes: track, loop, jingle, and mix."
+        },
+        {
+          "info": {
+            "name": "Edit Track",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/public/tracks/:track/edit",
+            "headers": [
+              {
+                "name": "customer-id",
+                "value": ""
+              },
+              {
+                "name": "access-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "track",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the track."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Modify track parameters or manipulate instrument/stem composition. Allows changing duration, bitrate, format, intensity, as well as replacing or removing specific instruments and stems."
+        },
+        {
+          "info": {
+            "name": "Get Stored Track",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/public/tracks/stored",
+            "headers": [
+              {
+                "name": "customer-id",
+                "value": ""
+              },
+              {
+                "name": "access-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a pre-generated track from the track-store. Returns a cached track matching the requested parameters if available."
+        },
+        {
+          "info": {
+            "name": "Record Track",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/public/tracks/record",
+            "headers": [
+              {
+                "name": "customer-id",
+                "value": ""
+              },
+              {
+                "name": "access-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Record a new track by sending a request directly to the track-recorder service, bypassing the track-store cache."
+        },
+        {
+          "info": {
+            "name": "Get Track by Session ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/public/tracks/session/:session_id",
+            "headers": [
+              {
+                "name": "customer-id",
+                "value": ""
+              },
+              {
+                "name": "access-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "track",
+                "value": "",
+                "type": "path",
+                "description": "The unique session_id of the track."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve specific track details by session ID including generation status, download URLs, and expiration times."
+        },
+        {
+          "info": {
+            "name": "Get Track by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/public/tracks/:track",
+            "headers": [
+              {
+                "name": "customer-id",
+                "value": ""
+              },
+              {
+                "name": "access-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "track",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the track."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve specific track details including generation status, download URLs, and expiration times."
+        },
+        {
+          "info": {
+            "name": "Generate Similar Track",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/public/tracks/:track/similar",
+            "headers": [
+              {
+                "name": "customer-id",
+                "value": ""
+              },
+              {
+                "name": "access-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "track",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the track."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Generate a new track similar to an existing one. Uses the original track parameters as a base and allows overriding duration, bitrate, format, intensity, and mode."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Public Service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Customer Details by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/service/customers/:customer",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the customer."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetches the details of a specific customer using their unique identifier"
+        },
+        {
+          "info": {
+            "name": "Update an Existing Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://music-api.mubert.com/api/v3/service/customers/:customer",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the customer."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Handles the update of an existing customer identified by their UUID"
+        },
+        {
+          "info": {
+            "name": "Delete Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://music-api.mubert.com/api/v3/service/customers/:customer",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the customer."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Remove a customer account by their unique identifier. This action is irreversible."
+        },
+        {
+          "info": {
+            "name": "Retrieve a List of Customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/service/customers",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in the result set."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetches a list of customers with optional pagination"
+        },
+        {
+          "info": {
+            "name": "Create a New Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/service/customers",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new customer account. Requires a unique custom_id (alphanumeric, max 255 chars). Returns customer_id and access_token for public API authentication."
+        },
+        {
+          "info": {
+            "name": "Retrieve Customer by Custom ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/service/customers/custom-id/:customId",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the customer."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetches the details of a customer based on their custom ID"
+        },
+        {
+          "info": {
+            "name": "Retrieve a List of Licenses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/service/licenses",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in the result set."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a paginated list of all licenses for the company, including features, bitrates, formats, modes, and limits."
+        },
+        {
+          "info": {
+            "name": "Retrieve Details of a Specific License",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/service/licenses/:license",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "license",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the license."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve details for a specific license including type, status, webhook configuration, track expiration time, feature access, and comprehensive limits."
+        },
+        {
+          "info": {
+            "name": "Update License",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://music-api.mubert.com/api/v3/service/licenses/:license",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "license",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the license."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update license parameters such as webhook URL and webhook enabled state. Webhooks receive track models when generation completes."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Stripe Billing Portal (GET)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/service/stripe/billing-portal",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a Stripe billing portal session by company ID and license token."
+        },
+        {
+          "info": {
+            "name": "Stripe Billing Portal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/service/stripe/billing-portal",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a Stripe billing portal session by company ID and license token."
+        },
+        {
+          "info": {
+            "name": "GET Ec7c95fd87be525e821e284e3b6fb210",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/service/stripe/subscriptions/buy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Buy a subscription via GET (redirect flow). Creates a Stripe Checkout session and redirects to checkout URL."
+        },
+        {
+          "info": {
+            "name": "POST Ded044b39864d2a5eb777e0059cdc2d9",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/service/stripe/subscriptions/buy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Buy a subscription. Creates a Stripe Checkout session and returns the checkout URL."
+        },
+        {
+          "info": {
+            "name": "Cancel Subscription (GET)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/service/stripe/subscriptions/cancel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancel a subscription via GET. Cancels at the end of the current billing period."
+        },
+        {
+          "info": {
+            "name": "Cancel Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/service/stripe/subscriptions/cancel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancel a subscription by company ID and license token. Cancels at the end of the current billing period."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
