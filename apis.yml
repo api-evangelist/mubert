@@ -75,13 +75,13 @@ apis:
         url: json-structure/mubert-license-structure.json
       - type: JSONLD
         url: json-ld/mubert-context.jsonld
-      - type: Example
+      - type: Examples
         url: examples/mubert-create-track-example.json
-      - type: Example
+      - type: Examples
         url: examples/mubert-edit-track-example.json
-      - type: Example
+      - type: Examples
         url: examples/mubert-get-streaming-link-example.json
-      - type: Example
+      - type: Examples
         url: examples/mubert-create-customer-example.json
       - type: Vocabulary
         url: vocabulary/mubert-vocabulary.yml
