@@ -1,0 +1,37 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/mubert-music-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: customerId
+  type: apiKey
+  in: header
+  parameter: customer-id
+  description: Mubert customer identifier (public endpoints).
+  sources:
+  - openapi/mubert-music-api-openapi.yml
+- name: accessToken
+  type: apiKey
+  in: header
+  parameter: access-token
+  description: Mubert customer access token (public endpoints).
+  sources:
+  - openapi/mubert-music-api-openapi.yml
+- name: companyId
+  type: apiKey
+  in: header
+  parameter: company-id
+  description: Mubert company identifier (service endpoints).
+  sources:
+  - openapi/mubert-music-api-openapi.yml
+- name: licenseToken
+  type: apiKey
+  in: header
+  parameter: license-token
+  description: Mubert license token (service endpoints).
+  sources:
+  - openapi/mubert-music-api-openapi.yml

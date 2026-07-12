@@ -88,6 +88,10 @@ apis:
       - type: SpectralRules
         url: rules/mubert-rules.yml
 common:
+  - type: DomainSecurity
+    url: security/mubert-domain-security.yml
+  - type: Authentication
+    url: authentication/mubert-authentication.yml
   - type: Website
     url: https://mubert.com/
   - type: ProductPage
