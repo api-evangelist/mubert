@@ -88,6 +88,8 @@ apis:
       - type: SpectralRules
         url: rules/mubert-rules.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/mubert-agentic-access.yml
   - type: DomainSecurity
     url: security/mubert-domain-security.yml
   - type: Authentication
