@@ -1,0 +1,252 @@
+openapi: 3.0.0
+info:
+  title: Mubert AI Music API v3 Price API
+  description: 'Mubert AI Music API for B2B integrations. Generate music tracks, manage streaming, and control customer accounts.
+
+
+    ### AI-optimized documentation
+
+
+    - [llms.txt](https://music-api.mubert.com/swagger-doc/llms.txt) — short endpoint index for AI agents
+
+    - [llms-full.txt](https://music-api.mubert.com/swagger-doc/llms-full.txt) — full reference with parameters and models'
+  contact:
+    name: Mubert Team
+    url: https://mubert.com/api
+  version: '3.0'
+  license:
+    name: Proprietary
+    url: https://mubert.com/legal/terms-of-use
+servers:
+- url: https://music-api.mubert.com
+  description: Mubert API v3 production
+security:
+- customerId: []
+  accessToken: []
+tags:
+- name: Price
+  description: Price
+paths:
+  /api/v3/public/prices:
+    get:
+      tags:
+      - Price
+      description: Retrieve a list of available prices with their options, limits, and Stripe prices
+      operationId: 3001228072f8465cfa87f7d30d82ca3a
+      parameters:
+      - $ref: '#/components/parameters/LangQueryParameter'
+      responses:
+        '200':
+          description: List of available prices retrieved successfully.
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PricePublicResource'
+                type: object
+      summary: GET 3001228072f8465cfa87f7d30d82ca3a
+      security:
+      - customerId: []
+        accessToken: []
+  /api/v3/public/prices/{price}:
+    get:
+      tags:
+      - Price
+      description: Retrieve a single price by ID with its options, limits, and Stripe prices
+      operationId: ab40acc2fb0c6ed854aa6268ff37f9aa
+      parameters:
+      - $ref: '#/components/parameters/PricePathParameter'
+      - $ref: '#/components/parameters/LangQueryParameter'
+      responses:
+        '200':
+          description: Price retrieved successfully.
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/PricePublicResource'
+                type: object
+        '404':
+          description: Price not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceNotFoundException'
+      summary: GET Ab40acc2fb0c6ed854aa6268ff37f9aa
+      security:
+      - customerId: []
+        accessToken: []
+components:
+  schemas:
+    LanguageEnum:
+      description: Languages
+      type: string
+      enum:
+      - ko
+      - es
+      - fr
+      - de
+      - pt
+      - ja
+    PricePublicResource:
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        feature:
+          type: string
+          nullable: true
+        stripe_price:
+          $ref: '#/components/schemas/StripePricePublicResource'
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceOptionPublicResource'
+        limits:
+          $ref: '#/components/schemas/PriceLimitPublicResource'
+      type: object
+    PriceOptionPublicResource:
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        priority:
+          description: Priority (higher means higher priority)
+          type: integer
+        is_enabled:
+          description: Shows whether the option is enabled or not
+          type: boolean
+      type: object
+    StripePricePublicResource:
+      properties:
+        id:
+          type: string
+          format: uuid
+        price_id:
+          type: string
+        product_id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - one_time
+          - recurring
+        interval:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          - year
+          nullable: true
+        amount:
+          type: integer
+        trial_period_days:
+          type: integer
+          nullable: true
+      type: object
+    PriceNotFoundException:
+      description: Response indicating that the specified price could not be found.
+      properties:
+        message:
+          type: string
+          example: Price not found
+        description:
+          type: string
+          example: No price exists with the specified ID
+          nullable: true
+        code:
+          type: string
+          example: PriceNotFound
+      type: object
+    PriceLimitPublicResource:
+      properties:
+        id:
+          description: Unique identifier
+          type: string
+          format: uuid
+        max_track_duration:
+          description: Maximum allowed duration (in seconds) for a single track generation
+          type: integer
+        max_concurrent_track_generations:
+          description: Maximum number of tracks a user can generate concurrently
+          type: integer
+        total_tracks_count_limit:
+          description: Overall limit on the total number of tracks a user can generate
+          type: integer
+        total_tracks_duration_limit:
+          description: Overall limit on the total duration (in seconds) of tracks a user can generate
+          type: integer
+        monthly_tracks_count_limit:
+          description: Monthly limit on the number of tracks a user can generate
+          type: integer
+        monthly_tracks_duration_limit:
+          description: Monthly limit on the total duration (in seconds) of tracks a user can generate
+          type: integer
+        daily_tracks_count_limit:
+          description: Daily limit on the number of tracks a user can generate
+          type: integer
+        daily_tracks_duration_limit:
+          description: Daily limit on the total duration (in seconds) of tracks a user can generate
+          type: integer
+        total_streaming_duration_limit:
+          description: Overall limit on the total streaming duration (in seconds) for a user
+          type: integer
+        monthly_streaming_duration_limit:
+          description: Monthly limit on the streaming duration (in seconds) for a user
+          type: integer
+        daily_streaming_duration_limit:
+          description: Daily limit on the streaming duration (in seconds) for a user
+          type: integer
+      type: object
+  parameters:
+    PricePathParameter:
+      name: price
+      in: path
+      description: The unique identifier of the price.
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: 123e4567-e89b-12d3-a456-426614174000
+    LangQueryParameter:
+      name: lang
+      in: query
+      description: Language code
+      required: false
+      schema:
+        $ref: '#/components/schemas/LanguageEnum'
+  securitySchemes:
+    customerId:
+      type: apiKey
+      in: header
+      name: customer-id
+      description: Mubert customer identifier (public endpoints).
+    accessToken:
+      type: apiKey
+      in: header
+      name: access-token
+      description: Mubert customer access token (public endpoints).
+    companyId:
+      type: apiKey
+      in: header
+      name: company-id
+      description: Mubert company identifier (service endpoints).
+    licenseToken:
+      type: apiKey
+      in: header
+      name: license-token
+      description: Mubert license token (service endpoints).
+externalDocs:
+  url: https://music-api.mubert.com/api/v3/swagger
+  description: Mubert AI Music API v3 Swagger UI

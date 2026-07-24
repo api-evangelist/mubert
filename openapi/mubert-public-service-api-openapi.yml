@@ -1,0 +1,882 @@
+openapi: 3.0.0
+info:
+  title: Mubert AI Music API v3 Price Public Service API
+  description: 'Mubert AI Music API for B2B integrations. Generate music tracks, manage streaming, and control customer accounts.
+
+
+    ### AI-optimized documentation
+
+
+    - [llms.txt](https://music-api.mubert.com/swagger-doc/llms.txt) — short endpoint index for AI agents
+
+    - [llms-full.txt](https://music-api.mubert.com/swagger-doc/llms-full.txt) — full reference with parameters and models'
+  contact:
+    name: Mubert Team
+    url: https://mubert.com/api
+  version: '3.0'
+  license:
+    name: Proprietary
+    url: https://mubert.com/legal/terms-of-use
+servers:
+- url: https://music-api.mubert.com
+  description: Mubert API v3 production
+security:
+- customerId: []
+  accessToken: []
+tags:
+- name: Public Service
+  description: Public Service
+paths:
+  /api/v3/service/customers/{customer}:
+    get:
+      tags:
+      - Public Service
+      summary: Retrieve Customer Details by ID
+      description: Fetches the details of a specific customer using their unique identifier
+      operationId: 3f3c9331843cdbb37fe0cd84be9c60a9
+      parameters:
+      - $ref: '#/components/parameters/company-id'
+      - $ref: '#/components/parameters/license-token'
+      - $ref: '#/components/parameters/CustomerPathParameter'
+      responses:
+        '200':
+          description: Successful response with customer details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerServiceResource'
+        '401':
+          description: Unauthenticated - the user is not authenticated to access this resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthenticatedException'
+        '403':
+          description: Forbidden - Different reasons specified in the error content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403Response'
+        '404':
+          description: Not Found - Different reasons specified in the error content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404Response'
+        '422':
+          description: Unprocessable Content
+      security:
+      - companyId: []
+        licenseToken: []
+    put:
+      tags:
+      - Public Service
+      summary: Update an Existing Customer
+      description: Handles the update of an existing customer identified by their UUID
+      operationId: 5a4bb87b544bbb5768a0d55ea7c9e07e
+      parameters:
+      - $ref: '#/components/parameters/company-id'
+      - $ref: '#/components/parameters/license-token'
+      - $ref: '#/components/parameters/CustomerPathParameter'
+      requestBody:
+        $ref: '#/components/requestBodies/CustomerUpdateServiceRequest'
+      responses:
+        '200':
+          description: Customer updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerServiceResource'
+        '401':
+          description: Unauthenticated - the user is not authenticated to access this resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthenticatedException'
+        '403':
+          description: Forbidden - Different reasons specified in the error content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403Response'
+        '404':
+          description: Not Found - Different reasons specified in the error content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404Response'
+        '422':
+          description: Unprocessable Content
+      security:
+      - companyId: []
+        licenseToken: []
+    delete:
+      tags:
+      - Public Service
+      summary: Delete Customer
+      description: Remove a customer account by their unique identifier. This action is irreversible.
+      operationId: 6536b720df357569e7700ab38f9fbf2c
+      parameters:
+      - $ref: '#/components/parameters/company-id'
+      - $ref: '#/components/parameters/license-token'
+      - $ref: '#/components/parameters/CustomerPathParameter'
+      requestBody:
+        $ref: '#/components/requestBodies/CustomerDeleteServiceRequest'
+      responses:
+        '204':
+          description: Customer successfully deleted
+        '401':
+          description: Unauthenticated - the user is not authenticated to access this resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthenticatedException'
+        '403':
+          description: Forbidden - Different reasons specified in the error content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403Response'
+        '404':
+          description: Not Found - Different reasons specified in the error content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404Response'
+        '422':
+          description: Unprocessable Content
+      security:
+      - companyId: []
+        licenseToken: []
+  /api/v3/service/customers:
+    get:
+      tags:
+      - Public Service
+      summary: Retrieve a List of Customers
+      description: Fetches a list of customers with optional pagination
+      operationId: 947ce188ae874a0ad15607002be8690e
+      parameters:
+      - $ref: '#/components/parameters/company-id'
+      - $ref: '#/components/parameters/license-token'
+      - $ref: '#/components/parameters/OffsetQueryParameter'
+      - $ref: '#/components/parameters/LimitQueryParameter'
+      responses:
+        '200':
+          description: Successful response with a list of customers
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CustomerServiceResource'
+                  meta:
+                    $ref: '#/components/schemas/MetadataPagination'
+                type: object
+        '401':
+          description: Unauthenticated - the user is not authenticated to access this resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthenticatedException'
+        '403':
+          description: Forbidden - Different reasons specified in the error content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403Response'
+        '422':
+          description: Unprocessable Content
+      security:
+      - companyId: []
+        licenseToken: []
+    post:
+      tags:
+      - Public Service
+      summary: Create a New Customer
+      description: Create a new customer account. Requires a unique custom_id (alphanumeric, max 255 chars). Returns customer_id and access_token for public API authentication.
+      operationId: 41ea108d9e1af9e4c28bf00b1ed23484
+      parameters:
+      - $ref: '#/components/parameters/company-id'
+      - $ref: '#/components/parameters/license-token'
+      requestBody:
+        $ref: '#/components/requestBodies/CustomerStoreServiceRequest'
+      responses:
+        '200':
+          description: Customer created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerServiceResource'
+        '401':
+          description: Unauthenticated - the user is not authenticated to access this resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthenticatedException'
+        '403':
+          description: Forbidden - Different reasons specified in the error content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403Response'
+        '422':
+          description: Unprocessable Content
+      security:
+      - companyId: []
+        licenseToken: []
+  /api/v3/service/customers/custom-id/{customId}:
+    get:
+      tags:
+      - Public Service
+      summary: Retrieve Customer by Custom ID
+      description: Fetches the details of a customer based on their custom ID
+      operationId: ce21a3ff6d75aedcaa52ac9485c43e1f
+      parameters:
+      - $ref: '#/components/parameters/company-id'
+      - $ref: '#/components/parameters/license-token'
+      - $ref: '#/components/parameters/CustomerCustomIdPathParameter'
+      responses:
+        '200':
+          description: Successful response with customer details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerServiceResource'
+        '401':
+          description: Unauthenticated - the user is not authenticated to access this resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthenticatedException'
+        '403':
+          description: Forbidden - Different reasons specified in the error content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403Response'
+        '404':
+          description: Not Found - Different reasons specified in the error content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404Response'
+        '422':
+          description: Unprocessable Content
+      security:
+      - companyId: []
+        licenseToken: []
+  /api/v3/service/licenses:
+    get:
+      tags:
+      - Public Service
+      summary: Retrieve a List of Licenses
+      description: Retrieve a paginated list of all licenses for the company, including features, bitrates, formats, modes, and limits.
+      operationId: 74f3ce4bd5141dec313ebf290e729f7a
+      parameters:
+      - $ref: '#/components/parameters/company-id'
+      - $ref: '#/components/parameters/license-token'
+      - $ref: '#/components/parameters/OffsetQueryParameter'
+      - $ref: '#/components/parameters/LimitQueryParameter'
+      responses:
+        '200':
+          description: Successful response with a list of licenses
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LicenseServiceResource'
+                  meta:
+                    $ref: '#/components/schemas/MetadataPagination'
+                type: object
+        '401':
+          description: Unauthenticated - the user is not authenticated to access this resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthenticatedException'
+        '403':
+          description: Forbidden - Different reasons specified in the error content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403Response'
+        '422':
+          description: Unprocessable Content
+      security:
+      - companyId: []
+        licenseToken: []
+  /api/v3/service/licenses/{license}:
+    get:
+      tags:
+      - Public Service
+      summary: Retrieve Details of a Specific License
+      description: Retrieve details for a specific license including type, status, webhook configuration, track expiration time, feature access, and comprehensive limits.
+      operationId: b78054f0257ca938252edab2f4d62d60
+      parameters:
+      - $ref: '#/components/parameters/company-id'
+      - $ref: '#/components/parameters/license-token'
+      - $ref: '#/components/parameters/LicensePathParameter'
+      responses:
+        '200':
+          description: Successful response with license details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseServiceResource'
+        '401':
+          description: Unauthenticated - the user is not authenticated to access this resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthenticatedException'
+        '403':
+          description: Forbidden - Different reasons specified in the error content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403Response'
+        '404':
+          description: Not Found - Different reasons specified in the error content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404Response'
+        '422':
+          description: Unprocessable Content
+      security:
+      - companyId: []
+        licenseToken: []
+    put:
+      tags:
+      - Public Service
+      summary: Update License
+      description: Update license parameters such as webhook URL and webhook enabled state. Webhooks receive track models when generation completes.
+      operationId: bd5f80b6d1faa95068a15a662f87ec54
+      parameters:
+      - $ref: '#/components/parameters/company-id'
+      - $ref: '#/components/parameters/license-token'
+      - $ref: '#/components/parameters/LicensePathParameter'
+      requestBody:
+        $ref: '#/components/requestBodies/LicenseUpdateServiceRequest'
+      responses:
+        '200':
+          description: License updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseServiceResource'
+        '422':
+          description: Unprocessable Content
+        '401':
+          description: Unauthenticated - the user is not authenticated to access this resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthenticatedException'
+        '403':
+          description: Forbidden - Different reasons specified in the error content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error403Response'
+      security:
+      - companyId: []
+        licenseToken: []
+components:
+  schemas:
+    LicenseServiceResource:
+      properties:
+        id:
+          description: License ID
+          type: string
+          format: uuid
+        company_id:
+          description: Company ID associated with the license
+          type: string
+          format: uuid
+        type:
+          description: License type
+          type: string
+        status:
+          description: License status
+          type: string
+        webhook_url:
+          description: Webhook URL for the company
+          type: string
+          nullable: true
+        webhook_enabled:
+          description: Whether the webhook is enabled for the company
+          type: boolean
+        track_expiration_time:
+          description: Time after which generated tracks expire
+          type: integer
+        allow_all_features:
+          description: Allow all features flag
+          type: boolean
+        features:
+          description: Available features for the license
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureEnum'
+        allow_all_bitrates:
+          description: Allow all bitrates flag
+          type: boolean
+        default_bitrate:
+          description: Default bitrate
+          type: integer
+        bitrates:
+          description: Available bitrates
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackBitrateEnum'
+        allow_all_intensities:
+          description: Allow all intensities flag
+          type: boolean
+        default_intensity:
+          description: Default intensity
+          type: string
+        intensities:
+          description: Available intensities
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackIntensityEnum'
+        allow_all_formats:
+          description: Allow all formats flag
+          type: boolean
+        default_format:
+          description: Default track format
+          type: string
+        track_formats:
+          description: Available formats for tracks
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackFormatEnum'
+        allow_all_modes:
+          description: Allow all modes flag
+          type: boolean
+        default_mode:
+          description: Default track mode
+          type: string
+        track_modes:
+          description: Available modes for tracks
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackModeEnum'
+        expired_at:
+          description: License expiration date
+          type: string
+          format: date-time
+        license_limits:
+          oneOf:
+          - $ref: '#/components/schemas/LicenseLimitServiceResource'
+          nullable: true
+          description: Associated License Limit
+          type: object
+      type: object
+    LicenseLimitServiceResource:
+      properties:
+        id:
+          description: License Limit ID
+          type: string
+          format: uuid
+        license_id:
+          description: Associated License ID
+          type: string
+          format: uuid
+        max_track_duration:
+          description: Max track duration
+          type: integer
+        max_concurrent_track_generations:
+          description: Max concurrent track generations allowed
+          type: integer
+        total_tracks_count:
+          description: Total number of tracks generated
+          type: integer
+        total_tracks_count_limit:
+          description: Limit on total number of tracks that can be generated
+          type: integer
+        total_tracks_duration:
+          description: Total duration of generated tracks (in seconds)
+          type: integer
+        total_tracks_duration_limit:
+          description: Limit on the total duration of tracks (in seconds)
+          type: integer
+        monthly_tracks_count:
+          description: Tracks generated this month
+          type: integer
+        monthly_tracks_count_limit:
+          description: Limit on tracks that can be generated monthly
+          type: integer
+        monthly_tracks_duration:
+          description: Total duration of tracks generated this month (in seconds)
+          type: integer
+        monthly_tracks_duration_limit:
+          description: Limit on the total track duration per month (in seconds)
+          type: integer
+        daily_tracks_count:
+          description: Tracks generated today
+          type: integer
+        daily_tracks_count_limit:
+          description: Limit on tracks that can be generated daily
+          type: integer
+        daily_tracks_duration:
+          description: Total duration of tracks generated today (in seconds)
+          type: integer
+        daily_tracks_duration_limit:
+          description: Limit on the total track duration per day (in seconds)
+          type: integer
+        total_streaming_duration:
+          description: Total streaming duration (in seconds)
+          type: integer
+        total_streaming_duration_limit:
+          description: Limit on total streaming duration (in seconds)
+          type: integer
+        monthly_streaming_duration:
+          description: Streaming duration this month (in seconds)
+          type: integer
+        monthly_streaming_duration_limit:
+          description: Limit on monthly streaming duration (in seconds)
+          type: integer
+        daily_streaming_duration:
+          description: Streaming duration today (in seconds)
+          type: integer
+        daily_streaming_duration_limit:
+          description: Limit on daily streaming duration (in seconds)
+          type: integer
+        customers_count:
+          description: Number of customers utilizing this license limit
+          type: integer
+        customers_count_limit:
+          description: Maximum number of customers allowed
+          type: integer
+        customer_max_concurrent_track_generations:
+          description: Max concurrent track generations per customer
+          type: integer
+        customer_total_tracks_count_limit:
+          description: Limit on total number of tracks per customer
+          type: integer
+        customer_total_tracks_duration_limit:
+          description: Limit on total track duration per customer (in seconds)
+          type: integer
+        customer_monthly_tracks_count_limit:
+          description: Monthly track count limit per customer
+          type: integer
+        customer_monthly_tracks_duration_limit:
+          description: Monthly track duration limit per customer (in seconds)
+          type: integer
+        customer_daily_tracks_count_limit:
+          description: Daily track count limit per customer
+          type: integer
+        customer_daily_tracks_duration_limit:
+          description: Daily track duration limit per customer (in seconds)
+          type: integer
+        customer_total_streaming_duration_limit:
+          description: Limit on total streaming duration per customer (in seconds)
+          type: integer
+        customer_monthly_streaming_duration_limit:
+          description: Limit on monthly streaming duration per customer (in seconds)
+          type: integer
+        customer_daily_streaming_duration_limit:
+          description: Limit on daily streaming duration per customer (in seconds)
+          type: integer
+        daily_reset_at:
+          description: Last reset of daily limit
+          type: string
+          format: date-time
+          nullable: true
+        monthly_reset_at:
+          description: Last reset of monthly limit
+          type: string
+          format: date-time
+          nullable: true
+      type: object
+    Error403Response:
+      description: Response for forbidden access errors
+      properties:
+        code:
+          description: Type of the error
+          type: string
+        message:
+          type: string
+          example: Forbidden action
+        description:
+          type: string
+          nullable: true
+      type: object
+      discriminator:
+        propertyName: code
+        mapping:
+          LicenseExpired: '#/components/schemas/LicenseExpiredException'
+          AccessTokenExpired: '#/components/schemas/AccessTokenExpiredException'
+          Forbidden: '#/components/schemas/ForbiddenException'
+          CompanyIsNotActive: '#/components/schemas/CompanyIsNotActiveException'
+          CustomerIsNotActive: '#/components/schemas/CompanyIsNotActiveException'
+          LicenseForbiddenBitrate: '#/components/schemas/LicenseForbiddenBitrate'
+          LicenseForbiddenDuration: '#/components/schemas/LicenseForbiddenDuration'
+          LicenseForbiddenFeature: '#/components/schemas/LicenseForbiddenFeature'
+          LicenseForbiddenFormat: '#/components/schemas/LicenseForbiddenFormat'
+          LicenseForbiddenIntensity: '#/components/schemas/LicenseForbiddenIntensity'
+          LicenseForbiddenMode: '#/components/schemas/LicenseForbiddenMode'
+          LicenseIsNotActive: '#/components/schemas/LicenseIsNotActive'
+          LicenseLimitConcurrentTrackGenerationsCount: '#/components/schemas/LicenseLimitConcurrentTrackGenerationsCount'
+          LicenseLimitTracksCount: '#/components/schemas/LicenseLimitTracksCount'
+          LicenseLimitTracksDuration: '#/components/schemas/LicenseLimitTracksDuration'
+          LicenseLimitUsersCount: '#/components/schemas/LicenseLimitUsersCount'
+          UserNotFound: '#/components/schemas/UserNotFound'
+    Error404Response:
+      description: Response for not found errors
+      properties:
+        code:
+          description: Type of the error
+          type: string
+          example: CompanyNotFound
+        message:
+          type: string
+          example: Resource not found
+        description:
+          type: string
+          nullable: true
+      type: object
+      discriminator:
+        propertyName: code
+        mapping:
+          CustomerNotFound: '#/components/schemas/CustomerNotFound'
+          CompanyNotFound: '#/components/schemas/CompanyNotFound'
+          LicenseNotFound: '#/components/schemas/LicenseNotFound'
+          TrackNotFound: '#/components/schemas/TrackNotFound'
+    TrackFormatEnum:
+      description: Enumeration representing different track formats.
+      type: string
+      enum:
+      - mp3
+      - wav
+      example: mp3
+    TrackModeEnum:
+      description: Enumeration representing different modes of a track.
+      type: string
+      enum:
+      - track
+      - jingle
+      - loop
+      - mix
+      example: loop
+    TrackBitrateEnum:
+      description: Enumeration representing different track bitrates.
+      type: integer
+      enum:
+      - 32
+      - 96
+      - 128
+      - 192
+      - 256
+      - 320
+      example: 320
+    FeatureEnum:
+      description: Features
+      type: string
+      enum:
+      - track
+      - ttm
+      - itm
+      - streaming
+      - music-library
+    UnauthenticatedException:
+      description: Response indicating that the user is not authenticated to access the resource.
+      properties:
+        message:
+          type: string
+          example: Unauthenticated
+        description:
+          type: string
+          example: Reason for authentication failure
+          nullable: true
+        code:
+          type: string
+          example: Unauthenticated
+      type: object
+    TrackIntensityEnum:
+      description: Enumeration representing different intensity levels of a track.
+      type: string
+      enum:
+      - low
+      - medium
+      - high
+      example: medium
+    CustomerServiceResource:
+      properties:
+        id:
+          description: Customer ID
+          type: string
+          format: uuid
+        company_id:
+          description: Associated company ID
+          type: string
+          format: uuid
+        custom_id:
+          description: Custom identifier for the customer
+          type: string
+        status:
+          description: Customer status
+          type: string
+      type: object
+    MetadataPagination:
+      description: Pagination metadata
+      properties:
+        total:
+          type: integer
+          example: 1000
+        limit:
+          type: integer
+          example: 100
+        offset:
+          type: integer
+          example: 0
+      type: object
+  parameters:
+    license-token:
+      name: license-token
+      in: header
+      description: License Token
+      required: true
+      schema:
+        type: string
+    CustomerPathParameter:
+      name: customer
+      in: path
+      description: The unique identifier of the customer.
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: 123e4567-e89b-12d3-a456-426614174000
+    LicensePathParameter:
+      name: license
+      in: path
+      description: The unique identifier of the license.
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: 123e4567-e89b-12d3-a456-426614174000
+    company-id:
+      name: company-id
+      in: header
+      description: Company Id
+      required: true
+      schema:
+        type: string
+    OffsetQueryParameter:
+      name: offset
+      in: query
+      description: The number of items to skip before starting to collect the result set.
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        example: 0
+    LimitQueryParameter:
+      name: limit
+      in: query
+      description: The number of items to return in the result set.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        example: 25
+    CustomerCustomIdPathParameter:
+      name: customId
+      in: path
+      description: The unique identifier of the customer.
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: 123e4567-e89b-12d3-a456-426614174000
+  requestBodies:
+    CustomerStoreServiceRequest:
+      description: Request to create a new customer with a custom ID and optional webhook settings.
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - custom_id
+            properties:
+              custom_id:
+                description: A unique identifier for the customer.
+                type: string
+                maxLength: 255
+                minLength: 1
+                example: customer123
+            type: object
+    CustomerUpdateServiceRequest:
+      description: Request to update an existing customer with updated custom ID and webhook settings.
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - custom_id
+            properties:
+              custom_id:
+                description: A unique identifier for the customer.
+                type: string
+                maxLength: 255
+                minLength: 1
+                example: customer456
+            type: object
+    LicenseUpdateServiceRequest:
+      description: Request to update an existing license.
+      required: true
+      content:
+        application/json:
+          schema:
+            properties:
+              webhook_url:
+                description: The URL for the webhook.
+                type: string
+                maxLength: 255
+                example: https://example.com/webhook
+                nullable: true
+              webhook_enabled:
+                description: A flag indicating whether the webhook is enabled.
+                type: boolean
+                example: true
+            type: object
+    CustomerDeleteServiceRequest:
+      description: Request to delete a customer by the customer service. Authorization is required, and the customer's company ID must match the authenticated service company.
+      required: false
+      content:
+        application/json:
+          schema:
+            properties: {}
+            type: object
+  securitySchemes:
+    customerId:
+      type: apiKey
+      in: header
+      name: customer-id
+      description: Mubert customer identifier (public endpoints).
+    accessToken:
+      type: apiKey
+      in: header
+      name: access-token
+      description: Mubert customer access token (public endpoints).
+    companyId:
+      type: apiKey
+      in: header
+      name: company-id
+      description: Mubert company identifier (service endpoints).
+    licenseToken:
+      type: apiKey
+      in: header
+      name: license-token
+      description: Mubert license token (service endpoints).
+externalDocs:
+  url: https://music-api.mubert.com/api/v3/swagger
+  description: Mubert AI Music API v3 Swagger UI

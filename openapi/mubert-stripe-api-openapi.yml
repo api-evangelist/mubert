@@ -1,0 +1,150 @@
+openapi: 3.0.0
+info:
+  title: Mubert AI Music API v3 Price Stripe API
+  description: 'Mubert AI Music API for B2B integrations. Generate music tracks, manage streaming, and control customer accounts.
+
+
+    ### AI-optimized documentation
+
+
+    - [llms.txt](https://music-api.mubert.com/swagger-doc/llms.txt) — short endpoint index for AI agents
+
+    - [llms-full.txt](https://music-api.mubert.com/swagger-doc/llms-full.txt) — full reference with parameters and models'
+  contact:
+    name: Mubert Team
+    url: https://mubert.com/api
+  version: '3.0'
+  license:
+    name: Proprietary
+    url: https://mubert.com/legal/terms-of-use
+servers:
+- url: https://music-api.mubert.com
+  description: Mubert API v3 production
+security:
+- customerId: []
+  accessToken: []
+tags:
+- name: Stripe
+  description: Stripe
+paths:
+  /api/v3/public/stripe/webhook:
+    post:
+      tags:
+      - Stripe
+      description: Stripe webhook endpoint for processing payment events
+      operationId: f34f8b9619d1fcefc3785ae4d263c4eb
+      responses:
+        '204':
+          description: Webhook processed successfully
+        '400':
+          description: Invalid payload or signature
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                    example: Invalid signature
+                type: object
+      summary: POST F34f8b9619d1fcefc3785ae4d263c4eb
+      security:
+      - customerId: []
+        accessToken: []
+  /api/v3/service/stripe/billing-portal:
+    get:
+      tags:
+      - Stripe
+      summary: Stripe Billing Portal (GET)
+      description: Create a Stripe billing portal session by company ID and license token.
+      operationId: 86bd2be912ca36a8b8c66e05494c723e
+      requestBody:
+        $ref: '#/components/requestBodies/StripeBillingPortalServiceRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    properties:
+                      url:
+                        description: Url to go to the Billing portal
+                        type: string
+                    type: object
+                type: object
+        '404':
+          description: License or Stripe customer not found
+        '422':
+          description: Validation error
+      security:
+      - companyId: []
+        licenseToken: []
+    post:
+      tags:
+      - Stripe
+      summary: Stripe Billing Portal
+      description: Create a Stripe billing portal session by company ID and license token.
+      operationId: 7b488bcfab8a411e6b6641fb4a08bf22
+      requestBody:
+        $ref: '#/components/requestBodies/StripeBillingPortalServiceRequest'
+      responses:
+        '200':
+          description: Successful response
+        '404':
+          description: License or Stripe customer not found
+        '422':
+          description: Validation error
+      security:
+      - companyId: []
+        licenseToken: []
+components:
+  requestBodies:
+    StripeBillingPortalServiceRequest:
+      description: Request to create a Stripe billing portal session by company ID and license token
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - company_id
+            - license_token
+            properties:
+              company_id:
+                type: string
+                format: uuid
+                example: 550e8400-e29b-41d4-a716-446655440000
+              license_token:
+                type: string
+                example: abc123def456
+              redirect_url:
+                description: URL to return to after leaving the billing portal
+                type: string
+                format: uri
+                example: https://mubert.com/success
+                nullable: true
+            type: object
+  securitySchemes:
+    customerId:
+      type: apiKey
+      in: header
+      name: customer-id
+      description: Mubert customer identifier (public endpoints).
+    accessToken:
+      type: apiKey
+      in: header
+      name: access-token
+      description: Mubert customer access token (public endpoints).
+    companyId:
+      type: apiKey
+      in: header
+      name: company-id
+      description: Mubert company identifier (service endpoints).
+    licenseToken:
+      type: apiKey
+      in: header
+      name: license-token
+      description: Mubert license token (service endpoints).
+externalDocs:
+  url: https://music-api.mubert.com/api/v3/swagger
+  description: Mubert AI Music API v3 Swagger UI

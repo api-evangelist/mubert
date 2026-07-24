@@ -1,0 +1,408 @@
+openapi: 3.0.0
+info:
+  title: Mubert AI Music API v3 Price Subscription API
+  description: 'Mubert AI Music API for B2B integrations. Generate music tracks, manage streaming, and control customer accounts.
+
+
+    ### AI-optimized documentation
+
+
+    - [llms.txt](https://music-api.mubert.com/swagger-doc/llms.txt) — short endpoint index for AI agents
+
+    - [llms-full.txt](https://music-api.mubert.com/swagger-doc/llms-full.txt) — full reference with parameters and models'
+  contact:
+    name: Mubert Team
+    url: https://mubert.com/api
+  version: '3.0'
+  license:
+    name: Proprietary
+    url: https://mubert.com/legal/terms-of-use
+servers:
+- url: https://music-api.mubert.com
+  description: Mubert API v3 production
+security:
+- customerId: []
+  accessToken: []
+tags:
+- name: Subscription
+  description: Subscription
+paths:
+  /api/v3/public/subscriptions/buy:
+    get:
+      tags:
+      - Subscription
+      description: Buy a subscription via GET (redirect flow). Creates a Stripe Checkout session and redirects to checkout URL.
+      operationId: 757ed3344f9d4efab037bb22f26561c4
+      requestBody:
+        $ref: '#/components/requestBodies/SubscriptionBuyPublicRequest'
+      responses:
+        '200':
+          description: Checkout session created successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  checkout_url:
+                    type: string
+                    example: https://checkout.stripe.com/...
+                  session_id:
+                    type: string
+                    example: cs_test_...
+                type: object
+        '302':
+          description: Redirect to Stripe Checkout (when redirect=true)
+        '404':
+          description: Stripe price not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceNotFoundException'
+        '422':
+          description: Validation error
+      summary: GET 757ed3344f9d4efab037bb22f26561c4
+      security:
+      - customerId: []
+        accessToken: []
+    post:
+      tags:
+      - Subscription
+      description: Buy a subscription. Creates a Stripe Checkout session and returns the checkout URL.
+      operationId: c98b366f8fdb147f8a26cf9b0dea88f7
+      requestBody:
+        $ref: '#/components/requestBodies/SubscriptionBuyPublicRequest'
+      responses:
+        '200':
+          description: Checkout session created successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  checkout_url:
+                    type: string
+                    example: https://checkout.stripe.com/...
+                  session_id:
+                    type: string
+                    example: cs_test_...
+                type: object
+        '302':
+          description: Redirect to Stripe Checkout (when redirect=true)
+        '404':
+          description: Stripe price not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceNotFoundException'
+        '422':
+          description: Validation error
+      summary: POST C98b366f8fdb147f8a26cf9b0dea88f7
+      security:
+      - customerId: []
+        accessToken: []
+  /api/v3/public/subscriptions/cancel:
+    get:
+      tags:
+      - Subscription
+      summary: Cancel Subscription (GET)
+      description: Cancel a subscription via GET. Cancels at the end of the current billing period.
+      operationId: 6c8f8d392bf3d549c7cc57408d704cea
+      requestBody:
+        $ref: '#/components/requestBodies/SubscriptionCancelPublicRequest'
+      responses:
+        '204':
+          description: Subscription cancelled successfully
+        '404':
+          description: Subscription not found
+        '422':
+          description: Validation error
+      security:
+      - customerId: []
+        accessToken: []
+    post:
+      tags:
+      - Subscription
+      summary: Cancel Subscription
+      description: Cancel a subscription by company ID and license token. Cancels at the end of the current billing period.
+      operationId: 884c9366deab18ae2438fefff9769789
+      requestBody:
+        $ref: '#/components/requestBodies/SubscriptionCancelPublicRequest'
+      responses:
+        '204':
+          description: Subscription cancelled successfully
+        '404':
+          description: Subscription not found
+        '422':
+          description: Validation error
+      security:
+      - customerId: []
+        accessToken: []
+  /api/v3/service/stripe/subscriptions/buy:
+    get:
+      tags:
+      - Subscription
+      description: Buy a subscription via GET (redirect flow). Creates a Stripe Checkout session and redirects to checkout URL.
+      operationId: ec7c95fd87be525e821e284e3b6fb210
+      requestBody:
+        $ref: '#/components/requestBodies/SubscriptionBuyServiceRequest'
+      responses:
+        '200':
+          description: Checkout session created successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  checkout_url:
+                    type: string
+                    example: https://checkout.stripe.com/...
+                  session_id:
+                    type: string
+                    example: cs_test_...
+                type: object
+        '302':
+          description: Redirect to Stripe Checkout (when redirect=true)
+        '404':
+          description: Stripe price not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceNotFoundException'
+        '422':
+          description: Validation error
+      summary: GET Ec7c95fd87be525e821e284e3b6fb210
+      security:
+      - companyId: []
+        licenseToken: []
+    post:
+      tags:
+      - Subscription
+      description: Buy a subscription. Creates a Stripe Checkout session and returns the checkout URL.
+      operationId: ded044b39864d2a5eb777e0059cdc2d9
+      requestBody:
+        $ref: '#/components/requestBodies/SubscriptionBuyServiceRequest'
+      responses:
+        '200':
+          description: Checkout session created successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  checkout_url:
+                    type: string
+                    example: https://checkout.stripe.com/...
+                  session_id:
+                    type: string
+                    example: cs_test_...
+                type: object
+        '302':
+          description: Redirect to Stripe Checkout (when redirect=true)
+        '404':
+          description: Stripe price not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceNotFoundException'
+        '422':
+          description: Validation error
+      summary: POST Ded044b39864d2a5eb777e0059cdc2d9
+      security:
+      - companyId: []
+        licenseToken: []
+  /api/v3/service/stripe/subscriptions/cancel:
+    get:
+      tags:
+      - Subscription
+      summary: Cancel Subscription (GET)
+      description: Cancel a subscription via GET. Cancels at the end of the current billing period.
+      operationId: 96da408e7b15c1de24f4be37b32ff0ff
+      requestBody:
+        $ref: '#/components/requestBodies/SubscriptionCancelServiceRequest'
+      responses:
+        '204':
+          description: Subscription cancelled successfully
+        '404':
+          description: Subscription not found
+        '422':
+          description: Validation error
+      security:
+      - companyId: []
+        licenseToken: []
+    post:
+      tags:
+      - Subscription
+      summary: Cancel Subscription
+      description: Cancel a subscription by company ID and license token. Cancels at the end of the current billing period.
+      operationId: 89498d560c6bf07831b781350677e89d
+      requestBody:
+        $ref: '#/components/requestBodies/SubscriptionCancelServiceRequest'
+      responses:
+        '204':
+          description: Subscription cancelled successfully
+        '404':
+          description: Subscription not found
+        '422':
+          description: Validation error
+      security:
+      - companyId: []
+        licenseToken: []
+components:
+  requestBodies:
+    SubscriptionBuyPublicRequest:
+      description: Request to buy a subscription
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - email
+            - stripe_price_id
+            properties:
+              company_name:
+                type: string
+                maxLength: 255
+                example: Acme Inc
+                nullable: true
+              email:
+                type: string
+                format: email
+                example: contact@acme.com
+              stripe_price_id:
+                type: string
+                maxLength: 255
+                example: price_1234567890
+              redirect_url:
+                type: string
+                format: url
+                example: https://example.com/success
+                nullable: true
+              redirect_url_cancel:
+                type: string
+                format: url
+                example: https://example.com/cancel
+                nullable: true
+              coupon_id:
+                type: string
+                maxLength: 255
+                example: DISCOUNT20
+                nullable: true
+              redirect:
+                type: boolean
+                example: true
+                nullable: true
+            type: object
+    SubscriptionCancelPublicRequest:
+      description: Request to cancel a subscription by company ID and license token
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - company_id
+            - license_token
+            properties:
+              company_id:
+                type: string
+                format: uuid
+                example: 550e8400-e29b-41d4-a716-446655440000
+              license_token:
+                type: string
+                example: abc123def456
+            type: object
+    SubscriptionCancelServiceRequest:
+      description: Request to cancel a subscription by company ID and license token
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - company_id
+            - license_token
+            properties:
+              company_id:
+                type: string
+                format: uuid
+                example: 550e8400-e29b-41d4-a716-446655440000
+              license_token:
+                type: string
+                example: abc123def456
+            type: object
+    SubscriptionBuyServiceRequest:
+      description: Request to buy a subscription
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - email
+            - stripe_price_id
+            properties:
+              company_name:
+                type: string
+                maxLength: 255
+                example: Acme Inc
+                nullable: true
+              email:
+                type: string
+                format: email
+                example: contact@acme.com
+              stripe_price_id:
+                type: string
+                maxLength: 255
+                example: price_1234567890
+              redirect_url:
+                type: string
+                format: url
+                example: https://example.com/success
+                nullable: true
+              redirect_url_cancel:
+                type: string
+                format: url
+                example: https://example.com/cancel
+                nullable: true
+              coupon_id:
+                type: string
+                maxLength: 255
+                example: DISCOUNT20
+                nullable: true
+              redirect:
+                type: boolean
+                example: true
+                nullable: true
+            type: object
+  schemas:
+    PriceNotFoundException:
+      description: Response indicating that the specified price could not be found.
+      properties:
+        message:
+          type: string
+          example: Price not found
+        description:
+          type: string
+          example: No price exists with the specified ID
+          nullable: true
+        code:
+          type: string
+          example: PriceNotFound
+      type: object
+  securitySchemes:
+    customerId:
+      type: apiKey
+      in: header
+      name: customer-id
+      description: Mubert customer identifier (public endpoints).
+    accessToken:
+      type: apiKey
+      in: header
+      name: access-token
+      description: Mubert customer access token (public endpoints).
+    companyId:
+      type: apiKey
+      in: header
+      name: company-id
+      description: Mubert company identifier (service endpoints).
+    licenseToken:
+      type: apiKey
+      in: header
+      name: license-token
+      description: Mubert license token (service endpoints).
+externalDocs:
+  url: https://music-api.mubert.com/api/v3/swagger
+  description: Mubert AI Music API v3 Swagger UI
