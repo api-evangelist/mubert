@@ -2,7 +2,20 @@ aid: mubert
 url: https://raw.githubusercontent.com/api-evangelist/mubert/refs/heads/main/apis.yml
 name: Mubert
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/mubert.png
 access: 3rd-Party
 tags:
   - AI Music
@@ -30,63 +43,282 @@ maintainers:
     X: apievangelist
     url: https://apievangelist.com
 apis:
-  - aid: mubert:mubert-music-api
-    name: Mubert AI Music API
-    tags:
-      - AI Music
-      - Generation
-      - Streaming
-      - Library
-      - Customers
-      - Licenses
-      - Subscriptions
-    humanURL: https://mubert.com/api
-    baseURL: https://music-api.mubert.com
-    description: >-
-      Mubert AI Music API v3 — the unified B2B surface for generating royalty-free AI music tracks, streaming continuous
-      generative music (HTTP / WebRTC), browsing the pre-generated music library and playlist taxonomy, and (service
-      tier) administering customers, licenses, prices, and Stripe subscriptions. Authentication uses customer-id +
-      access-token headers for public endpoints and company-id + license-token headers for service endpoints. Ships
-      AI-optimized llms.txt / llms-full.txt docs alongside Swagger UI.
-    properties:
-      - type: Documentation
-        url: https://mubert.com/api
-      - type: SwaggerUI
-        url: https://music-api.mubert.com/api/v3/swagger
-      - type: OpenAPI
-        url: openapi/mubert-music-api-openapi.yml
-      - type: AIDocumentation
-        url: https://music-api.mubert.com/swagger-doc/llms.txt
-      - type: AIDocumentation
-        url: https://music-api.mubert.com/swagger-doc/llms-full.txt
-      - type: JSONSchema
-        url: json-schema/mubert-track-schema.json
-      - type: JSONSchema
-        url: json-schema/mubert-customer-schema.json
-      - type: JSONSchema
-        url: json-schema/mubert-license-schema.json
-      - type: JSONSchema
-        url: json-schema/mubert-playlist-schema.json
-      - type: JSONSchema
-        url: json-schema/mubert-streaming-link-schema.json
-      - type: JSONStructure
-        url: json-structure/mubert-track-structure.json
-      - type: JSONStructure
-        url: json-structure/mubert-license-structure.json
-      - type: JSONLD
-        url: json-ld/mubert-context.jsonld
-      - type: Examples
-        url: examples/mubert-create-track-example.json
-      - type: Examples
-        url: examples/mubert-edit-track-example.json
-      - type: Examples
-        url: examples/mubert-get-streaming-link-example.json
-      - type: Examples
-        url: examples/mubert-create-customer-example.json
-      - type: Vocabulary
-        url: vocabulary/mubert-vocabulary.yml
-      - type: SpectralRules
-        url: rules/mubert-rules.yml
+- aid: mubert:mubert-price-api
+  name: Mubert Price API
+  description: Price
+  humanURL: https://mubert.com/api
+  baseURL: https://music-api.mubert.com
+  tags:
+  - Price
+  properties:
+  - type: OpenAPI
+    url: openapi/mubert-price-api-openapi.yml
+  - type: Documentation
+    url: https://mubert.com/api
+  - type: SwaggerUI
+    url: https://music-api.mubert.com/api/v3/swagger
+  - type: AIDocumentation
+    url: https://music-api.mubert.com/swagger-doc/llms.txt
+  - type: AIDocumentation
+    url: https://music-api.mubert.com/swagger-doc/llms-full.txt
+  - type: JSONSchema
+    url: json-schema/mubert-track-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-customer-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-license-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-playlist-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-streaming-link-schema.json
+  - type: JSONStructure
+    url: json-structure/mubert-track-structure.json
+  - type: JSONStructure
+    url: json-structure/mubert-license-structure.json
+  - type: JSONLD
+    url: json-ld/mubert-context.jsonld
+  - type: Examples
+    url: examples/mubert-create-track-example.json
+  - type: Examples
+    url: examples/mubert-edit-track-example.json
+  - type: Examples
+    url: examples/mubert-get-streaming-link-example.json
+  - type: Examples
+    url: examples/mubert-create-customer-example.json
+  - type: Vocabulary
+    url: vocabulary/mubert-vocabulary.yml
+  - type: SpectralRules
+    url: rules/mubert-rules.yml
+- aid: mubert:mubert-public-api
+  name: Mubert Public API
+  description: Public
+  humanURL: https://mubert.com/api
+  baseURL: https://music-api.mubert.com
+  tags:
+  - Public
+  properties:
+  - type: OpenAPI
+    url: openapi/mubert-public-api-openapi.yml
+  - type: Documentation
+    url: https://mubert.com/api
+  - type: SwaggerUI
+    url: https://music-api.mubert.com/api/v3/swagger
+  - type: AIDocumentation
+    url: https://music-api.mubert.com/swagger-doc/llms.txt
+  - type: AIDocumentation
+    url: https://music-api.mubert.com/swagger-doc/llms-full.txt
+  - type: JSONSchema
+    url: json-schema/mubert-track-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-customer-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-license-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-playlist-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-streaming-link-schema.json
+  - type: JSONStructure
+    url: json-structure/mubert-track-structure.json
+  - type: JSONStructure
+    url: json-structure/mubert-license-structure.json
+  - type: JSONLD
+    url: json-ld/mubert-context.jsonld
+  - type: Examples
+    url: examples/mubert-create-track-example.json
+  - type: Examples
+    url: examples/mubert-edit-track-example.json
+  - type: Examples
+    url: examples/mubert-get-streaming-link-example.json
+  - type: Examples
+    url: examples/mubert-create-customer-example.json
+  - type: Vocabulary
+    url: vocabulary/mubert-vocabulary.yml
+  - type: SpectralRules
+    url: rules/mubert-rules.yml
+- aid: mubert:mubert-public-service-api
+  name: Mubert Public Service API
+  description: Public Service
+  humanURL: https://mubert.com/api
+  baseURL: https://music-api.mubert.com
+  tags:
+  - Public Service
+  properties:
+  - type: OpenAPI
+    url: openapi/mubert-public-service-api-openapi.yml
+  - type: Documentation
+    url: https://mubert.com/api
+  - type: SwaggerUI
+    url: https://music-api.mubert.com/api/v3/swagger
+  - type: AIDocumentation
+    url: https://music-api.mubert.com/swagger-doc/llms.txt
+  - type: AIDocumentation
+    url: https://music-api.mubert.com/swagger-doc/llms-full.txt
+  - type: JSONSchema
+    url: json-schema/mubert-track-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-customer-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-license-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-playlist-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-streaming-link-schema.json
+  - type: JSONStructure
+    url: json-structure/mubert-track-structure.json
+  - type: JSONStructure
+    url: json-structure/mubert-license-structure.json
+  - type: JSONLD
+    url: json-ld/mubert-context.jsonld
+  - type: Examples
+    url: examples/mubert-create-track-example.json
+  - type: Examples
+    url: examples/mubert-edit-track-example.json
+  - type: Examples
+    url: examples/mubert-get-streaming-link-example.json
+  - type: Examples
+    url: examples/mubert-create-customer-example.json
+  - type: Vocabulary
+    url: vocabulary/mubert-vocabulary.yml
+  - type: SpectralRules
+    url: rules/mubert-rules.yml
+- aid: mubert:mubert-service-api
+  name: Mubert Service API
+  description: Service
+  humanURL: https://mubert.com/api
+  baseURL: https://music-api.mubert.com
+  tags:
+  - Service
+  properties:
+  - type: OpenAPI
+    url: openapi/mubert-service-api-openapi.yml
+  - type: Documentation
+    url: https://mubert.com/api
+  - type: SwaggerUI
+    url: https://music-api.mubert.com/api/v3/swagger
+  - type: AIDocumentation
+    url: https://music-api.mubert.com/swagger-doc/llms.txt
+  - type: AIDocumentation
+    url: https://music-api.mubert.com/swagger-doc/llms-full.txt
+  - type: JSONSchema
+    url: json-schema/mubert-track-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-customer-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-license-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-playlist-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-streaming-link-schema.json
+  - type: JSONStructure
+    url: json-structure/mubert-track-structure.json
+  - type: JSONStructure
+    url: json-structure/mubert-license-structure.json
+  - type: JSONLD
+    url: json-ld/mubert-context.jsonld
+  - type: Examples
+    url: examples/mubert-create-track-example.json
+  - type: Examples
+    url: examples/mubert-edit-track-example.json
+  - type: Examples
+    url: examples/mubert-get-streaming-link-example.json
+  - type: Examples
+    url: examples/mubert-create-customer-example.json
+  - type: Vocabulary
+    url: vocabulary/mubert-vocabulary.yml
+  - type: SpectralRules
+    url: rules/mubert-rules.yml
+- aid: mubert:mubert-stripe-api
+  name: Mubert Stripe API
+  description: Stripe
+  humanURL: https://mubert.com/api
+  baseURL: https://music-api.mubert.com
+  tags:
+  - Stripe
+  properties:
+  - type: OpenAPI
+    url: openapi/mubert-stripe-api-openapi.yml
+  - type: Documentation
+    url: https://mubert.com/api
+  - type: SwaggerUI
+    url: https://music-api.mubert.com/api/v3/swagger
+  - type: AIDocumentation
+    url: https://music-api.mubert.com/swagger-doc/llms.txt
+  - type: AIDocumentation
+    url: https://music-api.mubert.com/swagger-doc/llms-full.txt
+  - type: JSONSchema
+    url: json-schema/mubert-track-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-customer-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-license-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-playlist-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-streaming-link-schema.json
+  - type: JSONStructure
+    url: json-structure/mubert-track-structure.json
+  - type: JSONStructure
+    url: json-structure/mubert-license-structure.json
+  - type: JSONLD
+    url: json-ld/mubert-context.jsonld
+  - type: Examples
+    url: examples/mubert-create-track-example.json
+  - type: Examples
+    url: examples/mubert-edit-track-example.json
+  - type: Examples
+    url: examples/mubert-get-streaming-link-example.json
+  - type: Examples
+    url: examples/mubert-create-customer-example.json
+  - type: Vocabulary
+    url: vocabulary/mubert-vocabulary.yml
+  - type: SpectralRules
+    url: rules/mubert-rules.yml
+- aid: mubert:mubert-subscription-api
+  name: Mubert Subscription API
+  description: Subscription
+  humanURL: https://mubert.com/api
+  baseURL: https://music-api.mubert.com
+  tags:
+  - Subscription
+  properties:
+  - type: OpenAPI
+    url: openapi/mubert-subscription-api-openapi.yml
+  - type: Documentation
+    url: https://mubert.com/api
+  - type: SwaggerUI
+    url: https://music-api.mubert.com/api/v3/swagger
+  - type: AIDocumentation
+    url: https://music-api.mubert.com/swagger-doc/llms.txt
+  - type: AIDocumentation
+    url: https://music-api.mubert.com/swagger-doc/llms-full.txt
+  - type: JSONSchema
+    url: json-schema/mubert-track-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-customer-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-license-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-playlist-schema.json
+  - type: JSONSchema
+    url: json-schema/mubert-streaming-link-schema.json
+  - type: JSONStructure
+    url: json-structure/mubert-track-structure.json
+  - type: JSONStructure
+    url: json-structure/mubert-license-structure.json
+  - type: JSONLD
+    url: json-ld/mubert-context.jsonld
+  - type: Examples
+    url: examples/mubert-create-track-example.json
+  - type: Examples
+    url: examples/mubert-edit-track-example.json
+  - type: Examples
+    url: examples/mubert-get-streaming-link-example.json
+  - type: Examples
+    url: examples/mubert-create-customer-example.json
+  - type: Vocabulary
+    url: vocabulary/mubert-vocabulary.yml
+  - type: SpectralRules
+    url: rules/mubert-rules.yml
 common:
   - type: AgenticAccess
     url: agentic-access/mubert-agentic-access.yml
