@@ -1,0 +1,24 @@
+{
+  "provider": "mubert",
+  "sources": [
+    "mubert-price-api-openapi.yml",
+    "mubert-public-api-openapi.yml",
+    "mubert-public-service-api-openapi.yml",
+    "mubert-service-api-openapi.yml",
+    "mubert-stripe-api-openapi.yml",
+    "mubert-subscription-api-openapi.yml"
+  ],
+  "outputs": [
+    "mubert-price-api-openapi.yml",
+    "mubert-public-api-openapi.yml",
+    "mubert-public-service-api-openapi.yml",
+    "mubert-service-api-openapi.yml",
+    "mubert-stripe-api-openapi.yml",
+    "mubert-subscription-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
