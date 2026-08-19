@@ -28,7 +28,7 @@ tags:
   - B2B
 created: '2026-05-23'
 modified: '2026-05-25'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 position: Consuming
 description: >-
   Mubert is a generative AI music platform that composes royalty-free, DMCA-free music in real time from millions of
