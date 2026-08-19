@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mubert AI Music API v3 Price Subscription API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "customer-id",
+      "value": "{{customer-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscription",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET 757ed3344f9d4efab037bb22f26561c4",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/public/subscriptions/buy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Buy a subscription via GET (redirect flow). Creates a Stripe Checkout session and redirects to checkout URL."
+        },
+        {
+          "info": {
+            "name": "POST C98b366f8fdb147f8a26cf9b0dea88f7",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/public/subscriptions/buy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Buy a subscription. Creates a Stripe Checkout session and returns the checkout URL."
+        },
+        {
+          "info": {
+            "name": "Cancel Subscription (GET)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/public/subscriptions/cancel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancel a subscription via GET. Cancels at the end of the current billing period."
+        },
+        {
+          "info": {
+            "name": "Cancel Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/public/subscriptions/cancel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancel a subscription by company ID and license token. Cancels at the end of the current billing period."
+        },
+        {
+          "info": {
+            "name": "GET Ec7c95fd87be525e821e284e3b6fb210",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/service/stripe/subscriptions/buy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Buy a subscription via GET (redirect flow). Creates a Stripe Checkout session and redirects to checkout URL."
+        },
+        {
+          "info": {
+            "name": "POST Ded044b39864d2a5eb777e0059cdc2d9",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/service/stripe/subscriptions/buy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Buy a subscription. Creates a Stripe Checkout session and returns the checkout URL."
+        },
+        {
+          "info": {
+            "name": "Cancel Subscription (GET)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/service/stripe/subscriptions/cancel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancel a subscription via GET. Cancels at the end of the current billing period."
+        },
+        {
+          "info": {
+            "name": "Cancel Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/service/stripe/subscriptions/cancel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancel a subscription by company ID and license token. Cancels at the end of the current billing period."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

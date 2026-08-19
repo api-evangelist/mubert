@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mubert AI Music API v3 Price Stripe API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "customer-id",
+      "value": "{{customer-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stripe",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST F34f8b9619d1fcefc3785ae4d263c4eb",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/public/stripe/webhook",
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Stripe webhook endpoint for processing payment events"
+        },
+        {
+          "info": {
+            "name": "Stripe Billing Portal (GET)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/service/stripe/billing-portal",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a Stripe billing portal session by company ID and license token."
+        },
+        {
+          "info": {
+            "name": "Stripe Billing Portal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/service/stripe/billing-portal",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a Stripe billing portal session by company ID and license token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

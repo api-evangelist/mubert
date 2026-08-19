@@ -1,0 +1,361 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mubert AI Music API v3 Price Public Service API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "customer-id",
+      "value": "{{customer-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Public Service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Customer Details by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/service/customers/:customer",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the customer."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetches the details of a specific customer using their unique identifier"
+        },
+        {
+          "info": {
+            "name": "Update an Existing Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://music-api.mubert.com/api/v3/service/customers/:customer",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the customer."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Handles the update of an existing customer identified by their UUID"
+        },
+        {
+          "info": {
+            "name": "Delete Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://music-api.mubert.com/api/v3/service/customers/:customer",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the customer."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Remove a customer account by their unique identifier. This action is irreversible."
+        },
+        {
+          "info": {
+            "name": "Retrieve a List of Customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/service/customers",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in the result set."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetches a list of customers with optional pagination"
+        },
+        {
+          "info": {
+            "name": "Create a New Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://music-api.mubert.com/api/v3/service/customers",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new customer account. Requires a unique custom_id (alphanumeric, max 255 chars). Returns customer_id and access_token for public API authentication."
+        },
+        {
+          "info": {
+            "name": "Retrieve Customer by Custom ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/service/customers/custom-id/:customId",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the customer."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetches the details of a customer based on their custom ID"
+        },
+        {
+          "info": {
+            "name": "Retrieve a List of Licenses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/service/licenses",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in the result set."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a paginated list of all licenses for the company, including features, bitrates, formats, modes, and limits."
+        },
+        {
+          "info": {
+            "name": "Retrieve Details of a Specific License",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/service/licenses/:license",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "license",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the license."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve details for a specific license including type, status, webhook configuration, track expiration time, feature access, and comprehensive limits."
+        },
+        {
+          "info": {
+            "name": "Update License",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://music-api.mubert.com/api/v3/service/licenses/:license",
+            "headers": [
+              {
+                "name": "company-id",
+                "value": ""
+              },
+              {
+                "name": "license-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "license",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the license."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "company-id",
+              "value": "{{company-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update license parameters such as webhook URL and webhook enabled state. Webhooks receive track models when generation completes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,351 @@
+{
+  "item": [
+    {
+      "id": "52311468-e5d8-4364-bf76-74734b8d0b34",
+      "name": "Price",
+      "description": {
+        "content": "Price",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ac002150-9f8c-4101-9df3-840535ee9cb3",
+          "name": "GET 3001228072f8465cfa87f7d30d82ca3a",
+          "request": {
+            "name": "GET 3001228072f8465cfa87f7d30d82ca3a",
+            "description": {
+              "content": "Retrieve a list of available prices with their options, limits, and Stripe prices",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "public",
+                "prices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lang",
+                  "value": "<string>",
+                  "description": "Language code"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "customer-id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "87aca0f2-fd06-401f-852d-1e72fdaba9c8",
+              "name": "List of available prices retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "public",
+                    "prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lang",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "customer-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"9a6a9484-8a64-a1f1-a161-9116f2274a6b\",\n      \"name\": \"string\",\n      \"feature\": \"string\",\n      \"stripe_price\": {\n        \"id\": \"664ed9ae-c1c2-0059-f35f-681d9186e104\",\n        \"price_id\": \"string\",\n        \"product_id\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"recurring\",\n        \"interval\": \"week\",\n        \"amount\": 1148,\n        \"trial_period_days\": 4838\n      },\n      \"options\": [\n        {\n          \"id\": \"32ad2230-49ac-6ac8-0ddc-5b37e0b9d790\",\n          \"title\": \"string\",\n          \"priority\": 8664,\n          \"is_enabled\": true\n        },\n        {\n          \"id\": \"59228204-8f95-4319-b944-769c23d659b9\",\n          \"title\": \"string\",\n          \"priority\": 6257,\n          \"is_enabled\": true\n        }\n      ],\n      \"limits\": {\n        \"id\": \"8ba2d3f7-048f-1256-e955-645b1b005711\",\n        \"max_track_duration\": 6078,\n        \"max_concurrent_track_generations\": 3740,\n        \"total_tracks_count_limit\": 4634,\n        \"total_tracks_duration_limit\": 9841,\n        \"monthly_tracks_count_limit\": 4615,\n        \"monthly_tracks_duration_limit\": 9613,\n        \"daily_tracks_count_limit\": 9932,\n        \"daily_tracks_duration_limit\": 7884,\n        \"total_streaming_duration_limit\": 7541,\n        \"monthly_streaming_duration_limit\": 6317,\n        \"daily_streaming_duration_limit\": 9751\n      }\n    },\n    {\n      \"id\": \"5aca0ff4-a344-0863-b188-5fa88a126278\",\n      \"name\": \"string\",\n      \"feature\": \"string\",\n      \"stripe_price\": {\n        \"id\": \"efe6d1c0-023f-c008-1558-960bdca79034\",\n        \"price_id\": \"string\",\n        \"product_id\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"one_time\",\n        \"interval\": \"year\",\n        \"amount\": 3411,\n        \"trial_period_days\": 9650\n      },\n      \"options\": [\n        {\n          \"id\": \"f32a4cd5-c579-6e1d-964a-e2102ccfb6f9\",\n          \"title\": \"string\",\n          \"priority\": 1195,\n          \"is_enabled\": true\n        },\n        {\n          \"id\": \"4a10d544-e985-a759-93c5-2c355f6d3653\",\n          \"title\": \"string\",\n          \"priority\": 7742,\n          \"is_enabled\": true\n        }\n      ],\n      \"limits\": {\n        \"id\": \"ce8b56b4-4a2f-44a3-3519-7ae51ae6475a\",\n        \"max_track_duration\": 8173,\n        \"max_concurrent_track_generations\": 2092,\n        \"total_tracks_count_limit\": 2986,\n        \"total_tracks_duration_limit\": 2889,\n        \"monthly_tracks_count_limit\": 1667,\n        \"monthly_tracks_duration_limit\": 7717,\n        \"daily_tracks_count_limit\": 6491,\n        \"daily_tracks_duration_limit\": 888,\n        \"total_streaming_duration_limit\": 654,\n        \"monthly_streaming_duration_limit\": 3838,\n        \"daily_streaming_duration_limit\": 4956\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "511644c8-5b65-4034-b92c-d04a98f67466",
+          "name": "GET Ab40acc2fb0c6ed854aa6268ff37f9aa",
+          "request": {
+            "name": "GET Ab40acc2fb0c6ed854aa6268ff37f9aa",
+            "description": {
+              "content": "Retrieve a single price by ID with its options, limits, and Stripe prices",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "public",
+                "prices",
+                ":price"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lang",
+                  "value": "<string>",
+                  "description": "Language code"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "price",
+                  "description": "(Required) The unique identifier of the price."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "customer-id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b22eab4d-ca7f-4e27-ae32-1f17a331f7bd",
+              "name": "Price retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "public",
+                    "prices",
+                    ":price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lang",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "price",
+                      "description": "(Required) The unique identifier of the price."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "customer-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"f0ff1fdc-b2d0-769c-0cd3-eb9c699abcea\",\n    \"name\": \"string\",\n    \"feature\": \"string\",\n    \"stripe_price\": {\n      \"id\": \"8724637e-d422-e8b2-88a6-871bea3ad1dd\",\n      \"price_id\": \"string\",\n      \"product_id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"one_time\",\n      \"interval\": \"month\",\n      \"amount\": 2316,\n      \"trial_period_days\": 8205\n    },\n    \"options\": [\n      {\n        \"id\": \"bde3c21a-0515-6bae-78b2-92d81df866a1\",\n        \"title\": \"string\",\n        \"priority\": 115,\n        \"is_enabled\": true\n      },\n      {\n        \"id\": \"b6331b62-ed8a-db8d-c06d-92d31ae24ac8\",\n        \"title\": \"string\",\n        \"priority\": 5513,\n        \"is_enabled\": true\n      }\n    ],\n    \"limits\": {\n      \"id\": \"14cf87de-9bcd-e64c-a712-e20e7fdc9cca\",\n      \"max_track_duration\": 7558,\n      \"max_concurrent_track_generations\": 5602,\n      \"total_tracks_count_limit\": 1967,\n      \"total_tracks_duration_limit\": 2436,\n      \"monthly_tracks_count_limit\": 5941,\n      \"monthly_tracks_duration_limit\": 1797,\n      \"daily_tracks_count_limit\": 8260,\n      \"daily_tracks_duration_limit\": 8579,\n      \"total_streaming_duration_limit\": 4098,\n      \"monthly_streaming_duration_limit\": 6538,\n      \"daily_streaming_duration_limit\": 1958\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e8fee06-cc51-42f4-9ee8-b2b11c41a62d",
+              "name": "Price not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "public",
+                    "prices",
+                    ":price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lang",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "price",
+                      "description": "(Required) The unique identifier of the price."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "customer-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Price not found\",\n  \"description\": \"No price exists with the specified ID\",\n  \"code\": \"PriceNotFound\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://music-api.mubert.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "customer-id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bf7be29b-64cb-4134-bb13-f423d12cdd7b",
+    "name": "Mubert AI Music API v3 Price API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Mubert AI Music API for B2B integrations. Generate music tracks, manage streaming, and control customer accounts.\n\n### AI-optimized documentation\n\n- [llms.txt](https://music-api.mubert.com/swagger-doc/llms.txt) — short endpoint index for AI agents\n- [llms-full.txt](https://music-api.mubert.com/swagger-doc/llms-full.txt) — full reference with parameters and models\n\nContact Support:\n Name: Mubert Team",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Mubert AI Music API v3 Price API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "customer-id",
+      "value": "{{customer-id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Price",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET 3001228072f8465cfa87f7d30d82ca3a",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/public/prices",
+            "params": [
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query",
+                "description": "Language code"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a list of available prices with their options, limits, and Stripe prices"
+        },
+        {
+          "info": {
+            "name": "GET Ab40acc2fb0c6ed854aa6268ff37f9aa",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://music-api.mubert.com/api/v3/public/prices/:price",
+            "params": [
+              {
+                "name": "price",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the price."
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "query",
+                "description": "Language code"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "customer-id",
+              "value": "{{customer-id}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a single price by ID with its options, limits, and Stripe prices"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,3452 @@
+{
+  "item": [
+    {
+      "id": "3c1d6eb9-2810-4b6e-a345-440c0b46a368",
+      "name": "Public Service",
+      "description": {
+        "content": "Public Service",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a619bbf0-02e8-4b97-ba30-39bea4c54958",
+          "name": "Retrieve Customer Details by ID",
+          "request": {
+            "name": "Retrieve Customer Details by ID",
+            "description": {
+              "content": "Fetches the details of a specific customer using their unique identifier",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "service",
+                "customers",
+                ":customer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customer",
+                  "description": "(Required) The unique identifier of the customer."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Company Id",
+                "key": "company-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) License Token",
+                "key": "license-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "company-id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a5288222-aa58-4ac2-b4df-69056c445681",
+              "name": "Successful response with customer details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    ":customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"79c0e2c9-ee73-df3f-5c87-f1c56eae755d\",\n  \"company_id\": \"ca5004c3-0d09-6548-b240-35889a467e7b\",\n  \"custom_id\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77e8763c-e9c5-460b-b518-0fbab65baef6",
+              "name": "Unauthenticated - the user is not authenticated to access this resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    ":customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthenticated\",\n  \"description\": \"Reason for authentication failure\",\n  \"code\": \"Unauthenticated\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "881c4543-01ec-4c51-9853-4ed576bf11f9",
+              "name": "Forbidden - Different reasons specified in the error content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    ":customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"Forbidden action\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5bde129b-3b76-4a42-a868-e7d0cc778a97",
+              "name": "Not Found - Different reasons specified in the error content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    ":customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"CompanyNotFound\",\n  \"message\": \"Resource not found\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e36c124-dd46-48dd-9b75-8711e4b1b4e2",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    ":customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe8c1a8d-528e-4752-8d22-18fb86b0aef4",
+          "name": "Update an Existing Customer",
+          "request": {
+            "name": "Update an Existing Customer",
+            "description": {
+              "content": "Handles the update of an existing customer identified by their UUID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "service",
+                "customers",
+                ":customer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customer",
+                  "description": "(Required) The unique identifier of the customer."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Company Id",
+                "key": "company-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) License Token",
+                "key": "license-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "company-id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"custom_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8fba4200-eca7-44f2-bbac-b8e483d74cfc",
+              "name": "Customer updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    ":customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"79c0e2c9-ee73-df3f-5c87-f1c56eae755d\",\n  \"company_id\": \"ca5004c3-0d09-6548-b240-35889a467e7b\",\n  \"custom_id\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b781c73-88db-4b05-9eac-0a910181af99",
+              "name": "Unauthenticated - the user is not authenticated to access this resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    ":customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthenticated\",\n  \"description\": \"Reason for authentication failure\",\n  \"code\": \"Unauthenticated\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1c46cc9-3a61-433a-bb92-90c8f837db4f",
+              "name": "Forbidden - Different reasons specified in the error content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    ":customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"Forbidden action\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3eb021e6-60ce-480f-a46f-a9d7b153d675",
+              "name": "Not Found - Different reasons specified in the error content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    ":customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"CompanyNotFound\",\n  \"message\": \"Resource not found\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "865e02a4-3ea6-4aef-b3cf-9f5dc4cdebf8",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    ":customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de2d9b6b-ad0a-4fa7-9d29-8a73bdcac2cb",
+          "name": "Delete Customer",
+          "request": {
+            "name": "Delete Customer",
+            "description": {
+              "content": "Remove a customer account by their unique identifier. This action is irreversible.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "service",
+                "customers",
+                ":customer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customer",
+                  "description": "(Required) The unique identifier of the customer."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Company Id",
+                "key": "company-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) License Token",
+                "key": "license-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "company-id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c5427582-8193-4166-8f2c-1483dc168acb",
+              "name": "Customer successfully deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    ":customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "164004e9-a884-4366-bf85-a33a282b642c",
+              "name": "Unauthenticated - the user is not authenticated to access this resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    ":customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthenticated\",\n  \"description\": \"Reason for authentication failure\",\n  \"code\": \"Unauthenticated\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd9c8f8d-b77a-4cf8-bfd4-5728a3f62a06",
+              "name": "Forbidden - Different reasons specified in the error content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    ":customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"Forbidden action\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af79acb8-67f3-45b4-b2e7-072ca8377ba7",
+              "name": "Not Found - Different reasons specified in the error content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    ":customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"CompanyNotFound\",\n  \"message\": \"Resource not found\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a241489-3688-4e8e-9ba1-52e45eca25f9",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    ":customer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customer",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df4ba84a-d95f-4617-81ce-6043df7ba4d3",
+          "name": "Retrieve a List of Customers",
+          "request": {
+            "name": "Retrieve a List of Customers",
+            "description": {
+              "content": "Fetches a list of customers with optional pagination",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "service",
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The number of items to skip before starting to collect the result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The number of items to return in the result set."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Company Id",
+                "key": "company-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) License Token",
+                "key": "license-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "company-id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5f54ab77-0c00-4061-8bcd-d5ff709863e2",
+              "name": "Successful response with a list of customers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"1687c504-6ebb-cf60-c3e3-92fa9e726250\",\n      \"company_id\": \"cc43c605-3cb5-d962-e08d-e2d578b09134\",\n      \"custom_id\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"id\": \"848041e7-1663-f8f1-f73a-de5bdfbc91f5\",\n      \"company_id\": \"befe5548-b823-92e6-45a0-27dcf18be4e2\",\n      \"custom_id\": \"string\",\n      \"status\": \"string\"\n    }\n  ],\n  \"meta\": {\n    \"total\": 1000,\n    \"limit\": 100,\n    \"offset\": 0\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd73e108-00cb-4819-b746-62e113b53bd6",
+              "name": "Unauthenticated - the user is not authenticated to access this resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthenticated\",\n  \"description\": \"Reason for authentication failure\",\n  \"code\": \"Unauthenticated\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8fa876f-9786-4f9c-805d-5b97c255c2f0",
+              "name": "Forbidden - Different reasons specified in the error content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"Forbidden action\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ee41150-275f-49e0-888b-8a0922dc87e0",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de3aa99b-51f4-46a9-a563-ade14fd64082",
+          "name": "Create a New Customer",
+          "request": {
+            "name": "Create a New Customer",
+            "description": {
+              "content": "Create a new customer account. Requires a unique custom_id (alphanumeric, max 255 chars). Returns customer_id and access_token for public API authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "service",
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Company Id",
+                "key": "company-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) License Token",
+                "key": "license-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "company-id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"custom_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e136db0a-1036-41bd-b430-2734105107a2",
+              "name": "Customer created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"79c0e2c9-ee73-df3f-5c87-f1c56eae755d\",\n  \"company_id\": \"ca5004c3-0d09-6548-b240-35889a467e7b\",\n  \"custom_id\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c3c4f81-2eb1-4d47-b7cd-ebe57b0fb60d",
+              "name": "Unauthenticated - the user is not authenticated to access this resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthenticated\",\n  \"description\": \"Reason for authentication failure\",\n  \"code\": \"Unauthenticated\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca914440-d59d-4f24-8d2b-3c918b161e65",
+              "name": "Forbidden - Different reasons specified in the error content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"Forbidden action\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9891330-e1d8-4752-958c-eba0b4c46317",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9d41937-1cb8-4557-a22b-1730efe69aee",
+          "name": "Retrieve Customer by Custom ID",
+          "request": {
+            "name": "Retrieve Customer by Custom ID",
+            "description": {
+              "content": "Fetches the details of a customer based on their custom ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "service",
+                "customers",
+                "custom-id",
+                ":customId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customId",
+                  "description": "(Required) The unique identifier of the customer."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Company Id",
+                "key": "company-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) License Token",
+                "key": "license-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "company-id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2a941db4-dcdf-4b46-927a-32b41e6b752c",
+              "name": "Successful response with customer details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    "custom-id",
+                    ":customId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customId",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"79c0e2c9-ee73-df3f-5c87-f1c56eae755d\",\n  \"company_id\": \"ca5004c3-0d09-6548-b240-35889a467e7b\",\n  \"custom_id\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa24a105-08d5-4fa2-83c9-f68fdbbb2268",
+              "name": "Unauthenticated - the user is not authenticated to access this resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    "custom-id",
+                    ":customId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customId",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthenticated\",\n  \"description\": \"Reason for authentication failure\",\n  \"code\": \"Unauthenticated\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "356382db-0047-413a-95b3-c7bb66b9b18d",
+              "name": "Forbidden - Different reasons specified in the error content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    "custom-id",
+                    ":customId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customId",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"Forbidden action\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc762f34-5ab2-4c00-9d64-5a45c5706bd2",
+              "name": "Not Found - Different reasons specified in the error content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    "custom-id",
+                    ":customId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customId",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"CompanyNotFound\",\n  \"message\": \"Resource not found\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd7536f4-d70e-45f7-9242-1252d6126f2c",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "customers",
+                    "custom-id",
+                    ":customId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customId",
+                      "description": "(Required) The unique identifier of the customer."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2fd6af30-00d5-4f35-9386-8a6c99991e1e",
+          "name": "Retrieve a List of Licenses",
+          "request": {
+            "name": "Retrieve a List of Licenses",
+            "description": {
+              "content": "Retrieve a paginated list of all licenses for the company, including features, bitrates, formats, modes, and limits.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "service",
+                "licenses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The number of items to skip before starting to collect the result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The number of items to return in the result set."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Company Id",
+                "key": "company-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) License Token",
+                "key": "license-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "company-id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "de02ce47-67ef-4eac-adb5-de833956e7bb",
+              "name": "Successful response with a list of licenses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"729b4092-646c-f4e7-09a7-65578ea847a6\",\n      \"company_id\": \"6773d663-9709-db79-dfb0-98ba8f41ceba\",\n      \"type\": \"string\",\n      \"status\": \"string\",\n      \"webhook_url\": \"string\",\n      \"webhook_enabled\": false,\n      \"track_expiration_time\": 3422,\n      \"allow_all_features\": false,\n      \"features\": [\n        \"itm\",\n        \"streaming\"\n      ],\n      \"allow_all_bitrates\": false,\n      \"default_bitrate\": 7555,\n      \"bitrates\": [\n        320,\n        320\n      ],\n      \"allow_all_intensities\": true,\n      \"default_intensity\": \"string\",\n      \"intensities\": [\n        \"medium\",\n        \"medium\"\n      ],\n      \"allow_all_formats\": true,\n      \"default_format\": \"string\",\n      \"track_formats\": [\n        \"mp3\",\n        \"mp3\"\n      ],\n      \"allow_all_modes\": true,\n      \"default_mode\": \"string\",\n      \"track_modes\": [\n        \"loop\",\n        \"loop\"\n      ],\n      \"expired_at\": \"2024-08-28T21:31:56.344Z\",\n      \"license_limits\": {\n        \"id\": \"79c9df74-7b4a-0c48-9333-9696fb4dca3c\",\n        \"license_id\": \"edc977e3-e870-f5a5-24f3-0a0d2493e681\",\n        \"max_track_duration\": 171,\n        \"max_concurrent_track_generations\": 3622,\n        \"total_tracks_count\": 1164,\n        \"total_tracks_count_limit\": 1688,\n        \"total_tracks_duration\": 7060,\n        \"total_tracks_duration_limit\": 2267,\n        \"monthly_tracks_count\": 7987,\n        \"monthly_tracks_count_limit\": 5634,\n        \"monthly_tracks_duration\": 2684,\n        \"monthly_tracks_duration_limit\": 5810,\n        \"daily_tracks_count\": 922,\n        \"daily_tracks_count_limit\": 2318,\n        \"daily_tracks_duration\": 65,\n        \"daily_tracks_duration_limit\": 6774,\n        \"total_streaming_duration\": 1535,\n        \"total_streaming_duration_limit\": 6080,\n        \"monthly_streaming_duration\": 1764,\n        \"monthly_streaming_duration_limit\": 4876,\n        \"daily_streaming_duration\": 6219,\n        \"daily_streaming_duration_limit\": 5941,\n        \"customers_count\": 3179,\n        \"customers_count_limit\": 9049,\n        \"customer_max_concurrent_track_generations\": 8803,\n        \"customer_total_tracks_count_limit\": 8156,\n        \"customer_total_tracks_duration_limit\": 5224,\n        \"customer_monthly_tracks_count_limit\": 1047,\n        \"customer_monthly_tracks_duration_limit\": 606,\n        \"customer_daily_tracks_count_limit\": 864,\n        \"customer_daily_tracks_duration_limit\": 7786,\n        \"customer_total_streaming_duration_limit\": 3612,\n        \"customer_monthly_streaming_duration_limit\": 151,\n        \"customer_daily_streaming_duration_limit\": 7980,\n        \"daily_reset_at\": \"2002-11-11T12:00:13.278Z\",\n        \"monthly_reset_at\": \"1964-04-25T13:39:11.323Z\"\n      }\n    },\n    {\n      \"id\": \"f883b503-7107-d511-89d2-93bb07cf4f7a\",\n      \"company_id\": \"634d8c9a-9da0-455a-caba-9b050f51db1b\",\n      \"type\": \"string\",\n      \"status\": \"string\",\n      \"webhook_url\": \"string\",\n      \"webhook_enabled\": false,\n      \"track_expiration_time\": 9809,\n      \"allow_all_features\": false,\n      \"features\": [\n        \"streaming\",\n        \"streaming\"\n      ],\n      \"allow_all_bitrates\": false,\n      \"default_bitrate\": 4294,\n      \"bitrates\": [\n        320,\n        320\n      ],\n      \"allow_all_intensities\": false,\n      \"default_intensity\": \"string\",\n      \"intensities\": [\n        \"medium\",\n        \"medium\"\n      ],\n      \"allow_all_formats\": true,\n      \"default_format\": \"string\",\n      \"track_formats\": [\n        \"mp3\",\n        \"mp3\"\n      ],\n      \"allow_all_modes\": false,\n      \"default_mode\": \"string\",\n      \"track_modes\": [\n        \"loop\",\n        \"loop\"\n      ],\n      \"expired_at\": \"1977-09-19T05:22:04.396Z\",\n      \"license_limits\": {\n        \"id\": \"92c8d432-b902-26ef-9ec3-8773fc739fb0\",\n        \"license_id\": \"8b3928bd-2cd1-2758-77f6-85f9b31d56cc\",\n        \"max_track_duration\": 7891,\n        \"max_concurrent_track_generations\": 591,\n        \"total_tracks_count\": 3328,\n        \"total_tracks_count_limit\": 2543,\n        \"total_tracks_duration\": 5924,\n        \"total_tracks_duration_limit\": 3116,\n        \"monthly_tracks_count\": 3334,\n        \"monthly_tracks_count_limit\": 9177,\n        \"monthly_tracks_duration\": 4194,\n        \"monthly_tracks_duration_limit\": 400,\n        \"daily_tracks_count\": 7385,\n        \"daily_tracks_count_limit\": 4253,\n        \"daily_tracks_duration\": 8544,\n        \"daily_tracks_duration_limit\": 4257,\n        \"total_streaming_duration\": 192,\n        \"total_streaming_duration_limit\": 4885,\n        \"monthly_streaming_duration\": 6801,\n        \"monthly_streaming_duration_limit\": 5104,\n        \"daily_streaming_duration\": 2909,\n        \"daily_streaming_duration_limit\": 6094,\n        \"customers_count\": 6230,\n        \"customers_count_limit\": 5904,\n        \"customer_max_concurrent_track_generations\": 1153,\n        \"customer_total_tracks_count_limit\": 6357,\n        \"customer_total_tracks_duration_limit\": 8230,\n        \"customer_monthly_tracks_count_limit\": 651,\n        \"customer_monthly_tracks_duration_limit\": 4736,\n        \"customer_daily_tracks_count_limit\": 5429,\n        \"customer_daily_tracks_duration_limit\": 1527,\n        \"customer_total_streaming_duration_limit\": 6538,\n        \"customer_monthly_streaming_duration_limit\": 2284,\n        \"customer_daily_streaming_duration_limit\": 6807,\n        \"daily_reset_at\": \"1981-05-28T05:14:55.324Z\",\n        \"monthly_reset_at\": \"2016-01-01T01:00:09.234Z\"\n      }\n    }\n  ],\n  \"meta\": {\n    \"total\": 1000,\n    \"limit\": 100,\n    \"offset\": 0\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98e46d70-46a0-4fd5-b0ae-63932414c58c",
+              "name": "Unauthenticated - the user is not authenticated to access this resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthenticated\",\n  \"description\": \"Reason for authentication failure\",\n  \"code\": \"Unauthenticated\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c2a7984-48eb-4ac6-b75d-cb5a2e89fff3",
+              "name": "Forbidden - Different reasons specified in the error content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"Forbidden action\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c43c693e-b69b-461f-a7dc-a0a9ce6ee735",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5067ef2f-d8c1-4e35-99ab-37f8f6eeebfe",
+          "name": "Retrieve Details of a Specific License",
+          "request": {
+            "name": "Retrieve Details of a Specific License",
+            "description": {
+              "content": "Retrieve details for a specific license including type, status, webhook configuration, track expiration time, feature access, and comprehensive limits.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "service",
+                "licenses",
+                ":license"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "license",
+                  "description": "(Required) The unique identifier of the license."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Company Id",
+                "key": "company-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) License Token",
+                "key": "license-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "company-id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "860fa4b7-c9cc-498e-b402-a2a3882585c0",
+              "name": "Successful response with license details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "licenses",
+                    ":license"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "license",
+                      "description": "(Required) The unique identifier of the license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"b71a3aa5-5646-34ec-fa06-49ec76c370d0\",\n  \"company_id\": \"34d4d6ae-3262-a57a-0e0a-99c9bf562279\",\n  \"type\": \"string\",\n  \"status\": \"string\",\n  \"webhook_url\": \"string\",\n  \"webhook_enabled\": false,\n  \"track_expiration_time\": 8000,\n  \"allow_all_features\": true,\n  \"features\": [\n    \"music-library\",\n    \"streaming\"\n  ],\n  \"allow_all_bitrates\": false,\n  \"default_bitrate\": 2279,\n  \"bitrates\": [\n    320,\n    320\n  ],\n  \"allow_all_intensities\": false,\n  \"default_intensity\": \"string\",\n  \"intensities\": [\n    \"medium\",\n    \"medium\"\n  ],\n  \"allow_all_formats\": true,\n  \"default_format\": \"string\",\n  \"track_formats\": [\n    \"mp3\",\n    \"mp3\"\n  ],\n  \"allow_all_modes\": true,\n  \"default_mode\": \"string\",\n  \"track_modes\": [\n    \"loop\",\n    \"loop\"\n  ],\n  \"expired_at\": \"1985-05-27T09:51:57.815Z\",\n  \"license_limits\": {\n    \"id\": \"8e69b6ec-68e1-0e3a-694f-f5cf392b17b1\",\n    \"license_id\": \"255302fd-000e-52b3-a378-f9944f6d98cd\",\n    \"max_track_duration\": 5825,\n    \"max_concurrent_track_generations\": 8754,\n    \"total_tracks_count\": 7573,\n    \"total_tracks_count_limit\": 1542,\n    \"total_tracks_duration\": 5420,\n    \"total_tracks_duration_limit\": 4350,\n    \"monthly_tracks_count\": 4121,\n    \"monthly_tracks_count_limit\": 40,\n    \"monthly_tracks_duration\": 4937,\n    \"monthly_tracks_duration_limit\": 5910,\n    \"daily_tracks_count\": 7239,\n    \"daily_tracks_count_limit\": 8119,\n    \"daily_tracks_duration\": 7979,\n    \"daily_tracks_duration_limit\": 1922,\n    \"total_streaming_duration\": 1974,\n    \"total_streaming_duration_limit\": 349,\n    \"monthly_streaming_duration\": 6035,\n    \"monthly_streaming_duration_limit\": 8065,\n    \"daily_streaming_duration\": 8651,\n    \"daily_streaming_duration_limit\": 4117,\n    \"customers_count\": 1873,\n    \"customers_count_limit\": 6312,\n    \"customer_max_concurrent_track_generations\": 287,\n    \"customer_total_tracks_count_limit\": 5482,\n    \"customer_total_tracks_duration_limit\": 6612,\n    \"customer_monthly_tracks_count_limit\": 6131,\n    \"customer_monthly_tracks_duration_limit\": 7778,\n    \"customer_daily_tracks_count_limit\": 5047,\n    \"customer_daily_tracks_duration_limit\": 4921,\n    \"customer_total_streaming_duration_limit\": 8778,\n    \"customer_monthly_streaming_duration_limit\": 3825,\n    \"customer_daily_streaming_duration_limit\": 8833,\n    \"daily_reset_at\": \"1986-06-13T17:03:41.185Z\",\n    \"monthly_reset_at\": \"1949-09-09T11:09:30.048Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b18cba32-5a45-4af7-907a-4b3d79ac2150",
+              "name": "Unauthenticated - the user is not authenticated to access this resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "licenses",
+                    ":license"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "license",
+                      "description": "(Required) The unique identifier of the license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthenticated\",\n  \"description\": \"Reason for authentication failure\",\n  \"code\": \"Unauthenticated\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf237137-c5ec-4999-9493-30a9a409b003",
+              "name": "Forbidden - Different reasons specified in the error content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "licenses",
+                    ":license"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "license",
+                      "description": "(Required) The unique identifier of the license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"Forbidden action\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10fb56bf-d284-4471-a837-24d90fc94a85",
+              "name": "Not Found - Different reasons specified in the error content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "licenses",
+                    ":license"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "license",
+                      "description": "(Required) The unique identifier of the license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"CompanyNotFound\",\n  \"message\": \"Resource not found\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43d1e702-8123-4abd-ab95-9bb5e76a4437",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "licenses",
+                    ":license"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "license",
+                      "description": "(Required) The unique identifier of the license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17808204-d936-4abd-9cd0-ab308422a8c9",
+          "name": "Update License",
+          "request": {
+            "name": "Update License",
+            "description": {
+              "content": "Update license parameters such as webhook URL and webhook enabled state. Webhooks receive track models when generation completes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v3",
+                "service",
+                "licenses",
+                ":license"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "license",
+                  "description": "(Required) The unique identifier of the license."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Company Id",
+                "key": "company-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) License Token",
+                "key": "license-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "company-id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhook_url\": \"<string>\",\n  \"webhook_enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "01a3718f-93f0-42a3-9f2e-bc6adaf20bb0",
+              "name": "License updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "licenses",
+                    ":license"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "license",
+                      "description": "(Required) The unique identifier of the license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"b71a3aa5-5646-34ec-fa06-49ec76c370d0\",\n  \"company_id\": \"34d4d6ae-3262-a57a-0e0a-99c9bf562279\",\n  \"type\": \"string\",\n  \"status\": \"string\",\n  \"webhook_url\": \"string\",\n  \"webhook_enabled\": false,\n  \"track_expiration_time\": 8000,\n  \"allow_all_features\": true,\n  \"features\": [\n    \"music-library\",\n    \"streaming\"\n  ],\n  \"allow_all_bitrates\": false,\n  \"default_bitrate\": 2279,\n  \"bitrates\": [\n    320,\n    320\n  ],\n  \"allow_all_intensities\": false,\n  \"default_intensity\": \"string\",\n  \"intensities\": [\n    \"medium\",\n    \"medium\"\n  ],\n  \"allow_all_formats\": true,\n  \"default_format\": \"string\",\n  \"track_formats\": [\n    \"mp3\",\n    \"mp3\"\n  ],\n  \"allow_all_modes\": true,\n  \"default_mode\": \"string\",\n  \"track_modes\": [\n    \"loop\",\n    \"loop\"\n  ],\n  \"expired_at\": \"1985-05-27T09:51:57.815Z\",\n  \"license_limits\": {\n    \"id\": \"8e69b6ec-68e1-0e3a-694f-f5cf392b17b1\",\n    \"license_id\": \"255302fd-000e-52b3-a378-f9944f6d98cd\",\n    \"max_track_duration\": 5825,\n    \"max_concurrent_track_generations\": 8754,\n    \"total_tracks_count\": 7573,\n    \"total_tracks_count_limit\": 1542,\n    \"total_tracks_duration\": 5420,\n    \"total_tracks_duration_limit\": 4350,\n    \"monthly_tracks_count\": 4121,\n    \"monthly_tracks_count_limit\": 40,\n    \"monthly_tracks_duration\": 4937,\n    \"monthly_tracks_duration_limit\": 5910,\n    \"daily_tracks_count\": 7239,\n    \"daily_tracks_count_limit\": 8119,\n    \"daily_tracks_duration\": 7979,\n    \"daily_tracks_duration_limit\": 1922,\n    \"total_streaming_duration\": 1974,\n    \"total_streaming_duration_limit\": 349,\n    \"monthly_streaming_duration\": 6035,\n    \"monthly_streaming_duration_limit\": 8065,\n    \"daily_streaming_duration\": 8651,\n    \"daily_streaming_duration_limit\": 4117,\n    \"customers_count\": 1873,\n    \"customers_count_limit\": 6312,\n    \"customer_max_concurrent_track_generations\": 287,\n    \"customer_total_tracks_count_limit\": 5482,\n    \"customer_total_tracks_duration_limit\": 6612,\n    \"customer_monthly_tracks_count_limit\": 6131,\n    \"customer_monthly_tracks_duration_limit\": 7778,\n    \"customer_daily_tracks_count_limit\": 5047,\n    \"customer_daily_tracks_duration_limit\": 4921,\n    \"customer_total_streaming_duration_limit\": 8778,\n    \"customer_monthly_streaming_duration_limit\": 3825,\n    \"customer_daily_streaming_duration_limit\": 8833,\n    \"daily_reset_at\": \"1986-06-13T17:03:41.185Z\",\n    \"monthly_reset_at\": \"1949-09-09T11:09:30.048Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b23d32dc-b707-4407-ae89-142483c33724",
+              "name": "Unauthenticated - the user is not authenticated to access this resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "licenses",
+                    ":license"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "license",
+                      "description": "(Required) The unique identifier of the license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unauthenticated\",\n  \"description\": \"Reason for authentication failure\",\n  \"code\": \"Unauthenticated\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c494fe14-3b86-41d1-a1c7-3cb65c56c000",
+              "name": "Forbidden - Different reasons specified in the error content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "licenses",
+                    ":license"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "license",
+                      "description": "(Required) The unique identifier of the license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"Forbidden action\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee67971c-8eef-4beb-ad62-3a9f26e08139",
+              "name": "Unprocessable Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v3",
+                    "service",
+                    "licenses",
+                    ":license"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "license",
+                      "description": "(Required) The unique identifier of the license."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "company-id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Company Id",
+                    "key": "company-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) License Token",
+                    "key": "license-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://music-api.mubert.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "customer-id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a9fde377-6377-44a8-8efa-5262583e520d",
+    "name": "Mubert AI Music API v3 Price Public Service API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Mubert AI Music API for B2B integrations. Generate music tracks, manage streaming, and control customer accounts.\n\n### AI-optimized documentation\n\n- [llms.txt](https://music-api.mubert.com/swagger-doc/llms.txt) — short endpoint index for AI agents\n- [llms-full.txt](https://music-api.mubert.com/swagger-doc/llms-full.txt) — full reference with parameters and models\n\nContact Support:\n Name: Mubert Team",
+      "type": "text/plain"
+    }
+  }
+}
