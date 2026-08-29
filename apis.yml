@@ -360,7 +360,7 @@ common:
     url: https://music-api.mubert.com/swagger-doc/llms-full.txt
   - type: GitHubOrganization
     url: https://github.com/MubertAI
-  - type: Samples
+  - type: Examples
     url: https://github.com/MubertAI/Mubert-Text-to-Music
     name: Mubert Text-to-Music notebook
   - type: AgentSkills
