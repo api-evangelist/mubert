@@ -36,6 +36,15 @@ tags:
   - Streaming
   - Text-to-Music
   - Image-to-Music
+  - STEM
+  - B2B
+tags_raw:
+  - AI Music
+  - Generative
+  - Royalty-Free
+  - Streaming
+  - Text-to-Music
+  - Image-to-Music
   - Stems
   - B2B
 created: '2026-05-23'
@@ -199,6 +208,8 @@ apis:
   humanURL: https://mubert.com/api
   baseURL: https://music-api.mubert.com
   tags:
+  - Services
+  tags_raw:
   - Service
   properties:
   - type: OpenAPI
