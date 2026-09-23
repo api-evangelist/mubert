@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   title: Mubert AI Music API v3 Price API
   description: 'Mubert AI Music API for B2B integrations. Generate music tracks, manage streaming, and control customer accounts.
@@ -7,9 +7,9 @@ info:
     ### AI-optimized documentation
 
 
-    - [llms.txt](https://music-api.mubert.com/swagger-doc/llms.txt) — short endpoint index for AI agents
+    - llms.txt — short endpoint index for AI agents
 
-    - [llms-full.txt](https://music-api.mubert.com/swagger-doc/llms-full.txt) — full reference with parameters and models'
+    - llms-full.txt — full reference with parameters and models'
   contact:
     name: Mubert Team
     url: https://mubert.com/api
@@ -92,39 +92,6 @@ components:
       - de
       - pt
       - ja
-    PricePublicResource:
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        feature:
-          type: string
-          nullable: true
-        stripe_price:
-          $ref: '#/components/schemas/StripePricePublicResource'
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/PriceOptionPublicResource'
-        limits:
-          $ref: '#/components/schemas/PriceLimitPublicResource'
-      type: object
-    PriceOptionPublicResource:
-      properties:
-        id:
-          type: string
-          format: uuid
-        title:
-          type: string
-        priority:
-          description: Priority (higher means higher priority)
-          type: integer
-        is_enabled:
-          description: Shows whether the option is enabled or not
-          type: boolean
-      type: object
     StripePricePublicResource:
       properties:
         id:
@@ -142,18 +109,20 @@ components:
           - one_time
           - recurring
         interval:
-          type: string
+          type:
+          - string
+          - 'null'
           enum:
           - day
           - week
           - month
           - year
-          nullable: true
         amount:
           type: integer
         trial_period_days:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
       type: object
     PriceNotFoundException:
       description: Response indicating that the specified price could not be found.
@@ -162,12 +131,27 @@ components:
           type: string
           example: Price not found
         description:
-          type: string
+          type:
+          - string
+          - 'null'
           example: No price exists with the specified ID
-          nullable: true
         code:
           type: string
           example: PriceNotFound
+      type: object
+    PriceOptionPublicResource:
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        priority:
+          description: Priority (higher means higher priority)
+          type: integer
+        is_enabled:
+          description: Shows whether the option is enabled or not
+          type: boolean
       type: object
     PriceLimitPublicResource:
       properties:
@@ -209,7 +193,34 @@ components:
           description: Daily limit on the streaming duration (in seconds) for a user
           type: integer
       type: object
+    PricePublicResource:
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        feature:
+          type:
+          - string
+          - 'null'
+        stripe_price:
+          $ref: '#/components/schemas/StripePricePublicResource'
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceOptionPublicResource'
+        limits:
+          $ref: '#/components/schemas/PriceLimitPublicResource'
+      type: object
   parameters:
+    LangQueryParameter:
+      name: lang
+      in: query
+      description: Language code
+      required: false
+      schema:
+        $ref: '#/components/schemas/LanguageEnum'
     PricePathParameter:
       name: price
       in: path
@@ -219,13 +230,6 @@ components:
         type: string
         format: uuid
         example: 123e4567-e89b-12d3-a456-426614174000
-    LangQueryParameter:
-      name: lang
-      in: query
-      description: Language code
-      required: false
-      schema:
-        $ref: '#/components/schemas/LanguageEnum'
   securitySchemes:
     customerId:
       type: apiKey

@@ -1,15 +1,15 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Mubert AI Music API v3 Price Service API
+  title: Mubert AI Music API v3 Service API
   description: 'Mubert AI Music API for B2B integrations. Generate music tracks, manage streaming, and control customer accounts.
 
 
     ### AI-optimized documentation
 
 
-    - [llms.txt](https://music-api.mubert.com/swagger-doc/llms.txt) — short endpoint index for AI agents
+    - llms.txt — short endpoint index for AI agents
 
-    - [llms-full.txt](https://music-api.mubert.com/swagger-doc/llms-full.txt) — full reference with parameters and models'
+    - llms-full.txt — full reference with parameters and models'
   contact:
     name: Mubert Team
     url: https://mubert.com/api
@@ -184,22 +184,32 @@ paths:
       - companyId: []
         licenseToken: []
 components:
-  schemas:
-    PriceNotFoundException:
-      description: Response indicating that the specified price could not be found.
-      properties:
-        message:
-          type: string
-          example: Price not found
-        description:
-          type: string
-          example: No price exists with the specified ID
-          nullable: true
-        code:
-          type: string
-          example: PriceNotFound
-      type: object
   requestBodies:
+    StripeBillingPortalServiceRequest:
+      description: Request to create a Stripe billing portal session by company ID and license token
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - company_id
+            - license_token
+            properties:
+              company_id:
+                type: string
+                format: uuid
+                example: 550e8400-e29b-41d4-a716-446655440000
+              license_token:
+                type: string
+                example: abc123def456
+              redirect_url:
+                description: URL to return to after leaving the billing portal
+                type:
+                - string
+                - 'null'
+                format: uri
+                example: https://mubert.com/success
+            type: object
     SubscriptionCancelServiceRequest:
       description: Request to cancel a subscription by company ID and license token
       required: true
@@ -229,10 +239,11 @@ components:
             - stripe_price_id
             properties:
               company_name:
-                type: string
+                type:
+                - string
+                - 'null'
                 maxLength: 255
                 example: Acme Inc
-                nullable: true
               email:
                 type: string
                 format: email
@@ -242,49 +253,45 @@ components:
                 maxLength: 255
                 example: price_1234567890
               redirect_url:
-                type: string
+                type:
+                - string
+                - 'null'
                 format: url
                 example: https://example.com/success
-                nullable: true
               redirect_url_cancel:
-                type: string
+                type:
+                - string
+                - 'null'
                 format: url
                 example: https://example.com/cancel
-                nullable: true
               coupon_id:
-                type: string
+                type:
+                - string
+                - 'null'
                 maxLength: 255
                 example: DISCOUNT20
-                nullable: true
               redirect:
-                type: boolean
+                type:
+                - boolean
+                - 'null'
                 example: true
-                nullable: true
             type: object
-    StripeBillingPortalServiceRequest:
-      description: Request to create a Stripe billing portal session by company ID and license token
-      required: true
-      content:
-        application/json:
-          schema:
-            required:
-            - company_id
-            - license_token
-            properties:
-              company_id:
-                type: string
-                format: uuid
-                example: 550e8400-e29b-41d4-a716-446655440000
-              license_token:
-                type: string
-                example: abc123def456
-              redirect_url:
-                description: URL to return to after leaving the billing portal
-                type: string
-                format: uri
-                example: https://mubert.com/success
-                nullable: true
-            type: object
+  schemas:
+    PriceNotFoundException:
+      description: Response indicating that the specified price could not be found.
+      properties:
+        message:
+          type: string
+          example: Price not found
+        description:
+          type:
+          - string
+          - 'null'
+          example: No price exists with the specified ID
+        code:
+          type: string
+          example: PriceNotFound
+      type: object
   securitySchemes:
     customerId:
       type: apiKey

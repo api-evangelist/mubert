@@ -1,12 +1,7 @@
 {
   "provider": "mubert",
   "sources": [
-    "mubert-price-api-openapi.yml",
-    "mubert-public-api-openapi.yml",
-    "mubert-public-service-api-openapi.yml",
-    "mubert-service-api-openapi.yml",
-    "mubert-stripe-api-openapi.yml",
-    "mubert-subscription-api-openapi.yml"
+    "_original/mubert-music-api-openapi.yml"
   ],
   "outputs": [
     "mubert-price-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "mubert-music-api-openapi.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "mubert-price-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mubert-public-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mubert-public-service-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mubert-service-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mubert-stripe-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mubert-subscription-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
