@@ -245,53 +245,23 @@ paths:
         licenseToken: []
 components:
   requestBodies:
-    SubscriptionBuyServiceRequest:
-      description: Request to buy a subscription
+    SubscriptionCancelPublicRequest:
+      description: Request to cancel a subscription by company ID and license token
       required: true
       content:
         application/json:
           schema:
             required:
-            - email
-            - stripe_price_id
+            - company_id
+            - license_token
             properties:
-              company_name:
-                type:
-                - string
-                - 'null'
-                maxLength: 255
-                example: Acme Inc
-              email:
+              company_id:
                 type: string
-                format: email
-                example: contact@acme.com
-              stripe_price_id:
+                format: uuid
+                example: 550e8400-e29b-41d4-a716-446655440000
+              license_token:
                 type: string
-                maxLength: 255
-                example: price_1234567890
-              redirect_url:
-                type:
-                - string
-                - 'null'
-                format: url
-                example: https://example.com/success
-              redirect_url_cancel:
-                type:
-                - string
-                - 'null'
-                format: url
-                example: https://example.com/cancel
-              coupon_id:
-                type:
-                - string
-                - 'null'
-                maxLength: 255
-                example: DISCOUNT20
-              redirect:
-                type:
-                - boolean
-                - 'null'
-                example: true
+                example: abc123def456
             type: object
     SubscriptionCancelServiceRequest:
       description: Request to cancel a subscription by company ID and license token
@@ -359,23 +329,53 @@ components:
                 - 'null'
                 example: true
             type: object
-    SubscriptionCancelPublicRequest:
-      description: Request to cancel a subscription by company ID and license token
+    SubscriptionBuyServiceRequest:
+      description: Request to buy a subscription
       required: true
       content:
         application/json:
           schema:
             required:
-            - company_id
-            - license_token
+            - email
+            - stripe_price_id
             properties:
-              company_id:
+              company_name:
+                type:
+                - string
+                - 'null'
+                maxLength: 255
+                example: Acme Inc
+              email:
                 type: string
-                format: uuid
-                example: 550e8400-e29b-41d4-a716-446655440000
-              license_token:
+                format: email
+                example: contact@acme.com
+              stripe_price_id:
                 type: string
-                example: abc123def456
+                maxLength: 255
+                example: price_1234567890
+              redirect_url:
+                type:
+                - string
+                - 'null'
+                format: url
+                example: https://example.com/success
+              redirect_url_cancel:
+                type:
+                - string
+                - 'null'
+                format: url
+                example: https://example.com/cancel
+              coupon_id:
+                type:
+                - string
+                - 'null'
+                maxLength: 255
+                example: DISCOUNT20
+              redirect:
+                type:
+                - boolean
+                - 'null'
+                example: true
             type: object
   schemas:
     PriceNotFoundException:

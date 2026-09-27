@@ -82,48 +82,6 @@ paths:
         accessToken: []
 components:
   schemas:
-    LanguageEnum:
-      description: Languages
-      type: string
-      enum:
-      - ko
-      - es
-      - fr
-      - de
-      - pt
-      - ja
-    StripePricePublicResource:
-      properties:
-        id:
-          type: string
-          format: uuid
-        price_id:
-          type: string
-        product_id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - one_time
-          - recurring
-        interval:
-          type:
-          - string
-          - 'null'
-          enum:
-          - day
-          - week
-          - month
-          - year
-        amount:
-          type: integer
-        trial_period_days:
-          type:
-          - integer
-          - 'null'
-      type: object
     PriceNotFoundException:
       description: Response indicating that the specified price could not be found.
       properties:
@@ -138,20 +96,6 @@ components:
         code:
           type: string
           example: PriceNotFound
-      type: object
-    PriceOptionPublicResource:
-      properties:
-        id:
-          type: string
-          format: uuid
-        title:
-          type: string
-        priority:
-          description: Priority (higher means higher priority)
-          type: integer
-        is_enabled:
-          description: Shows whether the option is enabled or not
-          type: boolean
       type: object
     PriceLimitPublicResource:
       properties:
@@ -193,6 +137,62 @@ components:
           description: Daily limit on the streaming duration (in seconds) for a user
           type: integer
       type: object
+    PriceOptionPublicResource:
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        priority:
+          description: Priority (higher means higher priority)
+          type: integer
+        is_enabled:
+          description: Shows whether the option is enabled or not
+          type: boolean
+      type: object
+    StripePricePublicResource:
+      properties:
+        id:
+          type: string
+          format: uuid
+        price_id:
+          type: string
+        product_id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - one_time
+          - recurring
+        interval:
+          type:
+          - string
+          - 'null'
+          enum:
+          - day
+          - week
+          - month
+          - year
+        amount:
+          type: integer
+        trial_period_days:
+          type:
+          - integer
+          - 'null'
+      type: object
+    LanguageEnum:
+      description: Languages
+      type: string
+      enum:
+      - ko
+      - es
+      - fr
+      - de
+      - pt
+      - ja
     PricePublicResource:
       properties:
         id:
