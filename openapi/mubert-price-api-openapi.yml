@@ -82,21 +82,6 @@ paths:
         accessToken: []
 components:
   schemas:
-    PriceNotFoundException:
-      description: Response indicating that the specified price could not be found.
-      properties:
-        message:
-          type: string
-          example: Price not found
-        description:
-          type:
-          - string
-          - 'null'
-          example: No price exists with the specified ID
-        code:
-          type: string
-          example: PriceNotFound
-      type: object
     PriceLimitPublicResource:
       properties:
         id:
@@ -136,6 +121,21 @@ components:
         daily_streaming_duration_limit:
           description: Daily limit on the streaming duration (in seconds) for a user
           type: integer
+      type: object
+    PriceNotFoundException:
+      description: Response indicating that the specified price could not be found.
+      properties:
+        message:
+          type: string
+          example: Price not found
+        description:
+          type:
+          - string
+          - 'null'
+          example: No price exists with the specified ID
+        code:
+          type: string
+          example: PriceNotFound
       type: object
     PriceOptionPublicResource:
       properties:
@@ -183,16 +183,6 @@ components:
           - integer
           - 'null'
       type: object
-    LanguageEnum:
-      description: Languages
-      type: string
-      enum:
-      - ko
-      - es
-      - fr
-      - de
-      - pt
-      - ja
     PricePublicResource:
       properties:
         id:
@@ -213,6 +203,16 @@ components:
         limits:
           $ref: '#/components/schemas/PriceLimitPublicResource'
       type: object
+    LanguageEnum:
+      description: Languages
+      type: string
+      enum:
+      - ko
+      - es
+      - fr
+      - de
+      - pt
+      - ja
   parameters:
     LangQueryParameter:
       name: lang

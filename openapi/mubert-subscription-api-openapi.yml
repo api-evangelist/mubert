@@ -281,7 +281,7 @@ components:
                 type: string
                 example: abc123def456
             type: object
-    SubscriptionBuyPublicRequest:
+    SubscriptionBuyServiceRequest:
       description: Request to buy a subscription
       required: true
       content:
@@ -329,7 +329,7 @@ components:
                 - 'null'
                 example: true
             type: object
-    SubscriptionBuyServiceRequest:
+    SubscriptionBuyPublicRequest:
       description: Request to buy a subscription
       required: true
       content:
