@@ -36,7 +36,7 @@ tags:
   - Streaming
   - Text-to-Music
   - Image-to-Music
-  - STEM
+  - Stems
   - B2B
 tags_raw:
   - AI Music
@@ -343,6 +343,9 @@ apis:
   - type: SpectralRules
     url: rules/mubert-rules.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/mubert-capability-edges.yml
+    name: Mubert Business Capability Map
   - type: AgenticAccess
     url: agentic-access/mubert-agentic-access.yml
   - type: DomainSecurity
