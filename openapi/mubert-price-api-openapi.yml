@@ -82,61 +82,6 @@ paths:
         accessToken: []
 components:
   schemas:
-    PriceLimitPublicResource:
-      properties:
-        id:
-          description: Unique identifier
-          type: string
-          format: uuid
-        max_track_duration:
-          description: Maximum allowed duration (in seconds) for a single track generation
-          type: integer
-        max_concurrent_track_generations:
-          description: Maximum number of tracks a user can generate concurrently
-          type: integer
-        total_tracks_count_limit:
-          description: Overall limit on the total number of tracks a user can generate
-          type: integer
-        total_tracks_duration_limit:
-          description: Overall limit on the total duration (in seconds) of tracks a user can generate
-          type: integer
-        monthly_tracks_count_limit:
-          description: Monthly limit on the number of tracks a user can generate
-          type: integer
-        monthly_tracks_duration_limit:
-          description: Monthly limit on the total duration (in seconds) of tracks a user can generate
-          type: integer
-        daily_tracks_count_limit:
-          description: Daily limit on the number of tracks a user can generate
-          type: integer
-        daily_tracks_duration_limit:
-          description: Daily limit on the total duration (in seconds) of tracks a user can generate
-          type: integer
-        total_streaming_duration_limit:
-          description: Overall limit on the total streaming duration (in seconds) for a user
-          type: integer
-        monthly_streaming_duration_limit:
-          description: Monthly limit on the streaming duration (in seconds) for a user
-          type: integer
-        daily_streaming_duration_limit:
-          description: Daily limit on the streaming duration (in seconds) for a user
-          type: integer
-      type: object
-    PriceNotFoundException:
-      description: Response indicating that the specified price could not be found.
-      properties:
-        message:
-          type: string
-          example: Price not found
-        description:
-          type:
-          - string
-          - 'null'
-          example: No price exists with the specified ID
-        code:
-          type: string
-          example: PriceNotFound
-      type: object
     PriceOptionPublicResource:
       properties:
         id:
@@ -151,6 +96,16 @@ components:
           description: Shows whether the option is enabled or not
           type: boolean
       type: object
+    LanguageEnum:
+      description: Languages
+      type: string
+      enum:
+      - ko
+      - es
+      - fr
+      - de
+      - pt
+      - ja
     StripePricePublicResource:
       properties:
         id:
@@ -203,16 +158,61 @@ components:
         limits:
           $ref: '#/components/schemas/PriceLimitPublicResource'
       type: object
-    LanguageEnum:
-      description: Languages
-      type: string
-      enum:
-      - ko
-      - es
-      - fr
-      - de
-      - pt
-      - ja
+    PriceNotFoundException:
+      description: Response indicating that the specified price could not be found.
+      properties:
+        message:
+          type: string
+          example: Price not found
+        description:
+          type:
+          - string
+          - 'null'
+          example: No price exists with the specified ID
+        code:
+          type: string
+          example: PriceNotFound
+      type: object
+    PriceLimitPublicResource:
+      properties:
+        id:
+          description: Unique identifier
+          type: string
+          format: uuid
+        max_track_duration:
+          description: Maximum allowed duration (in seconds) for a single track generation
+          type: integer
+        max_concurrent_track_generations:
+          description: Maximum number of tracks a user can generate concurrently
+          type: integer
+        total_tracks_count_limit:
+          description: Overall limit on the total number of tracks a user can generate
+          type: integer
+        total_tracks_duration_limit:
+          description: Overall limit on the total duration (in seconds) of tracks a user can generate
+          type: integer
+        monthly_tracks_count_limit:
+          description: Monthly limit on the number of tracks a user can generate
+          type: integer
+        monthly_tracks_duration_limit:
+          description: Monthly limit on the total duration (in seconds) of tracks a user can generate
+          type: integer
+        daily_tracks_count_limit:
+          description: Daily limit on the number of tracks a user can generate
+          type: integer
+        daily_tracks_duration_limit:
+          description: Daily limit on the total duration (in seconds) of tracks a user can generate
+          type: integer
+        total_streaming_duration_limit:
+          description: Overall limit on the total streaming duration (in seconds) for a user
+          type: integer
+        monthly_streaming_duration_limit:
+          description: Monthly limit on the streaming duration (in seconds) for a user
+          type: integer
+        daily_streaming_duration_limit:
+          description: Daily limit on the streaming duration (in seconds) for a user
+          type: integer
+      type: object
   parameters:
     LangQueryParameter:
       name: lang

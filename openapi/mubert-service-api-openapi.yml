@@ -185,6 +185,24 @@ paths:
         licenseToken: []
 components:
   requestBodies:
+    SubscriptionCancelServiceRequest:
+      description: Request to cancel a subscription by company ID and license token
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - company_id
+            - license_token
+            properties:
+              company_id:
+                type: string
+                format: uuid
+                example: 550e8400-e29b-41d4-a716-446655440000
+              license_token:
+                type: string
+                example: abc123def456
+            type: object
     SubscriptionBuyServiceRequest:
       description: Request to buy a subscription
       required: true
@@ -257,24 +275,6 @@ components:
                 - 'null'
                 format: uri
                 example: https://mubert.com/success
-            type: object
-    SubscriptionCancelServiceRequest:
-      description: Request to cancel a subscription by company ID and license token
-      required: true
-      content:
-        application/json:
-          schema:
-            required:
-            - company_id
-            - license_token
-            properties:
-              company_id:
-                type: string
-                format: uuid
-                example: 550e8400-e29b-41d4-a716-446655440000
-              license_token:
-                type: string
-                example: abc123def456
             type: object
   schemas:
     PriceNotFoundException:

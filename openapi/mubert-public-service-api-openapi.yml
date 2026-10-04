@@ -388,7 +388,75 @@ paths:
       - companyId: []
         licenseToken: []
 components:
+  requestBodies:
+    LicenseUpdateServiceRequest:
+      description: Request to update an existing license.
+      required: true
+      content:
+        application/json:
+          schema:
+            properties:
+              webhook_url:
+                description: The URL for the webhook.
+                type:
+                - string
+                - 'null'
+                maxLength: 255
+                example: https://example.com/webhook
+              webhook_enabled:
+                description: A flag indicating whether the webhook is enabled.
+                type: boolean
+                example: true
+            type: object
+    CustomerDeleteServiceRequest:
+      description: Request to delete a customer by the customer service. Authorization is required, and the customer's company ID must match the authenticated service company.
+      required: false
+      content:
+        application/json:
+          schema:
+            properties: {}
+            type: object
+    CustomerUpdateServiceRequest:
+      description: Request to update an existing customer with updated custom ID and webhook settings.
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - custom_id
+            properties:
+              custom_id:
+                description: A unique identifier for the customer.
+                type: string
+                maxLength: 255
+                minLength: 1
+                example: customer456
+            type: object
+    CustomerStoreServiceRequest:
+      description: Request to create a new customer with a custom ID and optional webhook settings.
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - custom_id
+            properties:
+              custom_id:
+                description: A unique identifier for the customer.
+                type: string
+                maxLength: 255
+                minLength: 1
+                example: customer123
+            type: object
   schemas:
+    TrackIntensityEnum:
+      description: Enumeration representing different intensity levels of a track.
+      type: string
+      enum:
+      - low
+      - medium
+      - high
+      example: medium
     UnauthenticatedException:
       description: Response indicating that the user is not authenticated to access the resource.
       properties:
@@ -411,131 +479,6 @@ components:
       - mp3
       - wav
       example: mp3
-    Error403Response:
-      description: Response for forbidden access errors
-      properties:
-        code:
-          description: Type of the error
-          type: string
-        message:
-          type: string
-          example: Forbidden action
-        description:
-          type:
-          - string
-          - 'null'
-      type: object
-      discriminator:
-        propertyName: code
-        mapping:
-          LicenseExpired: '#/components/schemas/LicenseExpiredException'
-          AccessTokenExpired: '#/components/schemas/AccessTokenExpiredException'
-          Forbidden: '#/components/schemas/ForbiddenException'
-          CompanyIsNotActive: '#/components/schemas/CompanyIsNotActiveException'
-          CustomerIsNotActive: '#/components/schemas/CompanyIsNotActiveException'
-          LicenseForbiddenBitrate: '#/components/schemas/LicenseForbiddenBitrate'
-          LicenseForbiddenDuration: '#/components/schemas/LicenseForbiddenDuration'
-          LicenseForbiddenFeature: '#/components/schemas/LicenseForbiddenFeature'
-          LicenseForbiddenFormat: '#/components/schemas/LicenseForbiddenFormat'
-          LicenseForbiddenIntensity: '#/components/schemas/LicenseForbiddenIntensity'
-          LicenseForbiddenMode: '#/components/schemas/LicenseForbiddenMode'
-          LicenseIsNotActive: '#/components/schemas/LicenseIsNotActive'
-          LicenseLimitConcurrentTrackGenerationsCount: '#/components/schemas/LicenseLimitConcurrentTrackGenerationsCount'
-          LicenseLimitTracksCount: '#/components/schemas/LicenseLimitTracksCount'
-          LicenseLimitTracksDuration: '#/components/schemas/LicenseLimitTracksDuration'
-          LicenseLimitUsersCount: '#/components/schemas/LicenseLimitUsersCount'
-          UserNotFound: '#/components/schemas/UserNotFound'
-    LicenseServiceResource:
-      properties:
-        id:
-          description: License ID
-          type: string
-          format: uuid
-        company_id:
-          description: Company ID associated with the license
-          type: string
-          format: uuid
-        type:
-          description: License type
-          type: string
-        status:
-          description: License status
-          type: string
-        webhook_url:
-          description: Webhook URL for the company
-          type:
-          - string
-          - 'null'
-        webhook_enabled:
-          description: Whether the webhook is enabled for the company
-          type: boolean
-        track_expiration_time:
-          description: Time after which generated tracks expire
-          type: integer
-        allow_all_features:
-          description: Allow all features flag
-          type: boolean
-        features:
-          description: Available features for the license
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureEnum'
-        allow_all_bitrates:
-          description: Allow all bitrates flag
-          type: boolean
-        default_bitrate:
-          description: Default bitrate
-          type: integer
-        bitrates:
-          description: Available bitrates
-          type: array
-          items:
-            $ref: '#/components/schemas/TrackBitrateEnum'
-        allow_all_intensities:
-          description: Allow all intensities flag
-          type: boolean
-        default_intensity:
-          description: Default intensity
-          type: string
-        intensities:
-          description: Available intensities
-          type: array
-          items:
-            $ref: '#/components/schemas/TrackIntensityEnum'
-        allow_all_formats:
-          description: Allow all formats flag
-          type: boolean
-        default_format:
-          description: Default track format
-          type: string
-        track_formats:
-          description: Available formats for tracks
-          type: array
-          items:
-            $ref: '#/components/schemas/TrackFormatEnum'
-        allow_all_modes:
-          description: Allow all modes flag
-          type: boolean
-        default_mode:
-          description: Default track mode
-          type: string
-        track_modes:
-          description: Available modes for tracks
-          type: array
-          items:
-            $ref: '#/components/schemas/TrackModeEnum'
-        expired_at:
-          description: License expiration date
-          type: string
-          format: date-time
-        license_limits:
-          oneOf:
-          - $ref: '#/components/schemas/LicenseLimitServiceResource'
-          description: Associated License Limit
-          type:
-          - object
-          - 'null'
-      type: object
     TrackModeEnum:
       description: Enumeration representing different modes of a track.
       type: string
@@ -545,26 +488,6 @@ components:
       - loop
       - mix
       example: loop
-    TrackBitrateEnum:
-      description: Enumeration representing different track bitrates.
-      type: integer
-      enum:
-      - 32
-      - 96
-      - 128
-      - 192
-      - 256
-      - 320
-      example: 320
-    FeatureEnum:
-      description: Features
-      type: string
-      enum:
-      - track
-      - ttm
-      - itm
-      - streaming
-      - music-library
     LicenseLimitServiceResource:
       properties:
         id:
@@ -684,6 +607,155 @@ components:
           - 'null'
           format: date-time
       type: object
+    LicenseServiceResource:
+      properties:
+        id:
+          description: License ID
+          type: string
+          format: uuid
+        company_id:
+          description: Company ID associated with the license
+          type: string
+          format: uuid
+        type:
+          description: License type
+          type: string
+        status:
+          description: License status
+          type: string
+        webhook_url:
+          description: Webhook URL for the company
+          type:
+          - string
+          - 'null'
+        webhook_enabled:
+          description: Whether the webhook is enabled for the company
+          type: boolean
+        track_expiration_time:
+          description: Time after which generated tracks expire
+          type: integer
+        allow_all_features:
+          description: Allow all features flag
+          type: boolean
+        features:
+          description: Available features for the license
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureEnum'
+        allow_all_bitrates:
+          description: Allow all bitrates flag
+          type: boolean
+        default_bitrate:
+          description: Default bitrate
+          type: integer
+        bitrates:
+          description: Available bitrates
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackBitrateEnum'
+        allow_all_intensities:
+          description: Allow all intensities flag
+          type: boolean
+        default_intensity:
+          description: Default intensity
+          type: string
+        intensities:
+          description: Available intensities
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackIntensityEnum'
+        allow_all_formats:
+          description: Allow all formats flag
+          type: boolean
+        default_format:
+          description: Default track format
+          type: string
+        track_formats:
+          description: Available formats for tracks
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackFormatEnum'
+        allow_all_modes:
+          description: Allow all modes flag
+          type: boolean
+        default_mode:
+          description: Default track mode
+          type: string
+        track_modes:
+          description: Available modes for tracks
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackModeEnum'
+        expired_at:
+          description: License expiration date
+          type: string
+          format: date-time
+        license_limits:
+          oneOf:
+          - $ref: '#/components/schemas/LicenseLimitServiceResource'
+          description: Associated License Limit
+          type:
+          - object
+          - 'null'
+      type: object
+    TrackBitrateEnum:
+      description: Enumeration representing different track bitrates.
+      type: integer
+      enum:
+      - 32
+      - 96
+      - 128
+      - 192
+      - 256
+      - 320
+      example: 320
+    Error403Response:
+      description: Response for forbidden access errors
+      properties:
+        code:
+          description: Type of the error
+          type: string
+        message:
+          type: string
+          example: Forbidden action
+        description:
+          type:
+          - string
+          - 'null'
+      type: object
+      discriminator:
+        propertyName: code
+        mapping:
+          LicenseExpired: '#/components/schemas/LicenseExpiredException'
+          AccessTokenExpired: '#/components/schemas/AccessTokenExpiredException'
+          Forbidden: '#/components/schemas/ForbiddenException'
+          CompanyIsNotActive: '#/components/schemas/CompanyIsNotActiveException'
+          CustomerIsNotActive: '#/components/schemas/CompanyIsNotActiveException'
+          LicenseForbiddenBitrate: '#/components/schemas/LicenseForbiddenBitrate'
+          LicenseForbiddenDuration: '#/components/schemas/LicenseForbiddenDuration'
+          LicenseForbiddenFeature: '#/components/schemas/LicenseForbiddenFeature'
+          LicenseForbiddenFormat: '#/components/schemas/LicenseForbiddenFormat'
+          LicenseForbiddenIntensity: '#/components/schemas/LicenseForbiddenIntensity'
+          LicenseForbiddenMode: '#/components/schemas/LicenseForbiddenMode'
+          LicenseIsNotActive: '#/components/schemas/LicenseIsNotActive'
+          LicenseLimitConcurrentTrackGenerationsCount: '#/components/schemas/LicenseLimitConcurrentTrackGenerationsCount'
+          LicenseLimitTracksCount: '#/components/schemas/LicenseLimitTracksCount'
+          LicenseLimitTracksDuration: '#/components/schemas/LicenseLimitTracksDuration'
+          LicenseLimitUsersCount: '#/components/schemas/LicenseLimitUsersCount'
+          UserNotFound: '#/components/schemas/UserNotFound'
+    MetadataPagination:
+      description: Pagination metadata
+      properties:
+        total:
+          type: integer
+          example: 1000
+        limit:
+          type: integer
+          example: 100
+        offset:
+          type: integer
+          example: 0
+      type: object
     CustomerServiceResource:
       properties:
         id:
@@ -701,6 +773,15 @@ components:
           description: Customer status
           type: string
       type: object
+    FeatureEnum:
+      description: Features
+      type: string
+      enum:
+      - track
+      - ttm
+      - itm
+      - streaming
+      - music-library
     Error404Response:
       description: Response for not found errors
       properties:
@@ -723,46 +804,7 @@ components:
           CompanyNotFound: '#/components/schemas/CompanyNotFound'
           LicenseNotFound: '#/components/schemas/LicenseNotFound'
           TrackNotFound: '#/components/schemas/TrackNotFound'
-    MetadataPagination:
-      description: Pagination metadata
-      properties:
-        total:
-          type: integer
-          example: 1000
-        limit:
-          type: integer
-          example: 100
-        offset:
-          type: integer
-          example: 0
-      type: object
-    TrackIntensityEnum:
-      description: Enumeration representing different intensity levels of a track.
-      type: string
-      enum:
-      - low
-      - medium
-      - high
-      example: medium
   parameters:
-    CustomerPathParameter:
-      name: customer
-      in: path
-      description: The unique identifier of the customer.
-      required: true
-      schema:
-        type: string
-        format: uuid
-        example: 123e4567-e89b-12d3-a456-426614174000
-    LimitQueryParameter:
-      name: limit
-      in: query
-      description: The number of items to return in the result set.
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        example: 25
     OffsetQueryParameter:
       name: offset
       in: query
@@ -772,10 +814,35 @@ components:
         type: integer
         minimum: 0
         example: 0
+    LimitQueryParameter:
+      name: limit
+      in: query
+      description: The number of items to return in the result set.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        example: 25
+    CustomerCustomIdPathParameter:
+      name: customId
+      in: path
+      description: The unique identifier of the customer.
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: 123e4567-e89b-12d3-a456-426614174000
     company-id:
       name: company-id
       in: header
       description: Company Id
+      required: true
+      schema:
+        type: string
+    license-token:
+      name: license-token
+      in: header
+      description: License Token
       required: true
       schema:
         type: string
@@ -788,8 +855,8 @@ components:
         type: string
         format: uuid
         example: 123e4567-e89b-12d3-a456-426614174000
-    CustomerCustomIdPathParameter:
-      name: customId
+    CustomerPathParameter:
+      name: customer
       in: path
       description: The unique identifier of the customer.
       required: true
@@ -797,73 +864,6 @@ components:
         type: string
         format: uuid
         example: 123e4567-e89b-12d3-a456-426614174000
-    license-token:
-      name: license-token
-      in: header
-      description: License Token
-      required: true
-      schema:
-        type: string
-  requestBodies:
-    LicenseUpdateServiceRequest:
-      description: Request to update an existing license.
-      required: true
-      content:
-        application/json:
-          schema:
-            properties:
-              webhook_url:
-                description: The URL for the webhook.
-                type:
-                - string
-                - 'null'
-                maxLength: 255
-                example: https://example.com/webhook
-              webhook_enabled:
-                description: A flag indicating whether the webhook is enabled.
-                type: boolean
-                example: true
-            type: object
-    CustomerUpdateServiceRequest:
-      description: Request to update an existing customer with updated custom ID and webhook settings.
-      required: true
-      content:
-        application/json:
-          schema:
-            required:
-            - custom_id
-            properties:
-              custom_id:
-                description: A unique identifier for the customer.
-                type: string
-                maxLength: 255
-                minLength: 1
-                example: customer456
-            type: object
-    CustomerDeleteServiceRequest:
-      description: Request to delete a customer by the customer service. Authorization is required, and the customer's company ID must match the authenticated service company.
-      required: false
-      content:
-        application/json:
-          schema:
-            properties: {}
-            type: object
-    CustomerStoreServiceRequest:
-      description: Request to create a new customer with a custom ID and optional webhook settings.
-      required: true
-      content:
-        application/json:
-          schema:
-            required:
-            - custom_id
-            properties:
-              custom_id:
-                description: A unique identifier for the customer.
-                type: string
-                maxLength: 255
-                minLength: 1
-                example: customer123
-            type: object
   securitySchemes:
     customerId:
       type: apiKey
