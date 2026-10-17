@@ -388,106 +388,89 @@ paths:
       - companyId: []
         licenseToken: []
 components:
-  requestBodies:
-    LicenseUpdateServiceRequest:
-      description: Request to update an existing license.
+  parameters:
+    CustomerCustomIdPathParameter:
+      name: customId
+      in: path
+      description: The unique identifier of the customer.
       required: true
-      content:
-        application/json:
-          schema:
-            properties:
-              webhook_url:
-                description: The URL for the webhook.
-                type:
-                - string
-                - 'null'
-                maxLength: 255
-                example: https://example.com/webhook
-              webhook_enabled:
-                description: A flag indicating whether the webhook is enabled.
-                type: boolean
-                example: true
-            type: object
-    CustomerDeleteServiceRequest:
-      description: Request to delete a customer by the customer service. Authorization is required, and the customer's company ID must match the authenticated service company.
+      schema:
+        type: string
+        format: uuid
+        example: 123e4567-e89b-12d3-a456-426614174000
+    OffsetQueryParameter:
+      name: offset
+      in: query
+      description: The number of items to skip before starting to collect the result set.
       required: false
-      content:
-        application/json:
-          schema:
-            properties: {}
-            type: object
-    CustomerUpdateServiceRequest:
-      description: Request to update an existing customer with updated custom ID and webhook settings.
+      schema:
+        type: integer
+        minimum: 0
+        example: 0
+    LicensePathParameter:
+      name: license
+      in: path
+      description: The unique identifier of the license.
       required: true
-      content:
-        application/json:
-          schema:
-            required:
-            - custom_id
-            properties:
-              custom_id:
-                description: A unique identifier for the customer.
-                type: string
-                maxLength: 255
-                minLength: 1
-                example: customer456
-            type: object
-    CustomerStoreServiceRequest:
-      description: Request to create a new customer with a custom ID and optional webhook settings.
+      schema:
+        type: string
+        format: uuid
+        example: 123e4567-e89b-12d3-a456-426614174000
+    CustomerPathParameter:
+      name: customer
+      in: path
+      description: The unique identifier of the customer.
       required: true
-      content:
-        application/json:
-          schema:
-            required:
-            - custom_id
-            properties:
-              custom_id:
-                description: A unique identifier for the customer.
-                type: string
-                maxLength: 255
-                minLength: 1
-                example: customer123
-            type: object
+      schema:
+        type: string
+        format: uuid
+        example: 123e4567-e89b-12d3-a456-426614174000
+    LimitQueryParameter:
+      name: limit
+      in: query
+      description: The number of items to return in the result set.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        example: 25
+    license-token:
+      name: license-token
+      in: header
+      description: License Token
+      required: true
+      schema:
+        type: string
+    company-id:
+      name: company-id
+      in: header
+      description: Company Id
+      required: true
+      schema:
+        type: string
   schemas:
-    TrackIntensityEnum:
-      description: Enumeration representing different intensity levels of a track.
-      type: string
-      enum:
-      - low
-      - medium
-      - high
-      example: medium
-    UnauthenticatedException:
-      description: Response indicating that the user is not authenticated to access the resource.
+    Error404Response:
+      description: Response for not found errors
       properties:
+        code:
+          description: Type of the error
+          type: string
+          example: CompanyNotFound
         message:
           type: string
-          example: Unauthenticated
+          example: Resource not found
         description:
           type:
           - string
           - 'null'
-          example: Reason for authentication failure
-        code:
-          type: string
-          example: Unauthenticated
       type: object
-    TrackFormatEnum:
-      description: Enumeration representing different track formats.
-      type: string
-      enum:
-      - mp3
-      - wav
-      example: mp3
-    TrackModeEnum:
-      description: Enumeration representing different modes of a track.
-      type: string
-      enum:
-      - track
-      - jingle
-      - loop
-      - mix
-      example: loop
+      discriminator:
+        propertyName: code
+        mapping:
+          CustomerNotFound: '#/components/schemas/CustomerNotFound'
+          CompanyNotFound: '#/components/schemas/CompanyNotFound'
+          LicenseNotFound: '#/components/schemas/LicenseNotFound'
+          TrackNotFound: '#/components/schemas/TrackNotFound'
     LicenseLimitServiceResource:
       properties:
         id:
@@ -607,6 +590,33 @@ components:
           - 'null'
           format: date-time
       type: object
+    TrackBitrateEnum:
+      description: Enumeration representing different track bitrates.
+      type: integer
+      enum:
+      - 32
+      - 96
+      - 128
+      - 192
+      - 256
+      - 320
+      example: 320
+    TrackFormatEnum:
+      description: Enumeration representing different track formats.
+      type: string
+      enum:
+      - mp3
+      - wav
+      example: mp3
+    FeatureEnum:
+      description: Features
+      type: string
+      enum:
+      - track
+      - ttm
+      - itm
+      - streaming
+      - music-library
     LicenseServiceResource:
       properties:
         id:
@@ -698,17 +708,6 @@ components:
           - object
           - 'null'
       type: object
-    TrackBitrateEnum:
-      description: Enumeration representing different track bitrates.
-      type: integer
-      enum:
-      - 32
-      - 96
-      - 128
-      - 192
-      - 256
-      - 320
-      example: 320
     Error403Response:
       description: Response for forbidden access errors
       properties:
@@ -743,19 +742,6 @@ components:
           LicenseLimitTracksDuration: '#/components/schemas/LicenseLimitTracksDuration'
           LicenseLimitUsersCount: '#/components/schemas/LicenseLimitUsersCount'
           UserNotFound: '#/components/schemas/UserNotFound'
-    MetadataPagination:
-      description: Pagination metadata
-      properties:
-        total:
-          type: integer
-          example: 1000
-        limit:
-          type: integer
-          example: 100
-        offset:
-          type: integer
-          example: 0
-      type: object
     CustomerServiceResource:
       properties:
         id:
@@ -773,97 +759,111 @@ components:
           description: Customer status
           type: string
       type: object
-    FeatureEnum:
-      description: Features
+    TrackIntensityEnum:
+      description: Enumeration representing different intensity levels of a track.
       type: string
       enum:
-      - track
-      - ttm
-      - itm
-      - streaming
-      - music-library
-    Error404Response:
-      description: Response for not found errors
+      - low
+      - medium
+      - high
+      example: medium
+    UnauthenticatedException:
+      description: Response indicating that the user is not authenticated to access the resource.
       properties:
-        code:
-          description: Type of the error
-          type: string
-          example: CompanyNotFound
         message:
           type: string
-          example: Resource not found
+          example: Unauthenticated
         description:
           type:
           - string
           - 'null'
+          example: Reason for authentication failure
+        code:
+          type: string
+          example: Unauthenticated
       type: object
-      discriminator:
-        propertyName: code
-        mapping:
-          CustomerNotFound: '#/components/schemas/CustomerNotFound'
-          CompanyNotFound: '#/components/schemas/CompanyNotFound'
-          LicenseNotFound: '#/components/schemas/LicenseNotFound'
-          TrackNotFound: '#/components/schemas/TrackNotFound'
-  parameters:
-    OffsetQueryParameter:
-      name: offset
-      in: query
-      description: The number of items to skip before starting to collect the result set.
+    MetadataPagination:
+      description: Pagination metadata
+      properties:
+        total:
+          type: integer
+          example: 1000
+        limit:
+          type: integer
+          example: 100
+        offset:
+          type: integer
+          example: 0
+      type: object
+    TrackModeEnum:
+      description: Enumeration representing different modes of a track.
+      type: string
+      enum:
+      - track
+      - jingle
+      - loop
+      - mix
+      example: loop
+  requestBodies:
+    CustomerUpdateServiceRequest:
+      description: Request to update an existing customer with updated custom ID and webhook settings.
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - custom_id
+            properties:
+              custom_id:
+                description: A unique identifier for the customer.
+                type: string
+                maxLength: 255
+                minLength: 1
+                example: customer456
+            type: object
+    CustomerDeleteServiceRequest:
+      description: Request to delete a customer by the customer service. Authorization is required, and the customer's company ID must match the authenticated service company.
       required: false
-      schema:
-        type: integer
-        minimum: 0
-        example: 0
-    LimitQueryParameter:
-      name: limit
-      in: query
-      description: The number of items to return in the result set.
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        example: 25
-    CustomerCustomIdPathParameter:
-      name: customId
-      in: path
-      description: The unique identifier of the customer.
+      content:
+        application/json:
+          schema:
+            properties: {}
+            type: object
+    CustomerStoreServiceRequest:
+      description: Request to create a new customer with a custom ID and optional webhook settings.
       required: true
-      schema:
-        type: string
-        format: uuid
-        example: 123e4567-e89b-12d3-a456-426614174000
-    company-id:
-      name: company-id
-      in: header
-      description: Company Id
+      content:
+        application/json:
+          schema:
+            required:
+            - custom_id
+            properties:
+              custom_id:
+                description: A unique identifier for the customer.
+                type: string
+                maxLength: 255
+                minLength: 1
+                example: customer123
+            type: object
+    LicenseUpdateServiceRequest:
+      description: Request to update an existing license.
       required: true
-      schema:
-        type: string
-    license-token:
-      name: license-token
-      in: header
-      description: License Token
-      required: true
-      schema:
-        type: string
-    LicensePathParameter:
-      name: license
-      in: path
-      description: The unique identifier of the license.
-      required: true
-      schema:
-        type: string
-        format: uuid
-        example: 123e4567-e89b-12d3-a456-426614174000
-    CustomerPathParameter:
-      name: customer
-      in: path
-      description: The unique identifier of the customer.
-      required: true
-      schema:
-        type: string
-        format: uuid
-        example: 123e4567-e89b-12d3-a456-426614174000
+      content:
+        application/json:
+          schema:
+            properties:
+              webhook_url:
+                description: The URL for the webhook.
+                type:
+                - string
+                - 'null'
+                maxLength: 255
+                example: https://example.com/webhook
+              webhook_enabled:
+                description: A flag indicating whether the webhook is enabled.
+                type: boolean
+                example: true
+            type: object
   securitySchemes:
     customerId:
       type: apiKey

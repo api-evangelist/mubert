@@ -245,54 +245,6 @@ paths:
         licenseToken: []
 components:
   requestBodies:
-    SubscriptionBuyPublicRequest:
-      description: Request to buy a subscription
-      required: true
-      content:
-        application/json:
-          schema:
-            required:
-            - email
-            - stripe_price_id
-            properties:
-              company_name:
-                type:
-                - string
-                - 'null'
-                maxLength: 255
-                example: Acme Inc
-              email:
-                type: string
-                format: email
-                example: contact@acme.com
-              stripe_price_id:
-                type: string
-                maxLength: 255
-                example: price_1234567890
-              redirect_url:
-                type:
-                - string
-                - 'null'
-                format: url
-                example: https://example.com/success
-              redirect_url_cancel:
-                type:
-                - string
-                - 'null'
-                format: url
-                example: https://example.com/cancel
-              coupon_id:
-                type:
-                - string
-                - 'null'
-                maxLength: 255
-                example: DISCOUNT20
-              redirect:
-                type:
-                - boolean
-                - 'null'
-                example: true
-            type: object
     SubscriptionBuyServiceRequest:
       description: Request to buy a subscription
       required: true
@@ -358,6 +310,54 @@ components:
               license_token:
                 type: string
                 example: abc123def456
+            type: object
+    SubscriptionBuyPublicRequest:
+      description: Request to buy a subscription
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - email
+            - stripe_price_id
+            properties:
+              company_name:
+                type:
+                - string
+                - 'null'
+                maxLength: 255
+                example: Acme Inc
+              email:
+                type: string
+                format: email
+                example: contact@acme.com
+              stripe_price_id:
+                type: string
+                maxLength: 255
+                example: price_1234567890
+              redirect_url:
+                type:
+                - string
+                - 'null'
+                format: url
+                example: https://example.com/success
+              redirect_url_cancel:
+                type:
+                - string
+                - 'null'
+                format: url
+                example: https://example.com/cancel
+              coupon_id:
+                type:
+                - string
+                - 'null'
+                maxLength: 255
+                example: DISCOUNT20
+              redirect:
+                type:
+                - boolean
+                - 'null'
+                example: true
             type: object
     SubscriptionCancelServiceRequest:
       description: Request to cancel a subscription by company ID and license token

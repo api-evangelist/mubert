@@ -82,20 +82,6 @@ paths:
         accessToken: []
 components:
   schemas:
-    PriceOptionPublicResource:
-      properties:
-        id:
-          type: string
-          format: uuid
-        title:
-          type: string
-        priority:
-          description: Priority (higher means higher priority)
-          type: integer
-        is_enabled:
-          description: Shows whether the option is enabled or not
-          type: boolean
-      type: object
     LanguageEnum:
       description: Languages
       type: string
@@ -106,73 +92,6 @@ components:
       - de
       - pt
       - ja
-    StripePricePublicResource:
-      properties:
-        id:
-          type: string
-          format: uuid
-        price_id:
-          type: string
-        product_id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - one_time
-          - recurring
-        interval:
-          type:
-          - string
-          - 'null'
-          enum:
-          - day
-          - week
-          - month
-          - year
-        amount:
-          type: integer
-        trial_period_days:
-          type:
-          - integer
-          - 'null'
-      type: object
-    PricePublicResource:
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        feature:
-          type:
-          - string
-          - 'null'
-        stripe_price:
-          $ref: '#/components/schemas/StripePricePublicResource'
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/PriceOptionPublicResource'
-        limits:
-          $ref: '#/components/schemas/PriceLimitPublicResource'
-      type: object
-    PriceNotFoundException:
-      description: Response indicating that the specified price could not be found.
-      properties:
-        message:
-          type: string
-          example: Price not found
-        description:
-          type:
-          - string
-          - 'null'
-          example: No price exists with the specified ID
-        code:
-          type: string
-          example: PriceNotFound
-      type: object
     PriceLimitPublicResource:
       properties:
         id:
@@ -212,6 +131,87 @@ components:
         daily_streaming_duration_limit:
           description: Daily limit on the streaming duration (in seconds) for a user
           type: integer
+      type: object
+    PriceOptionPublicResource:
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        priority:
+          description: Priority (higher means higher priority)
+          type: integer
+        is_enabled:
+          description: Shows whether the option is enabled or not
+          type: boolean
+      type: object
+    StripePricePublicResource:
+      properties:
+        id:
+          type: string
+          format: uuid
+        price_id:
+          type: string
+        product_id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - one_time
+          - recurring
+        interval:
+          type:
+          - string
+          - 'null'
+          enum:
+          - day
+          - week
+          - month
+          - year
+        amount:
+          type: integer
+        trial_period_days:
+          type:
+          - integer
+          - 'null'
+      type: object
+    PriceNotFoundException:
+      description: Response indicating that the specified price could not be found.
+      properties:
+        message:
+          type: string
+          example: Price not found
+        description:
+          type:
+          - string
+          - 'null'
+          example: No price exists with the specified ID
+        code:
+          type: string
+          example: PriceNotFound
+      type: object
+    PricePublicResource:
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        feature:
+          type:
+          - string
+          - 'null'
+        stripe_price:
+          $ref: '#/components/schemas/StripePricePublicResource'
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceOptionPublicResource'
+        limits:
+          $ref: '#/components/schemas/PriceLimitPublicResource'
       type: object
   parameters:
     LangQueryParameter:

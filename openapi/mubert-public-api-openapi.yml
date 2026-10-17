@@ -844,231 +844,34 @@ paths:
       - customerId: []
         accessToken: []
 components:
-  parameters:
-    BpmQueryParameter:
-      name: bpm
-      in: query
-      description: Beats per minute filter for the tracks.
-      required: false
-      schema:
-        type:
-        - integer
-        - 'null'
-        maximum: 500
-        minimum: 1
-        example: 120
-    access-token:
-      name: access-token
-      in: header
-      description: Access Token
-      required: true
-      schema:
-        type: string
-    IntensityQueryParameter:
-      name: intensity
-      in: query
-      description: Intensity level of the track.
-      required: false
-      schema:
-        $ref: '#/components/schemas/TrackIntensityEnum'
-    customer-id:
-      name: customer-id
-      in: header
-      description: Customer Id
-      required: true
-      schema:
-        type: string
-    PlaylistIndexQueryParameter:
-      name: playlist_index
-      in: query
-      description: Index of the playlist
-      required: true
-      schema:
-        type: string
-        maxLength: 10
-        example: 1.0.0
-    ThemesQueryParameter:
-      name: themes
-      in: query
-      description: Theme filter for the tracks.
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-        example: Corporate
-    OffsetQueryParameter:
-      name: offset
-      in: query
-      description: The number of items to skip before starting to collect the result set.
-      required: false
-      schema:
-        type: integer
-        minimum: 0
-        example: 0
-    BitrateQueryParameter:
-      name: bitrate
-      in: query
-      description: Bitrate for the track.
-      required: false
-      schema:
-        $ref: '#/components/schemas/TrackBitrateEnum'
-    LimitQueryParameter:
-      name: limit
-      in: query
-      description: The number of items to return in the result set.
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        example: 25
-    OrderQueryParameter:
-      name: order
-      in: query
-      description: The direction of the ordering.
-      required: false
-      schema:
-        type: string
-        enum:
-        - asc
-        - desc
-        example: asc
-    TrackSessionIdPathParameter:
-      name: track
-      in: path
-      description: The unique session_id of the track.
-      required: true
-      schema:
-        type: string
-        example: 4b19470aec7446d0a8e3c05d06b23ce2
-    InstrumentsQueryParameter:
-      name: instruments
-      in: query
-      description: Instrument filter for the tracks.
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-        example: Guitar
-    DurationQueryParameter:
-      name: duration
-      in: query
-      description: Duration filter for the tracks (in seconds).
-      required: false
-      schema:
-        type:
-        - integer
-        - 'null'
-        minimum: 5
-        example: 180
-    LangQueryParameter:
-      name: lang
-      in: query
-      description: Language code
-      required: false
-      schema:
-        $ref: '#/components/schemas/LanguageEnum'
-    PlaylistsQueryParameter:
-      name: playlists
-      in: query
-      description: Playlist filter for the tracks.
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-        example: Chill Vibes
-    PricePathParameter:
-      name: price
-      in: path
-      description: The unique identifier of the price.
-      required: true
-      schema:
-        type: string
-        format: uuid
-        example: 123e4567-e89b-12d3-a456-426614174000
-    MoodsQueryParameter:
-      name: moods
-      in: query
-      description: Mood filter for the tracks.
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-        example: Happy
-    OrderByQueryParameter:
-      name: order_by
-      in: query
-      description: The field by which the results should be ordered.
-      required: false
-      schema:
-        type: string
-        example: created_at
-    TrackPathParameter:
-      name: track
-      in: path
-      description: The unique identifier of the track.
-      required: true
-      schema:
-        type: string
-        format: uuid
-        example: 123e4567-e89b-12d3-a456-426614174000
-    ActivitiesQueryParameter:
-      name: activities
-      in: query
-      description: Activity filter for the tracks.
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-        example: Minimal 170
-    GenresQueryParameter:
-      name: genres
-      in: query
-      description: Genre filter for the tracks.
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-        example: Rock
-    KeyQueryParameter:
-      name: key
-      in: query
-      description: Musical key
-      required: false
-      schema:
-        $ref: '#/components/schemas/TrackKeyScaleEnum'
-    StreamingTypeQueryParameter:
-      name: type
-      in: query
-      description: Streaming Type
-      required: false
-      schema:
-        $ref: '#/components/schemas/StreamingTypeEnum'
-    ModeQueryParameter:
-      name: mode
-      in: query
-      description: Track mode
-      required: false
-      schema:
-        $ref: '#/components/schemas/TrackModeEnum'
   schemas:
-    TrackShowPublicResource:
+    LanguageEnum:
+      description: Languages
+      type: string
+      enum:
+      - ko
+      - es
+      - fr
+      - de
+      - pt
+      - ja
+    TrackGenerationIndexPublicResource:
       allOf:
-      - $ref: '#/components/schemas/TrackPublicResource'
-      - properties:
-          generations:
-            description: List of track generations
-            type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/TrackGenerationShowPublicResource'
-        type: object
+      - $ref: '#/components/schemas/TrackGenerationPublicResource'
+    PriceOptionPublicResource:
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        priority:
+          description: Priority (higher means higher priority)
+          type: integer
+        is_enabled:
+          description: Shows whether the option is enabled or not
+          type: boolean
+      type: object
     TrackIndexPublicResource:
       allOf:
       - $ref: '#/components/schemas/TrackPublicResource'
@@ -1081,6 +884,38 @@ components:
             items:
               $ref: '#/components/schemas/TrackGenerationIndexPublicResource'
         type: object
+    TrackGenerationShowPublicResource:
+      allOf:
+      - $ref: '#/components/schemas/TrackGenerationPublicResource'
+      - properties:
+          url:
+            description: Download link
+            type:
+            - string
+            - 'null'
+        type: object
+    Error404Response:
+      description: Response for not found errors
+      properties:
+        code:
+          description: Type of the error
+          type: string
+          example: CompanyNotFound
+        message:
+          type: string
+          example: Resource not found
+        description:
+          type:
+          - string
+          - 'null'
+      type: object
+      discriminator:
+        propertyName: code
+        mapping:
+          CustomerNotFound: '#/components/schemas/CustomerNotFound'
+          CompanyNotFound: '#/components/schemas/CompanyNotFound'
+          LicenseNotFound: '#/components/schemas/LicenseNotFound'
+          TrackNotFound: '#/components/schemas/TrackNotFound'
     TrackPublicResource:
       properties:
         id:
@@ -1124,120 +959,12 @@ components:
           type: string
           format: date-time
       type: object
-    TrackIntensityEnum:
-      description: Enumeration representing different intensity levels of a track.
-      type: string
-      enum:
-      - low
-      - medium
-      - high
-      example: medium
     StreamingTypeEnum:
       description: Streaming Type Enum
       type: string
       enum:
       - http
       - webrtc
-    UnauthenticatedException:
-      description: Response indicating that the user is not authenticated to access the resource.
-      properties:
-        message:
-          type: string
-          example: Unauthenticated
-        description:
-          type:
-          - string
-          - 'null'
-          example: Reason for authentication failure
-        code:
-          type: string
-          example: Unauthenticated
-      type: object
-    TrackGenerationPublicResource:
-      properties:
-        session_id:
-          description: Session ID
-          type: string
-        format:
-          description: track format
-          type: string
-        bitrate:
-          description: Bitrate value
-          type: integer
-        status:
-          description: track status
-          type: string
-        generated_at:
-          description: Generation timestamp
-          type: string
-          format: date-time
-        expired_at:
-          description: Expiration timestamp
-          type: string
-          format: date-time
-        created_at:
-          description: Creation timestamp
-          type: string
-          format: date-time
-      type: object
-    StemEnum:
-      description: Stems
-      type: string
-      enum:
-      - DRUMS
-      - BASS
-      - LEADS
-      - VOCALS
-      - FX
-      example: DRUMS
-    TrackFormatEnum:
-      description: Enumeration representing different track formats.
-      type: string
-      enum:
-      - mp3
-      - wav
-      example: mp3
-    TrackModeEnum:
-      description: Enumeration representing different modes of a track.
-      type: string
-      enum:
-      - track
-      - jingle
-      - loop
-      - mix
-      example: loop
-    StripePricePublicResource:
-      properties:
-        id:
-          type: string
-          format: uuid
-        price_id:
-          type: string
-        product_id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - one_time
-          - recurring
-        interval:
-          type:
-          - string
-          - 'null'
-          enum:
-          - day
-          - week
-          - month
-          - year
-        amount:
-          type: integer
-        trial_period_days:
-          type:
-          - integer
-          - 'null'
-      type: object
     PriceLimitPublicResource:
       properties:
         id:
@@ -1278,22 +1005,33 @@ components:
           description: Daily limit on the streaming duration (in seconds) for a user
           type: integer
       type: object
-    TrackGenerationShowPublicResource:
+    PriceNotFoundException:
+      description: Response indicating that the specified price could not be found.
+      properties:
+        message:
+          type: string
+          example: Price not found
+        description:
+          type:
+          - string
+          - 'null'
+          example: No price exists with the specified ID
+        code:
+          type: string
+          example: PriceNotFound
+      type: object
+    TrackShowPublicResource:
       allOf:
-      - $ref: '#/components/schemas/TrackGenerationPublicResource'
+      - $ref: '#/components/schemas/TrackPublicResource'
       - properties:
-          url:
-            description: Download link
+          generations:
+            description: List of track generations
             type:
-            - string
+            - array
             - 'null'
+            items:
+              $ref: '#/components/schemas/TrackGenerationShowPublicResource'
         type: object
-    StreamingLoopStateEnum:
-      description: Streaming Loop State
-      type: string
-      enum:
-      - 'on'
-      - 'off'
     TrackBitrateEnum:
       description: Enumeration representing different track bitrates.
       type: integer
@@ -1305,146 +1043,13 @@ components:
       - 256
       - 320
       example: 320
-    MetadataPagination:
-      description: Pagination metadata
-      properties:
-        total:
-          type: integer
-          example: 1000
-        limit:
-          type: integer
-          example: 100
-        offset:
-          type: integer
-          example: 0
-      type: object
-    Error403Response:
-      description: Response for forbidden access errors
-      properties:
-        code:
-          description: Type of the error
-          type: string
-        message:
-          type: string
-          example: Forbidden action
-        description:
-          type:
-          - string
-          - 'null'
-      type: object
-      discriminator:
-        propertyName: code
-        mapping:
-          LicenseExpired: '#/components/schemas/LicenseExpiredException'
-          AccessTokenExpired: '#/components/schemas/AccessTokenExpiredException'
-          Forbidden: '#/components/schemas/ForbiddenException'
-          CompanyIsNotActive: '#/components/schemas/CompanyIsNotActiveException'
-          CustomerIsNotActive: '#/components/schemas/CompanyIsNotActiveException'
-          LicenseForbiddenBitrate: '#/components/schemas/LicenseForbiddenBitrate'
-          LicenseForbiddenDuration: '#/components/schemas/LicenseForbiddenDuration'
-          LicenseForbiddenFeature: '#/components/schemas/LicenseForbiddenFeature'
-          LicenseForbiddenFormat: '#/components/schemas/LicenseForbiddenFormat'
-          LicenseForbiddenIntensity: '#/components/schemas/LicenseForbiddenIntensity'
-          LicenseForbiddenMode: '#/components/schemas/LicenseForbiddenMode'
-          LicenseIsNotActive: '#/components/schemas/LicenseIsNotActive'
-          LicenseLimitConcurrentTrackGenerationsCount: '#/components/schemas/LicenseLimitConcurrentTrackGenerationsCount'
-          LicenseLimitTracksCount: '#/components/schemas/LicenseLimitTracksCount'
-          LicenseLimitTracksDuration: '#/components/schemas/LicenseLimitTracksDuration'
-          LicenseLimitUsersCount: '#/components/schemas/LicenseLimitUsersCount'
-          UserNotFound: '#/components/schemas/UserNotFound'
-    InstrumentEnum:
-      description: Instruments
+    TrackFormatEnum:
+      description: Enumeration representing different track formats.
       type: string
       enum:
-      - DRUMS
-      - PERCS
-      - HATS
-      - CLAPS
-      - BASS
-      - MIDS
-      - LEADS
-      - FX
-      - VOCALS
-      - PADS
-      - RISER
-      - IMPACT
-      example: DRUMS
-    PriceOptionPublicResource:
-      properties:
-        id:
-          type: string
-          format: uuid
-        title:
-          type: string
-        priority:
-          description: Priority (higher means higher priority)
-          type: integer
-        is_enabled:
-          description: Shows whether the option is enabled or not
-          type: boolean
-      type: object
-    TrackKeyScaleEnum:
-      description: Key-Scale for a track.
-      type: string
-      enum:
-      - C
-      - C#
-      - D
-      - D#
-      - E
-      - F
-      - F#
-      - G
-      - G#
-      - A
-      - A#
-      - B
-      - Cm
-      - C#m
-      - Dm
-      - D#m
-      - Em
-      - Fm
-      - F#m
-      - Gm
-      - G#m
-      - Am
-      - A#m
-      - Bm
-      example: C#
-    TrackGenerationIndexPublicResource:
-      allOf:
-      - $ref: '#/components/schemas/TrackGenerationPublicResource'
-    LanguageEnum:
-      description: Languages
-      type: string
-      enum:
-      - ko
-      - es
-      - fr
-      - de
-      - pt
-      - ja
-    PricePublicResource:
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        feature:
-          type:
-          - string
-          - 'null'
-        stripe_price:
-          $ref: '#/components/schemas/StripePricePublicResource'
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/PriceOptionPublicResource'
-        limits:
-          $ref: '#/components/schemas/PriceLimitPublicResource'
-      type: object
+      - mp3
+      - wav
+      example: mp3
     PlaylistPublicResource:
       properties:
         playlist_index:
@@ -1483,31 +1088,41 @@ components:
                   $ref: '#/components/schemas/TrackKeyScaleEnum'
             type: object
       type: object
-    PriceNotFoundException:
-      description: Response indicating that the specified price could not be found.
+    PricePublicResource:
       properties:
-        message:
+        id:
           type: string
-          example: Price not found
-        description:
+          format: uuid
+        name:
+          type: string
+        feature:
           type:
           - string
           - 'null'
-          example: No price exists with the specified ID
-        code:
-          type: string
-          example: PriceNotFound
+        stripe_price:
+          $ref: '#/components/schemas/StripePricePublicResource'
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceOptionPublicResource'
+        limits:
+          $ref: '#/components/schemas/PriceLimitPublicResource'
       type: object
-    Error404Response:
-      description: Response for not found errors
+    StreamingLoopStateEnum:
+      description: Streaming Loop State
+      type: string
+      enum:
+      - 'on'
+      - 'off'
+    Error403Response:
+      description: Response for forbidden access errors
       properties:
         code:
           description: Type of the error
           type: string
-          example: CompanyNotFound
         message:
           type: string
-          example: Resource not found
+          example: Forbidden action
         description:
           type:
           - string
@@ -1516,11 +1131,430 @@ components:
       discriminator:
         propertyName: code
         mapping:
-          CustomerNotFound: '#/components/schemas/CustomerNotFound'
-          CompanyNotFound: '#/components/schemas/CompanyNotFound'
-          LicenseNotFound: '#/components/schemas/LicenseNotFound'
-          TrackNotFound: '#/components/schemas/TrackNotFound'
+          LicenseExpired: '#/components/schemas/LicenseExpiredException'
+          AccessTokenExpired: '#/components/schemas/AccessTokenExpiredException'
+          Forbidden: '#/components/schemas/ForbiddenException'
+          CompanyIsNotActive: '#/components/schemas/CompanyIsNotActiveException'
+          CustomerIsNotActive: '#/components/schemas/CompanyIsNotActiveException'
+          LicenseForbiddenBitrate: '#/components/schemas/LicenseForbiddenBitrate'
+          LicenseForbiddenDuration: '#/components/schemas/LicenseForbiddenDuration'
+          LicenseForbiddenFeature: '#/components/schemas/LicenseForbiddenFeature'
+          LicenseForbiddenFormat: '#/components/schemas/LicenseForbiddenFormat'
+          LicenseForbiddenIntensity: '#/components/schemas/LicenseForbiddenIntensity'
+          LicenseForbiddenMode: '#/components/schemas/LicenseForbiddenMode'
+          LicenseIsNotActive: '#/components/schemas/LicenseIsNotActive'
+          LicenseLimitConcurrentTrackGenerationsCount: '#/components/schemas/LicenseLimitConcurrentTrackGenerationsCount'
+          LicenseLimitTracksCount: '#/components/schemas/LicenseLimitTracksCount'
+          LicenseLimitTracksDuration: '#/components/schemas/LicenseLimitTracksDuration'
+          LicenseLimitUsersCount: '#/components/schemas/LicenseLimitUsersCount'
+          UserNotFound: '#/components/schemas/UserNotFound'
+    StemEnum:
+      description: Stems
+      type: string
+      enum:
+      - DRUMS
+      - BASS
+      - LEADS
+      - VOCALS
+      - FX
+      example: DRUMS
+    TrackIntensityEnum:
+      description: Enumeration representing different intensity levels of a track.
+      type: string
+      enum:
+      - low
+      - medium
+      - high
+      example: medium
+    UnauthenticatedException:
+      description: Response indicating that the user is not authenticated to access the resource.
+      properties:
+        message:
+          type: string
+          example: Unauthenticated
+        description:
+          type:
+          - string
+          - 'null'
+          example: Reason for authentication failure
+        code:
+          type: string
+          example: Unauthenticated
+      type: object
+    StripePricePublicResource:
+      properties:
+        id:
+          type: string
+          format: uuid
+        price_id:
+          type: string
+        product_id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - one_time
+          - recurring
+        interval:
+          type:
+          - string
+          - 'null'
+          enum:
+          - day
+          - week
+          - month
+          - year
+        amount:
+          type: integer
+        trial_period_days:
+          type:
+          - integer
+          - 'null'
+      type: object
+    InstrumentEnum:
+      description: Instruments
+      type: string
+      enum:
+      - DRUMS
+      - PERCS
+      - HATS
+      - CLAPS
+      - BASS
+      - MIDS
+      - LEADS
+      - FX
+      - VOCALS
+      - PADS
+      - RISER
+      - IMPACT
+      example: DRUMS
+    MetadataPagination:
+      description: Pagination metadata
+      properties:
+        total:
+          type: integer
+          example: 1000
+        limit:
+          type: integer
+          example: 100
+        offset:
+          type: integer
+          example: 0
+      type: object
+    TrackKeyScaleEnum:
+      description: Key-Scale for a track.
+      type: string
+      enum:
+      - C
+      - C#
+      - D
+      - D#
+      - E
+      - F
+      - F#
+      - G
+      - G#
+      - A
+      - A#
+      - B
+      - Cm
+      - C#m
+      - Dm
+      - D#m
+      - Em
+      - Fm
+      - F#m
+      - Gm
+      - G#m
+      - Am
+      - A#m
+      - Bm
+      example: C#
+    TrackModeEnum:
+      description: Enumeration representing different modes of a track.
+      type: string
+      enum:
+      - track
+      - jingle
+      - loop
+      - mix
+      example: loop
+    TrackGenerationPublicResource:
+      properties:
+        session_id:
+          description: Session ID
+          type: string
+        format:
+          description: track format
+          type: string
+        bitrate:
+          description: Bitrate value
+          type: integer
+        status:
+          description: track status
+          type: string
+        generated_at:
+          description: Generation timestamp
+          type: string
+          format: date-time
+        expired_at:
+          description: Expiration timestamp
+          type: string
+          format: date-time
+        created_at:
+          description: Creation timestamp
+          type: string
+          format: date-time
+      type: object
+  parameters:
+    ActivitiesQueryParameter:
+      name: activities
+      in: query
+      description: Activity filter for the tracks.
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+        example: Minimal 170
+    OffsetQueryParameter:
+      name: offset
+      in: query
+      description: The number of items to skip before starting to collect the result set.
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        example: 0
+    ThemesQueryParameter:
+      name: themes
+      in: query
+      description: Theme filter for the tracks.
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+        example: Corporate
+    customer-id:
+      name: customer-id
+      in: header
+      description: Customer Id
+      required: true
+      schema:
+        type: string
+    LangQueryParameter:
+      name: lang
+      in: query
+      description: Language code
+      required: false
+      schema:
+        $ref: '#/components/schemas/LanguageEnum'
+    TrackSessionIdPathParameter:
+      name: track
+      in: path
+      description: The unique session_id of the track.
+      required: true
+      schema:
+        type: string
+        example: 4b19470aec7446d0a8e3c05d06b23ce2
+    access-token:
+      name: access-token
+      in: header
+      description: Access Token
+      required: true
+      schema:
+        type: string
+    OrderQueryParameter:
+      name: order
+      in: query
+      description: The direction of the ordering.
+      required: false
+      schema:
+        type: string
+        enum:
+        - asc
+        - desc
+        example: asc
+    PricePathParameter:
+      name: price
+      in: path
+      description: The unique identifier of the price.
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: 123e4567-e89b-12d3-a456-426614174000
+    IntensityQueryParameter:
+      name: intensity
+      in: query
+      description: Intensity level of the track.
+      required: false
+      schema:
+        $ref: '#/components/schemas/TrackIntensityEnum'
+    GenresQueryParameter:
+      name: genres
+      in: query
+      description: Genre filter for the tracks.
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+        example: Rock
+    KeyQueryParameter:
+      name: key
+      in: query
+      description: Musical key
+      required: false
+      schema:
+        $ref: '#/components/schemas/TrackKeyScaleEnum'
+    StreamingTypeQueryParameter:
+      name: type
+      in: query
+      description: Streaming Type
+      required: false
+      schema:
+        $ref: '#/components/schemas/StreamingTypeEnum'
+    LimitQueryParameter:
+      name: limit
+      in: query
+      description: The number of items to return in the result set.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        example: 25
+    InstrumentsQueryParameter:
+      name: instruments
+      in: query
+      description: Instrument filter for the tracks.
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+        example: Guitar
+    PlaylistsQueryParameter:
+      name: playlists
+      in: query
+      description: Playlist filter for the tracks.
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+        example: Chill Vibes
+    MoodsQueryParameter:
+      name: moods
+      in: query
+      description: Mood filter for the tracks.
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+        example: Happy
+    PlaylistIndexQueryParameter:
+      name: playlist_index
+      in: query
+      description: Index of the playlist
+      required: true
+      schema:
+        type: string
+        maxLength: 10
+        example: 1.0.0
+    BpmQueryParameter:
+      name: bpm
+      in: query
+      description: Beats per minute filter for the tracks.
+      required: false
+      schema:
+        type:
+        - integer
+        - 'null'
+        maximum: 500
+        minimum: 1
+        example: 120
+    OrderByQueryParameter:
+      name: order_by
+      in: query
+      description: The field by which the results should be ordered.
+      required: false
+      schema:
+        type: string
+        example: created_at
+    TrackPathParameter:
+      name: track
+      in: path
+      description: The unique identifier of the track.
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: 123e4567-e89b-12d3-a456-426614174000
+    DurationQueryParameter:
+      name: duration
+      in: query
+      description: Duration filter for the tracks (in seconds).
+      required: false
+      schema:
+        type:
+        - integer
+        - 'null'
+        minimum: 5
+        example: 180
+    ModeQueryParameter:
+      name: mode
+      in: query
+      description: Track mode
+      required: false
+      schema:
+        $ref: '#/components/schemas/TrackModeEnum'
+    BitrateQueryParameter:
+      name: bitrate
+      in: query
+      description: Bitrate for the track.
+      required: false
+      schema:
+        $ref: '#/components/schemas/TrackBitrateEnum'
   requestBodies:
+    StreamingSetLoopStateRequest:
+      description: Enable or disable loop mode for the current stream segment.
+      content:
+        application/json:
+          schema:
+            required:
+            - loop
+            properties:
+              loop:
+                $ref: '#/components/schemas/StreamingLoopStateEnum'
+              time:
+                description: Set equal to the current stream playback time in seconds (since session start) to improve the UX
+                type: integer
+                minimum: 0
+                example: 0
+            type: object
+    SubscriptionCancelPublicRequest:
+      description: Request to cancel a subscription by company ID and license token
+      required: true
+      content:
+        application/json:
+          schema:
+            required:
+            - company_id
+            - license_token
+            properties:
+              company_id:
+                type: string
+                format: uuid
+                example: 550e8400-e29b-41d4-a716-446655440000
+              license_token:
+                type: string
+                example: abc123def456
+            type: object
     SubscriptionBuyPublicRequest:
       description: Request to buy a subscription
       required: true
@@ -1569,8 +1603,8 @@ components:
                 - 'null'
                 example: true
             type: object
-    TrackStoredPublicRequest:
-      description: Request for storing track details with validation for playlist and stream parameters.
+    TrackSimilarPublicRequest:
+      description: Request to create a similar track.
       required: true
       content:
         application/json:
@@ -1578,20 +1612,10 @@ components:
             required:
             - duration
             properties:
-              playlist_index:
-                description: The index of the playlist, required if stream_id is not provided.
-                type: string
-                maxLength: 10
-                example: 1.0.1
-              stream_id:
-                description: The ID of the stream, required if playlist_index is not provided.
-                type: integer
-                minimum: 1
-                example: 123
               bitrate:
                 $ref: '#/components/schemas/TrackBitrateEnum'
               duration:
-                description: The duration of the track in seconds.
+                description: Duration of the track in seconds.
                 type: integer
                 minimum: 5
                 example: 300
@@ -1601,28 +1625,6 @@ components:
                 $ref: '#/components/schemas/TrackIntensityEnum'
               mode:
                 $ref: '#/components/schemas/TrackModeEnum'
-            type: object
-    StreamingSetLoopStateRequest:
-      description: Enable or disable loop mode for the current stream segment.
-      content:
-        application/json:
-          schema:
-            required:
-            - loop
-            properties:
-              loop:
-                $ref: '#/components/schemas/StreamingLoopStateEnum'
-              time:
-                description: Set equal to the current stream playback time in seconds (since session start) to improve the UX
-                type: integer
-                minimum: 0
-                example: 0
-            type: object
-    StreamingRestartRequest:
-      description: Restart the stream so that a different track is played using the same streaming URL. No body required.
-      content:
-        application/json:
-          schema:
             type: object
     StreamingSetIntensityRequest:
       description: Dynamically adjust the arrangement complexity during streaming.
@@ -1674,23 +1676,38 @@ components:
                 items:
                   $ref: '#/components/schemas/InstrumentEnum'
             type: object
-    SubscriptionCancelPublicRequest:
-      description: Request to cancel a subscription by company ID and license token
+    TrackStoredPublicRequest:
+      description: Request for storing track details with validation for playlist and stream parameters.
       required: true
       content:
         application/json:
           schema:
             required:
-            - company_id
-            - license_token
+            - duration
             properties:
-              company_id:
+              playlist_index:
+                description: The index of the playlist, required if stream_id is not provided.
                 type: string
-                format: uuid
-                example: 550e8400-e29b-41d4-a716-446655440000
-              license_token:
-                type: string
-                example: abc123def456
+                maxLength: 10
+                example: 1.0.1
+              stream_id:
+                description: The ID of the stream, required if playlist_index is not provided.
+                type: integer
+                minimum: 1
+                example: 123
+              bitrate:
+                $ref: '#/components/schemas/TrackBitrateEnum'
+              duration:
+                description: The duration of the track in seconds.
+                type: integer
+                minimum: 5
+                example: 300
+              format:
+                $ref: '#/components/schemas/TrackFormatEnum'
+              intensity:
+                $ref: '#/components/schemas/TrackIntensityEnum'
+              mode:
+                $ref: '#/components/schemas/TrackModeEnum'
             type: object
     TrackCreatePublicRequest:
       description: Request to create a new track. At least one of `playlist_index`, `prompt`, or `image` must be provided. Some parameters are restricted based on provided values.
@@ -1737,28 +1754,11 @@ components:
               key:
                 $ref: '#/components/schemas/TrackKeyScaleEnum'
             type: object
-    TrackSimilarPublicRequest:
-      description: Request to create a similar track.
-      required: true
+    StreamingRestartRequest:
+      description: Restart the stream so that a different track is played using the same streaming URL. No body required.
       content:
         application/json:
           schema:
-            required:
-            - duration
-            properties:
-              bitrate:
-                $ref: '#/components/schemas/TrackBitrateEnum'
-              duration:
-                description: Duration of the track in seconds.
-                type: integer
-                minimum: 5
-                example: 300
-              format:
-                $ref: '#/components/schemas/TrackFormatEnum'
-              intensity:
-                $ref: '#/components/schemas/TrackIntensityEnum'
-              mode:
-                $ref: '#/components/schemas/TrackModeEnum'
             type: object
   securitySchemes:
     customerId:
