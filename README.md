@@ -1,4 +1,4 @@
-# Mubert (mubert)
+# Mubert
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,101 +66,173 @@
 
 Mubert is a generative AI music platform that composes royalty-free, DMCA-free music in real time from millions of artist-contributed loops, samples, and stems. The B2B Mubert AI Music API (v3) powers track generation, continuous HTTP / WebRTC streaming, browse access to a pre-generated music library, and service-tier customer + license + Stripe subscription administration. Mubert is used by apps, games, video tools, health and fitness products, and AI-content pipelines (including integrations with Picsart, Canva, and Restream) to embed adaptive generative music inside their experiences.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/mubert/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/mubert/refs/heads/main/apis.yml)
+**Areas:** AI Music · Generative · Royalty-Free · Streaming · Text-to-Music · Image-to-Music · Stems · B2B
 
-## Scope
+## Mubert on APIs.io
 
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for Mubert is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/mubert/](https://apis.io/providers/mubert/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (6)
 
-- AI Music
-- Generative
-- Royalty-Free
-- Streaming
-- Text-to-Music
-- Image-to-Music
-- Stems
-- B2B
+- [Mubert Price API](https://apis.io/apis/mubert/mubert-price-api/) — Price
+- [Mubert Public API](https://apis.io/apis/mubert/mubert-public-api/) — Public
+- [Mubert Public Service API](https://apis.io/apis/mubert/mubert-public-service-api/) — Public Service
+- [Mubert Service API](https://apis.io/apis/mubert/mubert-service-api/) — Service
+- [Mubert Stripe API](https://apis.io/apis/mubert/mubert-stripe-api/) — Stripe
+- [Mubert Subscription API](https://apis.io/apis/mubert/mubert-subscription-api/) — Subscription
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-23
-- **Modified:** 2026-05-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Mubert AI Music API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Mubert AI Music API v3 — the unified B2B surface for generating royalty-free AI music tracks, streaming continuous generative music (HTTP / WebRTC), browsing the pre-generated music library and playlist taxonomy, and (service tier) administering customers, licenses, prices, and Stripe subscriptions. Authentication uses customer-id + access-token headers for public endpoints and company-id + license-token headers for service endpoints. Ships AI-optimized llms.txt / llms-full.txt docs alongside Swagger UI.
+- [Mubert Agentic Access](https://apis.io/agentic-access/mubert/mubert-agentic-access/)
 
-- **Human URL:** [https://mubert.com/api](https://mubert.com/api)
-- **Base URL:** `https://music-api.mubert.com`
+#### JSON Schema (5)
 
-#### Tags
+The data models the API reads and writes.
 
-- AI Music
-- Generation
-- Streaming
-- Library
-- Customers
-- Licenses
-- Subscriptions
+- [Mubert Customer](https://apis.io/schemas/mubert/mubert-customer/)
+- [Mubert License](https://apis.io/schemas/mubert/mubert-license/)
+- [Mubert Playlist](https://apis.io/schemas/mubert/mubert-playlist/)
+- [Mubert Streaming Link](https://apis.io/schemas/mubert/mubert-streaming-link/)
+- [Mubert Track](https://apis.io/schemas/mubert/mubert-track/)
 
-#### Properties
+#### JSON Structure (2)
 
-- [Documentation](https://mubert.com/api)
-- [Swagger U I](https://music-api.mubert.com/api/v3/swagger)
-- [OpenAPI](openapi/mubert-music-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/mubert-music-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/mubert-music-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [A I Documentation](https://music-api.mubert.com/swagger-doc/llms.txt)
-- [A I Documentation](https://music-api.mubert.com/swagger-doc/llms-full.txt)
-- [JSON Schema](json-schema/mubert-track-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/mubert-customer-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/mubert-license-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/mubert-playlist-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/mubert-streaming-link-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/mubert-track-structure.json)
-- [JSON Structure](json-structure/mubert-license-structure.json)
-- [JSON-LD](json-ld/mubert-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Example](examples/mubert-create-track-example.json)
-- [Example](examples/mubert-edit-track-example.json)
-- [Example](examples/mubert-get-streaming-link-example.json)
-- [Example](examples/mubert-create-customer-example.json)
-- [Vocabulary](vocabulary/mubert-vocabulary.yml)
-- [Spectral Rules](rules/mubert-rules.yml)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Mubert License Structure](https://apis.io/json-structure/mubert/mubert-license-structure/)
+- [Mubert Track Structure](https://apis.io/json-structure/mubert/mubert-track-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Mubert Context](https://apis.io/jsonld/mubert/mubert-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Mubert Vocabulary](https://apis.io/vocabularies/mubert/mubert-vocabulary/)
+
+#### Examples (4)
+
+Example requests and responses.
+
+- [Mubert Create Customer Example](https://apis.io/examples/mubert/mubert-create-customer-example/)
+- [Mubert Create Track Example](https://apis.io/examples/mubert/mubert-create-track-example/)
+- [Mubert Edit Track Example](https://apis.io/examples/mubert/mubert-edit-track-example/)
+- [Mubert Get Streaming Link Example](https://apis.io/examples/mubert/mubert-get-streaming-link-example/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [Mubert AI Music API v3](https://apis.io/collections/mubert/open-mubert-music-api/)
+- [Mubert AI Music API v3 Price API](https://apis.io/collections/mubert/open-mubert-price-api/)
+- [Mubert AI Music API v3 Price Public API](https://apis.io/collections/mubert/open-mubert-public-api/)
+- [Mubert AI Music API v3 Price Public Service API](https://apis.io/collections/mubert/open-mubert-public-service-api/)
+- [Mubert AI Music API v3 Price Service API](https://apis.io/collections/mubert/open-mubert-service-api/)
+- [Mubert AI Music API v3 Price Stripe API](https://apis.io/collections/mubert/open-mubert-stripe-api/)
+- [Mubert AI Music API v3 Price Subscription API](https://apis.io/collections/mubert/open-mubert-subscription-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Mubert — jsonschema rules](https://apis.io/rules/mubert/mubert-jsonschema-spectral-rules/)
+- [Mubert API Rules](https://apis.io/rules/mubert/mubert-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Mubert Authentication](https://apis.io/security/mubert/mubert-authentication/)
+- [Mubert Domain Security](https://apis.io/security/mubert/mubert-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Mubert Plans Pricing](https://apis.io/plans/mubert/mubert-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Mubert Rate Limits](https://apis.io/rate-limits/mubert/mubert-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Mubert Finops](https://apis.io/finops/mubert/mubert-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://mubert.com/)
-- [Product Page](https://mubert.com/api)
-- [Product Page](https://mubert.com/render)
-- [Product Page](https://mubert.com/play)
-- [Product Page](https://mubert.com/business)
-- [Product Page](https://mubert.com/studio)
 - [Documentation](https://mubert.com/api)
-- [Swagger U I](https://music-api.mubert.com/api/v3/swagger)
-- [A I Documentation](https://music-api.mubert.com/swagger-doc/llms.txt)
-- [A I Documentation](https://music-api.mubert.com/swagger-doc/llms-full.txt)
-- [GitHub Organization](https://github.com/MubertAI)
-- [Samples](https://github.com/MubertAI/Mubert-Text-to-Music)
-- [Agent Skills](https://github.com/MubertAI/skills)
-- [Use Cases](https://mubert.com/use-cases/developers)
 - [Blog](https://mubert.com/blog)
-- [Terms of Service](https://mubert.com/legal/terms-of-use)
-- [Privacy Policy](https://mubert.com/legal/privacy-policy)
-- [Contact](https://mubert.com/contact)
-- [Plans](plans/mubert-plans-pricing.yml)
-- [Rate Limits](rate-limits/mubert-rate-limits.yml)
-- [Fin Ops](finops/mubert-finops.yml)
-- [Features](undefined)
-- [Integrations](undefined)
-- [Use Cases](undefined)
+- [Terms of service](https://mubert.com/legal/terms-of-use)
+- [Privacy policy](https://mubert.com/legal/privacy-policy)
+- [GitHub](https://github.com/MubertAI)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 34.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 68.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 30.2 |
+| Access clarity | 7.9 |
+
+**Agent readiness 31.1** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | unknown |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/mubert/](https://apis.io/providers/mubert/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Mubert: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/mubert/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
